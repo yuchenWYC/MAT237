@@ -1,0 +1,84 @@
+\documentclass[11pt]{article}
+
+% Libraries.
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{pgfplots}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{perpage}
+\usepackage{float}
+
+% Property settings.
+\MakePerPage{footnote}
+\pagestyle{fancy}
+\lhead{Notes by YW, TX}
+
+% Commands
+\newcommand{\ti}[1]{\textit{#1}}
+\newcommand{\tb}[1]{\textbf{#1}}
+\newcommand{\mb}[1]{\mathbb{#1}}
+\newcommand{\real}[0]{\mathbb{R}}
+\newcommand{\under}[1]{\underline{#1}}
+\newcommand{\proof}[0]{\textit{\underline{proof:} }}
+
+% Attr.
+\title{MAT237 Multivariable Calculus \\ Lecture Notes}
+\author{Yuchen Wang, Tingfeng Xia}
+\date{\today}
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+	\newpage
+\section{Critical Points}
+\subsection{symmetric matrices}
+\paragraph{Definition} A symmetric $n \times n$ matrix A is
+\begin{enumerate}
+	\item \tb{positive definite} if $\tb{x}^T A \tb{x} > 0$ for all $x \in \real^n \symbol{92} \{\tb{0}\}$
+	\item \tb{nonnegative definite} if $\tb{x}^T A \tb{x} \geq 0$ for all $x \in \real^n$
+\end{enumerate}
+In addition, we say that A is
+\begin{enumerate}
+	\item \tb{negative definite} if -A is positive definite
+	\item \tb{nonpositive definite} if -A is nonnegative definite
+\end{enumerate}
+A matrix A is \tb{indefinite} if none of the above holds. Equivalently, A is indefinite if there exist $\tb{x, y}\in \real$ such that $\tb{x}^TA\tb{x} < 0 < \tb{y}^TA\tb{y}$
+\paragraph{Theorem 1} Assume that A is a symmetric matrix. Then \newline
+\begin{enumerate}
+	\item A is positive definite $\iff$ all its eigenvalues are positive \newline
+$\iff \exists \lambda_1 > 0$ such that $\tb{x}^TA\tb{x} \geq \lambda_1|\tb{x}|^2$ for all $\tb{x} \in \real^n $
+	\item A is nonnegative definite $\iff$ all its eigenvalues are nonnegative \newline
+	\item A is indefinite $\iff$ A has both positive and negative eigenvalues
+\end{enumerate}
+\paragraph{Remark} If A is a symmetric matrix then \newline
+The smallest eigenvalue of A = $\min_{\{\tb{u}\in \real^n: |\tb{u}| = 1\}} \tb{u}^TA\tb{u}$
+\paragraph{Theorem 2} For the matrix $A = \begin{pmatrix}
+	\alpha & \beta \\
+	\beta & \gamma 
+\end{pmatrix}$,
+\begin{enumerate}
+	\item if $det A < 0,$ then A is indefinite
+	\item if $det A > 0$, then
+	\subitem if $\alpha > 0$ then A is positive definite
+	\subitem if $\alpha < 0$ then A is negative definite
+	\item if $det A = 0$ then at least one eigenvalue equals zero.
+\end{enumerate}
+\paragraph{Definition} A critical point $\tb{a}$ of $C^2$ function $\tb{f}$ is \under{degenerate} if $det(D_\tb{H}(\tb{a})) = 0$
+\paragraph{Theorem 3 - first derivative test} If $\tb{f}: S \in \real^n \rightarrow \real$ is differentiable, then every local extremum is a critical point.
+\paragraph{Theorem 4 - second derivative test}
+\begin{enumerate}
+	\item If $f: S \rightarrow \real$ is $C^2$ and \tb{a} is a local minimum point for $f$, then \tb{a} is a critical point of $f$ and $H(\tb{a})$ is nonnegative definite.
+	\item If \tb{a} is a critical point and $H(\tb{a})$ is positive definite, then \tb{a} is a local minimum point.
+\end{enumerate}
+\paragraph{Corollary} Assume that $f$ is $C^2$ and $\nabla f(\tb{a}) = \tb{0}$
+\begin{enumerate}
+	\item If H(a) is positive definite, then a is a local min;
+	\item If H(a) is negative definite, then a is a local max;
+	\item If H(a) is indefinite, then a is a saddle point;
+	\item If non of the above hold, then we cannot determine the character of the critical point without further though.
+\end{enumerate} 
+
+\end{document}
