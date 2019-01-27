@@ -124,6 +124,42 @@ and let $\tb{b} := \tb{f(a)}$. Then there exist open sets $M \subset U$ and $N \
 Moreover, if $x \in M$ and $y = \tb{f(x)}\in N$, then $$D(\tb{f}^{-1})(\tb{y}) = [D\tb{f(x)}]^{-1}$$
 In particular, $$D(\tb{f}^{-1})(\tb{b}) = [D\tb{f(a)}]^{-1}$$
 
+\section{Some important coordinate systems}
+\subsection{polar coordinates in $\real^2$}
+$$\begin{pmatrix}
+	x\\y
+\end{pmatrix}
+= \begin{pmatrix}
+	r\cos{\theta}\\
+	r\sin{\theta}
+\end{pmatrix}
+= \tb{f}(r, \theta) $$
+For \tb{f} to be a bijection between open sets, we have to restrict its domain and range. A common choice is to specify that \tb{f} is a function $U \rightarrow V$ where
+$$U := \{(r, \theta): r > 0, |\theta| < \pi\},   V:= \real^2 \symbol{92}\{(x, 0): x \leq 0 \}$$
+(Note that there is a half of the x-axis missing)
+\subsection{spherical coordinates in $\real^3$}
+$$\begin{pmatrix}
+	x\\y\\z
+\end{pmatrix}
+= \begin{pmatrix}
+	r\cos{\theta}\sin{\varphi}\\
+	r\sin{\theta}\sin{\varphi}\\
+	r\cos{\varphi}
+\end{pmatrix}
+= \tb{f}(r, \theta, \varphi)$$
+If we want \tb{f} to be a bijection between open sets U and V, it is necessary to restrict the domain and range in some appropriate way.
+
+\subsection{cylindrical coordinates in $\real^3$}
+$$\begin{pmatrix}
+	x\\y\\z
+\end{pmatrix}
+= \begin{pmatrix}
+	r\cos{\theta}\\
+	r\sin{\theta}\\
+	z
+\end{pmatrix}
+= \tb{f}(r, \theta, z)$$
+
 \section{Zero content}
 \paragraph{Zero content in 1-D} A set $S\subset \real$ is said to have zero content if
 \begin{equation*}
