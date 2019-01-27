@@ -124,8 +124,8 @@ and let $\tb{b} := \tb{f(a)}$. Then there exist open sets $M \subset U$ and $N \
 Moreover, if $x \in M$ and $y = \tb{f(x)}\in N$, then $$D(\tb{f}^{-1})(\tb{y}) = [D\tb{f(x)}]^{-1}$$
 In particular, $$D(\tb{f}^{-1})(\tb{b}) = [D\tb{f(a)}]^{-1}$$
 
-\section{Some important coordinate systems}
-\subsection{polar coordinates in $\real^2$}
+\section{Some Important Coordinate Systems}
+\subsection{Polar Coordinates in $\real^2$}
 $$\begin{pmatrix}
 	x\\y
 \end{pmatrix}
@@ -137,7 +137,7 @@ $$\begin{pmatrix}
 For \tb{f} to be a bijection between open sets, we have to restrict its domain and range. A common choice is to specify that \tb{f} is a function $U \rightarrow V$ where
 $$U := \{(r, \theta): r > 0, |\theta| < \pi\},   V:= \real^2 \symbol{92}\{(x, 0): x \leq 0 \}$$
 (Note that there is a half of the x-axis missing)
-\subsection{spherical coordinates in $\real^3$}
+\subsection{Spherical Coordinates in $\real^3$}
 $$\begin{pmatrix}
 	x\\y\\z
 \end{pmatrix}
@@ -149,7 +149,7 @@ $$\begin{pmatrix}
 = \tb{f}(r, \theta, \varphi)$$
 If we want \tb{f} to be a bijection between open sets U and V, it is necessary to restrict the domain and range in some appropriate way.
 
-\subsection{cylindrical coordinates in $\real^3$}
+\subsection{Cylindrical Coordinates in $\real^3$}
 $$\begin{pmatrix}
 	x\\y\\z
 \end{pmatrix}
@@ -160,7 +160,8 @@ $$\begin{pmatrix}
 \end{pmatrix}
 = \tb{f}(r, \theta, z)$$
 
-\section{k-dimensional manifolds in $\real^n$}
+\section{k-Dimensional Manifolds in $\real^n$}
+\subsection{The General Case}
 Fix $k < n$. For a k-dimensional manifold $M$ in $\real^n$, we say that $M$ has "degrees of freedom" $k$. There are 3 natural ways to represent $M$ (be careful with the dimensions!!! ):
 \paragraph{1. As a \tb{graph}:}
 		$$\func{f}{U \subset \real^k}{\real^{n-k}}$$ where U is open.
@@ -184,6 +185,22 @@ $$ S = \{\tb{f}(\tb{u}): \tb{u} \in U\}$$
 \end{enumerate}
 \paragraph{Notes} We can prove that if the above conditions are satisfied, then S is smooth. Construct $\func{F}{\real^{2k}}{\real^k}$, then use IFT (the proof is hard but worthwhile to think about since the general case implies every specific case).
 
+\subsection{The Specific Cases}
+\paragraph{Theorem 1 - When is a curve regular?}
+Assume that $\func{F}{\real^2}{\real}$ is $C^1$, and let
+$$S:=\{\tb{x} \in \real^2: F(\tb{x}) = 0 \}$$
+If $\tb{a} \in S$ and $\nabla F(\tb{a}) \neq 0$, then there exists some $r>0$ such that $B(r, \tb{a}) \cap S$ is a $C^1$ graph. \newline
+(Prove directly using IFT)
+\paragraph{Theorem 2 - When is the parametrization regular?} 
+Assume that $\func{f}{(a, b)}{\real ^2}$ is $C^1$, and let
+$$S:=\{ \tb{f}(t): t \in (a, b)\}$$
+If $\tb{f}'(c) \neq 0$ for some $c \in (a, b)$, then there exists some $r>0$ such that $\{ \tb{f} (t): |t-c| < r\}$ is a $C^1$ graph. \newline
+\paragraph{Remark}
+It says only that the parametrization is regular near $t = c$, it does not say that S is regular near \tb{f}(c). What it means is that when increasing/decreasing t, we have no control over the path of $f(t)$.
+\paragraph{Theorem 3- When is a surface regular?}
+conditions: $\tb{a} \in S$ and $\nabla F(\tb{a} \neq 0$
+\paragraph{Theorem 4 - When is the parametrization regular?}
+conditions: $D\tb{f}(\tb{c})$ has rank 2 at some $c$
 
 \section{Zero content}
 \paragraph{Zero content in 1-D} A set $S\subset \real$ is said to have zero content if
@@ -211,7 +228,7 @@ Where LS and US stands for lower sum and upper sum respectively.
     \item $\forall \epsilon > 0, \exists P$ of $[a,b]$ such that $US_Pf - LS_Pf < \epsilon$
 \end{enumerate}
 
-\paragraph{Theorem:  Integration is "Linear"}
+\paragraph{Theorem:  Integration is ``Linear"}
 \begin{enumerate}
     \item Suppose $a < b<c$. If $f$ is integrable on $[a,b]$ and on $[b,c]$, then $f$ is integrable on $[a,c]$, further more
     \begin{equation*}
