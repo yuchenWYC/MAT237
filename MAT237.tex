@@ -23,6 +23,7 @@
 \newcommand{\real}[0]{\mathbb{R}}
 \newcommand{\under}[1]{\underline{#1}}
 \newcommand{\proof}[0]{\textit{\underline{proof:} }}
+\newcommand{\func}[3]{\tb{#1}: {#2} \rightarrow {#3} }
 
 % Attr.
 \title{MAT237 Multivariable Calculus \\ Lecture Notes}
@@ -34,7 +35,6 @@
 	\tableofcontents
 	\newpage
 \section{Critical Points}
-\subsection{symmetric matrices}
 \paragraph{Definition} A symmetric $n \times n$ matrix A is
 \begin{enumerate}
 	\item \tb{positive definite} if $\tb{x}^T A \tb{x} > 0$ for all $x \in \real^n \symbol{92} \{\tb{0}\}$
@@ -66,7 +66,7 @@ The smallest eigenvalue of A = $\min_{\{\tb{u}\in \real^n: |\tb{u}| = 1\}} \tb{u
 	\subitem if $\alpha < 0$ then A is negative definite
 	\item if $det A = 0$ then at least one eigenvalue equals zero.
 \end{enumerate}
-\paragraph{Definition} A critical point $\tb{a}$ of $C^2$ function $\tb{f}$ is \under{degenerate} if $det(D_\tb{H}(\tb{a})) = 0$
+\paragraph{Definition} A critical point $\tb{a}$ of $C^2$ function $\tb{f}$ is \under{degenerate} if det$(D_\tb{H}(\tb{a})) = 0$
 \paragraph{Theorem 3 - first derivative test} If $\tb{f}: S \in \real^n \rightarrow \real$ is differentiable, then every local extremum is a critical point.
 \paragraph{Theorem 4 - second derivative test}
 \begin{enumerate}
@@ -78,7 +78,24 @@ The smallest eigenvalue of A = $\min_{\{\tb{u}\in \real^n: |\tb{u}| = 1\}} \tb{u
 	\item If H(a) is positive definite, then a is a local min;
 	\item If H(a) is negative definite, then a is a local max;
 	\item If H(a) is indefinite, then a is a saddle point;
-	\item If non of the above hold, then we cannot determine the character of the critical point without further though.
+	\item If none of the above hold, then we cannot determine the character of the critical point without further thought.
 \end{enumerate} 
+\section{The Implicit Function Theorem}
+Assume that S is an open subset of $\real^{n+k}$ and that $F: S \rightarrow \real^k$ is a function of class $C^1$. Assume also that $(\tb{a}, \tb{b})$ is a point in S such that $\tb{F(a, b)=0}$ and det$D_{\tb{y}}\tb{F(a, b)} \neq 0$ \newline
+1. Then there exists $r_0, r_1 > 0$ such that for every $\tb{x} \in \real^n$ such that $|\tb{x} - \tb{a}| < r_0$, there exists a unique $\tb{y} \in \real^k$ such that $|\tb{y} - \tb{b}| < r_1$
+	$$\tb{F(x, y) = 0} (1)$$
+	In other words, equation (1) implicitly defines a function $\tb{y = f(x)}$ for $x \in \real^n$ near \tb{a}, with \tb{y = f(x)} close to \tb{b}. Note in particular that \tb{b = f(a)}. \newline
+2. Moreover, the function $\tb{f}: B(r_0,\tb{a}) \rightarrow B(r_1, \tb{b}) \subset \real^k$ from part (1) above is of class $C^1$, and its derivatives may be determined by differentiating the identity $$\tb{F(x,f(x)) = 0}$$ and solving to find the partial derivatives of \tb{f}.
+\paragraph{Remark} $$D\tb{f(a)} = -[D_\tb{y}\tb{F(a, b)}]^{-1}D_\tb{x}\tb{F(a, b)}$$
+\section{The Inverse Function Theorem} Let U and V be open sets in $\real^n$, and assume that $\func{f}{U}{V}$ is a mapping of class $C^1$. \newline
+Assume that \tb{a} $\in U$ is a point such that $D\tb{f(a)}$ is invertible. \newline
+and let $\tb{b} := \tb{f(a)}$. Then there exist open sets $M \subset U$ and $N \subset V$ such that
+\begin{enumerate}
+	\item $\tb{a} \in M$ and $\tb{b} \in N$
+	\item $\tb{f}$ is one-to-one from M onto N (hence invertible), and
+	\item the inverse function $f^{-1}: N \rightarrow M$ is of class $C^1$
+\end{enumerate}
+Moreover, if $x \in M$ and $y = \tb{f(x)}\in N$, then $$D(\tb{f}^{-1})(\tb{y}) = [D\tb{f(x)}]^{-1}$$
+In particular, $$D(\tb{f}^{-1})(\tb{b}) = [D\tb{f(a)}]^{-1}$$
 
 \end{document}
