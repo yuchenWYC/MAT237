@@ -3,10 +3,10 @@
 % Libraries.
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{pgfplots}
+% \usepackage{pgfplots}
 \usepackage{graphicx}
 \usepackage{enumitem}
-\usepackage{hyperref}
+% \usepackage{hyperref}
 \usepackage{fancyhdr}
 \usepackage{perpage}
 \usepackage{float}
@@ -127,11 +127,11 @@ In particular, $$D(\tb{f}^{-1})(\tb{b}) = [D\tb{f(a)}]^{-1}$$
 \section{Some Important Coordinate Systems}
 \subsection{Polar Coordinates in $\real^2$}
 $$\begin{pmatrix}
-	x\\y
+    x\\y
 \end{pmatrix}
 = \begin{pmatrix}
-	r\cos{\theta}\\
-	r\sin{\theta}
+    r\cos{\theta}\\
+    r\sin{\theta}
 \end{pmatrix}
 = \tb{f}(r, \theta) $$
 For \tb{f} to be a bijection between open sets, we have to restrict its domain and range. A common choice is to specify that \tb{f} is a function $U \rightarrow V$ where
@@ -139,24 +139,24 @@ $$U := \{(r, \theta): r > 0, |\theta| < \pi\},   V:= \real^2 \symbol{92}\{(x, 0)
 (Note that there is a half of the x-axis missing)
 \subsection{Spherical Coordinates in $\real^3$}
 $$\begin{pmatrix}
-	x\\y\\z
+    x\\y\\z
 \end{pmatrix}
 = \begin{pmatrix}
-	r\cos{\theta}\sin{\varphi}\\
-	r\sin{\theta}\sin{\varphi}\\
-	r\cos{\varphi}
+    r\cos{\theta}\sin{\varphi}\\
+    r\sin{\theta}\sin{\varphi}\\
+    r\cos{\varphi}
 \end{pmatrix}
 = \tb{f}(r, \theta, \varphi)$$
 If we want \tb{f} to be a bijection between open sets U and V, it is necessary to restrict the domain and range in some appropriate way.
 
 \subsection{Cylindrical Coordinates in $\real^3$}
 $$\begin{pmatrix}
-	x\\y\\z
+    x\\y\\z
 \end{pmatrix}
 = \begin{pmatrix}
-	r\cos{\theta}\\
-	r\sin{\theta}\\
-	z
+    r\cos{\theta}\\
+    r\sin{\theta}\\
+    z
 \end{pmatrix}
 = \tb{f}(r, \theta, z)$$
 
@@ -164,24 +164,24 @@ $$\begin{pmatrix}
 \subsection{The General Case}
 Fix $k < n$. For a k-dimensional manifold $M$ in $\real^n$, we say that $M$ has "degrees of freedom" $k$. There are 3 natural ways to represent $M$ (be careful with the dimensions!!! ):
 \paragraph{1. As a \tb{graph}:}
-		$$\func{f}{U \subset \real^k}{\real^{n-k}}$$ where U is open.
-		$$ S = \{(\tb{x}, \tb{f}(\tb{x})) \in \real^n: \tb{x} = \tb{f}(\tb{x}), \forall \tb{x} \in U \}$$
+        $$\func{f}{U \subset \real^k}{\real^{n-k}}$$ where U is open.
+        $$ S = \{(\tb{x}, \tb{f}(\tb{x})) \in \real^n: \tb{x} = \tb{f}(\tb{x}), \forall \tb{x} \in U \}$$
 \paragraph{2. As a \tb{level set}:}
-	$$ \func{F}{U\in \real^n}{\real^{n-k}}$$ where U is open.
-	$$ S = \{\tb{x} \in U: \tb{F}(\tb{x}) = c\}$$ for some $c \in \real$.\newline
-	This is also called the \ti{"zero locus"} of \tb{F} when $c = 0$
+    $$ \func{F}{U\in \real^n}{\real^{n-k}}$$ where U is open.
+    $$ S = \{\tb{x} \in U: \tb{F}(\tb{x}) = c\}$$ for some $c \in \real$.\newline
+    This is also called the \ti{"zero locus"} of \tb{F} when $c = 0$
 \paragraph{Remark} The regularity conditions that guarantees that S is smooth is that
 \begin{enumerate}
-	\item $\nabla F_1(\tb{x}), ..., \nabla F_{n-k}(\tb{x})$ are linearly independent at each $\tb{x} \in S$. Or equivalently,
-	\item the matrix $D\tb{F}(\tb{x})$ has rank $n-k$ at every $\tb{x} \in S$.
+    \item $\nabla F_1(\tb{x}), ..., \nabla F_{n-k}(\tb{x})$ are linearly independent at each $\tb{x} \in S$. Or equivalently,
+    \item the matrix $D\tb{F}(\tb{x})$ has rank $n-k$ at every $\tb{x} \in S$.
 \end{enumerate}
 \paragraph{3. Parametrically}
 $$\func{f}{U \subset \real^k}{\real^{n}}$$ where U is open.
 $$ S = \{\tb{f}(\tb{u}): \tb{u} \in U\}$$
 \paragraph{Remark} The regularity conditions that guarantees that S is smooth is that
 \begin{enumerate}
-	\item $\partial_{u_1}\tb{f}(\tb{u}),...,\partial_{u_k}\tb{f}(\tb{u})$ are linearly independent at each $\tb{u} \in U$. Or equivalently,
-	\item the matrix $D\tb{f}(\tb{u})$ has rank $k$ at every $\tb{u} \in U$.
+    \item $\partial_{u_1}\tb{f}(\tb{u}),...,\partial_{u_k}\tb{f}(\tb{u})$ are linearly independent at each $\tb{u} \in U$. Or equivalently,
+    \item the matrix $D\tb{f}(\tb{u})$ has rank $k$ at every $\tb{u} \in U$.
 \end{enumerate}
 \paragraph{Notes} We can prove that if the above conditions are satisfied, then S is smooth. Construct $\func{F}{\real^{2k}}{\real^k}$, then use IFT (the proof is hard but worthwhile to think about since the general case implies every specific case).
 
@@ -213,6 +213,11 @@ conditions: $D\tb{f}(\tb{c})$ has rank 2 at some $c$
     \forall \epsilon > 0, \exists~\text{boxes}~B_1,...,B_n~s.t.~S\subseteq \bigcup_{i=1}^{n}B_i \wedge \sum_{i=1}^{n}{Area(B_i)} < \epsilon
 \end{equation*}
 
+\paragraph{Consequence of zero content.}If a set $Z$ has zero content, then
+\begin{equation*}
+    \forall \epsilon>0, \exists~\text{boxes}~B_1,...,B_n~s.t.~ S\subseteq \bigcup_{i=1}^{n}B^{int}_i \wedge \sum_{i=1}^{n}{Area(B_i)} < \epsilon
+\end{equation*}
+Notice the extra $int$.
 \section{Theorems of 1-D Integral Calculus}
 \paragraph{Lemma: Refined partitions give better approximations} Let $P$ be some partition over an interval and let $P'$ be a refinement of $P$, then
 \begin{equation*}
@@ -245,7 +250,7 @@ Where LS and US stands for lower sum and upper sum respectively.
     \item If $c\in \mathbb{R}$, the $cf$ is integrable on $[a,b]$, and $\int_a^b cf(x) = c\int_a^bf(x)dx$
     \item Of $[c,d] \subset [a,b]$, then $f$ is integrable on $[c,d]$.
     \item If $g$ is integrable on $[a,b]$ and $f(x) \leq g(x),\forall x \in [a,b]$, then $\int_a^b f(x)dx\leq \int_a^b g(x)dx$
-    \item $|f|$ is integrable on $[a,b]$, and $|\int_a^bf(x)dx| \leq \int_a^b |f(x)|dx$
+    \item $|f|$ is integrable on $[a,b]$, and $\left|\int_a^bf(x)dx\right| \leq \int_a^b |f(x)|dx$
 \end{enumerate}
 
 \paragraph{Theorem: Bounded + monotone $\implies$ integrable} If $f$ is bounded and monotone on $[a,b]$, then $f$ is integrable on $[a,b]$. The proof of this uses the $\epsilon-\delta$ definition of integrability
