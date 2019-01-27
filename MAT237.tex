@@ -20,9 +20,9 @@
 \newcommand{\ti}[1]{\textit{#1}}
 \newcommand{\tb}[1]{\textbf{#1}}
 \newcommand{\mb}[1]{\mathbb{#1}}
-\newcommand{\bx}[0]{\bold{x}}
-\newcommand{\bv}[0]{\bold{v}}
-\newcommand{\bw}[0]{\bold{w}}
+\newcommand{\bx}[0]{\mathbf{x}}
+\newcommand{\bv}[0]{\mathbf{v}}
+\newcommand{\bw}[0]{\mathbf{w}}
 \newcommand{\real}[0]{\mathbb{R}}
 \newcommand{\under}[1]{\underline{#1}}
 \newcommand{\proof}[0]{\textit{\underline{proof:} }}
@@ -205,7 +205,7 @@ the sums $LS_Pf$ and $US_Pf$ differ from $\int_a^bf(x)dx$ by at most $\epsilon$.
         \int\int_{S_1\cup S_2}fdA = \int\int_{S_1}fdA + \int\int_{S_2} fdA
     \end{equation*}
     
-    \item If $f$ and $g$ are integrable on $S$ and $f(\bold{x})\leq g(\bold{x})$ for $\bx \in S$, then $\int\int_S fdA \leq \int\int_S g dA$
+    \item If $f$ and $g$ are integrable on $S$ and $f(\mathbf{x})\leq g(\mathbf{x})$ for $\bx \in S$, then $\int\int_S fdA \leq \int\int_S g dA$
     
     \item If $f$ is integrable on $S$, then so is $|f|$, and
     \begin{equation*}
@@ -219,7 +219,7 @@ the sums $LS_Pf$ and $US_Pf$ differ from $\int_a^bf(x)dx$ by at most $\epsilon$.
 \begin{enumerate}
     \item If $Z\subset \real^2$ has zero content and $U\subset Z$, then $U$ has zero content.
     \item If $Z_1,...,Z_k$ have zero content, then so does $\bigcup_1^k Z_j$
-    \item $\bold{f}:(a_0, b_0) \xrightarrow{} \real^2$ is of class $C_1$, then $\bold{f}([a,b])$ has zero content whenever $a_0<a<b<b_0$
+    \item $\mathbf{f}:(a_0, b_0) \xrightarrow{} \real^2$ is of class $C_1$, then $\mathbf{f}([a,b])$ has zero content whenever $a_0<a<b<b_0$
 \end{enumerate}
 
 \paragraph{Discontinuity of characteristic function} The function $\chi_S$ is discontinuous at $\bx$ if and only if $\bx$ is in the boundary of $S$.
