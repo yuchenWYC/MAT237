@@ -98,4 +98,65 @@ and let $\tb{b} := \tb{f(a)}$. Then there exist open sets $M \subset U$ and $N \
 Moreover, if $x \in M$ and $y = \tb{f(x)}\in N$, then $$D(\tb{f}^{-1})(\tb{y}) = [D\tb{f(x)}]^{-1}$$
 In particular, $$D(\tb{f}^{-1})(\tb{b}) = [D\tb{f(a)}]^{-1}$$
 
+\section{Theorems of 1-D Integral Calculus}
+\paragraph{Lemma: Refined partitions give better approximations} Let $P$ be some partition over an interval and let $P'$ be a refinement of $P$, then
+\begin{equation*}
+    LS_{P'}f \geq LS_{P}f \wedge US_{P'} \leq US_{P}f
+\end{equation*}
+Where LS and US stands for lower sum and upper sum respectively.
+
+\paragraph{Lemma: Lower sum is always less then or equal to upper sum} If $P$ and $Q$ are any partitions of $[a,b]$, then $LS_Pf \leq US_Qf$. The essence of this proof is to consider the common refinement of these two partitions.
+
+\paragraph{Lemma. $\epsilon-\delta$ definition of integrability} If $f$ is a bounded function on $[a,b]$, the following conditions are equivalent:
+\begin{enumerate}
+    \item $f$ is integrable on $[a,b]$
+    \item $\forall \epsilon > 0, \exists P$ of $[a,b]$ such that $US_Pf - LS_Pf < \epsilon$
+\end{enumerate}
+
+\paragraph{Theorem:  Integration is ``Linear"}
+\begin{enumerate}
+    \item Suppose $a < b<c$. If $f$ is integrable on $[a,b]$ and on $[b,c]$, then $f$ is integrable on $[a,c]$, further more
+    \begin{equation*}
+        \int_a^c f(x)dx = \int_a^b f(x)dx + \int_b^c f(x)dx
+    \end{equation*}
+    \item If $f$ and $g$ are integrable on $[a,b]$, then so is $f+g$, further more
+    \begin{equation*}
+        \int_a^b [f(x) + g(x)]dx = \int_a^b f(x)dx + \int_a^b g(x)dx
+    \end{equation*}
+\end{enumerate}
+
+\paragraph{Theorem.} Suppose $f$ is integrable on $[a,b]$.
+\begin{enumerate}
+    \item If $c\in \mathbb{R}$, the $cf$ is integrable on $[a,b]$, and $\int_a^b cf(x) = c\int_a^bf(x)dx$
+    \item Of $[c,d] \subset [a,b]$, then $f$ is integrable on $[c,d]$.
+    \item If $g$ is integrable on $[a,b]$ and $f(x) \leq g(x),\forall x \in [a,b]$, then $\int_a^b f(x)dx\leq \int_a^b g(x)dx$
+    \item $|f|$ is integrable on $[a,b]$, and $|\int_a^bf(x)dx| \leq \int_a^b |f(x)|dx$
+\end{enumerate}
+
+\paragraph{Theorem: Bounded + monotone $\implies$ integrable} If $f$ is bounded and monotone on $[a,b]$, then $f$ is integrable on $[a,b]$. The proof of this uses the $\epsilon-\delta$ definition of integrability
+
+\paragraph{Theorem: Continuous $\implies$ integrable} If $f$ is continuous on $[a,b]$, then $f$ is integrable on $[a,b]$. Note that continuous is a sufficient but not necessary condition of integrability
+
+\paragraph{Theorem: discontinuous at only finite pts $\implies$ integrable} If $f$ is bounded on $[a,b]$ and continuous at all except finitely many points in $[a,b]$, then $f$ is integrable on $[a,b]$. A easy example of this would be any $\mathbb{R}$ function that has a hole in it.
+
+\paragraph{Theorem: Discontinuous at only zero content $\implies$ integrable} If $f$ is bounded on $[a,b]$ and the set of points in $[a,b]$ at which $f$ is discontinuous has zero content, then $f$ is integrable on $[a,b]$.
+
+\paragraph{Proposition.} Suppose $f$ and $g$ are integrable on $[a,b]$ and $f(x) = g(x)$ for all except finitely many points $x\in [a,b]$. Then $\int_a^bf(x)dx = \int_a^bg(x)dx$. 
+
+\paragraph{The Fundamental Theorem Of Calculus}
+\begin{enumerate}
+    \item Let $f$ be an integrable function on $[a,b]$. For $x\in [a,b]$, let $F(x) = \int_a^xf(t)dt$. Then $F$ is continuous on $[a,b]$; more-over, $F'(x)$ exists and equals $f(x)$ at every $x$ at which $f$ is continuous,
+    \item Let $F$ be a continuous function on $[a,b]$ that is differentiable except perhaps at finitely many points in $[a,b]$, and let $f$ be a function on $[a,b]$ that agrees with $F'$ at all points where the latter is defined. If $f$ is integrable on $[a,b]$, then $\int_a^bf(t)dt=F(b)-F(a)$
+\end{enumerate}
+
+\paragraph{Proposition.} Suppose $f$ is integrable on $[a,b]$. Given $\epsilon>0, \exists \delta > 0$ such that if $P= \{x_0,...,x_J\}$ is any partition of $[a,b]$ satisfying
+\begin{equation*}
+    max\{x_j-x_{j-1} | 1\leq j \leq J\} < \delta
+\end{equation*}
+the sums $LS_Pf$ and $US_Pf$ differ from $\int_a^bf(x)dx$ by at most $\epsilon$.
+
+\section{Generalized Integral Calculus}
+\paragraph{}
+
 \end{document}
+
