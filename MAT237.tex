@@ -224,11 +224,12 @@ the sums $LS_Pf$ and $US_Pf$ differ from $\int_a^bf(x)dx$ by at most $\epsilon$.
 
 \paragraph{Discontinuity of characteristic function} The function $\chi_S$ is discontinuous at $\bx$ if and only if $\bx$ is in the boundary of $S$.
 
-\paragraph{Theorem.} Let $S$ be a measurable subset of $\real^2$. Suppose $f:{\real^2} \rightarrow{}{\real}$ is bounded and the set of points in $S$ at which $f$ is discontinuous has zero content. Then $f$ is integrable on $S$. Remark on this theorem: the only points where $f_{\chi_S}$ can be discontinuous are those points in the closure of either $f$ or $\chi_S$ is discontinuous. Both of these cases are discontuinity on a set of zero content. And we can definitely fix $S$ inside of a rectangle, then by the previously stated theorem (The theorem directly above), such function is integrable.
+\paragraph{Theorem.} Let $S$ be a measurable subset of $\real^2$. Suppose $f:{\real^2} \rightarrow{}{\real}$ is bounded and the set of points in $S$ at which $f$ is discontinuous has zero content. Then $f$ is integrable on $S$. 
+\paragraph{Remark on this theorem:} The only points where $f_{\chi_S}$ can be discontinuous are those points in the closure of S where either $f$ or $\chi_S$ is discontinuous. Both of these cases are discontuinity on a set of zero content. And we can definitely fix $S$ inside of a rectangle, then by the previously stated theorem (The theorem directly above), such function is integrable.
 
 \paragraph{Proposition: Integration on a set of zero content evaluates to zero.} Suppose $Z\subset \real^2$ has zero content. If $f:\real^2\rightarrow{} \real$ is bounded, then $f$ is integrable on $Z$ and $\int_Z fdA = 0$
 
-\paragraph{Corollary.}
+\paragraph{Corollary}
 \begin{enumerate}
     \item Suppose that $f$ is integrable on the set $S\subset \real^2$. If $g(\bx) = f(\bx)$ except for $\bx$ in a set of zero content, then $g$ is integrable on $S$ and $\int_S gdA = \int_S fdA$
     \item Suppose that $f$ is integrable on $S$ and on $T$, and $S\cap T$ has zero content. Then $f$ is integrable on $S\cup T$, and $\int_{S\cup T}fdA = \int_Sfd+ \int_TfdA$
