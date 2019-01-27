@@ -20,6 +20,9 @@
 \newcommand{\ti}[1]{\textit{#1}}
 \newcommand{\tb}[1]{\textbf{#1}}
 \newcommand{\mb}[1]{\mathbb{#1}}
+\newcommand{\bx}[0]{\bold{x}}
+\newcommand{\bv}[0]{\bold{v}}
+\newcommand{\bw}[0]{\bold{w}}
 \newcommand{\real}[0]{\mathbb{R}}
 \newcommand{\under}[1]{\underline{#1}}
 \newcommand{\proof}[0]{\textit{\underline{proof:} }}
@@ -98,6 +101,17 @@ and let $\tb{b} := \tb{f(a)}$. Then there exist open sets $M \subset U$ and $N \
 Moreover, if $x \in M$ and $y = \tb{f(x)}\in N$, then $$D(\tb{f}^{-1})(\tb{y}) = [D\tb{f(x)}]^{-1}$$
 In particular, $$D(\tb{f}^{-1})(\tb{b}) = [D\tb{f(a)}]^{-1}$$
 
+\section{Zero content}
+\paragraph{Zero content in 1-D} A set $S\subset \real$ is said to have zero content if
+\begin{equation*}
+    \forall \epsilon > 0, \exists~\text{intervals}~I_1,...,I_n ~s.t.~ S\subseteq \bigcup_{i=1}^{n}I_i \wedge \sum_{i=1}^{n}{Len(I_i)} < \epsilon
+\end{equation*}
+
+\paragraph{Multidimensional zero content.} A set $S\subset \real^n$ is said to have zero content if
+\begin{equation*}
+    \forall \epsilon > 0, \exists~\text{boxes}~B_1,...,B_n~s.t.~S\subseteq \bigcup_{i=1}^{n}B_i \wedge \sum_{i=1}^{n}{Area(B_i)} < \epsilon
+\end{equation*}
+
 \section{Theorems of 1-D Integral Calculus}
 \paragraph{Lemma: Refined partitions give better approximations} Let $P$ be some partition over an interval and let $P'$ be a refinement of $P$, then
 \begin{equation*}
@@ -156,7 +170,46 @@ Where LS and US stands for lower sum and upper sum respectively.
 the sums $LS_Pf$ and $US_Pf$ differ from $\int_a^bf(x)dx$ by at most $\epsilon$.
 
 \section{Generalized Integral Calculus}
-\paragraph{}
+\paragraph{Theorems of double integrals}
+\begin{enumerate}
+    \item If $f_1$ and $f_2$ are integrable on the bounded set $S$ and $c_1,c_2\in \real$, then $c_1f_1 = c_2f_2$ is integrable on $S$, and
+    \begin{equation*}
+        \int\int_S[c_1f_1 + c_2f_2]dA = c_1\int\int_Sf_1dA + c_2\int\int_Sf_2dA
+    \end{equation*}
+    
+    \item Let $S_1$ and $S_2$ be bounded sets with no points in common (intersection $ =\emptyset$), and let $f$ be a bounded function. If $f$ is integrable on $S_1$ and on $S_2$, then $f$ is integrable on $S_1\cup S_2$, in which case
+    \begin{equation*}
+        \int\int_{S_1\cup S_2}fdA = \int\int_{S_1}fdA + \int\int_{S_2} fdA
+    \end{equation*}
+    
+    \item If $f$ and $g$ are integrable on $S$ and $f(\bold{x})\leq g(\bold{x})$ for $\bx \in S$, then $\int\int_S fdA \leq \int\int_S g dA$
+    
+    \item If $f$ is integrable on $S$, then so is $|f|$, and
+    \begin{equation*}
+        \left|\int\int_Sf dA\right| \leq \int\int_S|f|dA
+    \end{equation*}
+\end{enumerate}
 
+\paragraph{Theorem.} Suppose $f$ is a bounded function on the rectangle $R$. If the set of points in $R$ at which $f$ is discontinuous has zero content, then f is integrable on $R$.
+
+\paragraph{Proposition: on zero content} 
+\begin{enumerate}
+    \item If $Z\subset \real^2$ has zero content and $U\subset Z$, then $U$ has zero content.
+    \item If $Z_1,...,Z_k$ have zero content, then so does $\bigcup_1^k Z_j$
+    \item $\bold{f}:(a_0, b_0) \xrightarrow{} \real^2$ is of class $C_1$, then $\bold{f}([a,b])$ has zero content whenever $a_0<a<b<b_0$
+\end{enumerate}
+
+\paragraph{Discontinuity of characteristic function} The function $\chi_S$ is discontinuous at $\bx$ if and only if $\bx$ is in the boundary of $S$.
+
+\paragraph{Theorem.} Let $S$ be a measurable subset of $\real^2$. Suppose $f:{\real^2} \rightarrow{}{\real}$ is bounded and the set of points in $S$ at which $f$ is discontinuous has zero content. Then $f$ is integrable on $S$. Remark on this theorem: the only points where $f_{\chi_S}$ can be discontinuous are those points in the closure of either $f$ or $\chi_S$ is discontinuous. Both of these cases are discontuinity on a set of zero content. And we can definitely fix $S$ inside of a rectangle, then by the previously stated theorem (The theorem directly above), such function is integrable.
+
+\paragraph{Proposition: Integration on a set of zero content evaluates to zero.} Suppose $Z\subset \real^2$ has zero content. If $f:\real^2\rightarrow{} \real$ is bounded, then $f$ is integrable on $Z$ and $\int_Z fdA = 0$
+
+\paragraph{Corollary.}
+\begin{enumerate}
+    \item Suppose that $f$ is integrable on the set $S\subset \real^2$. If $g(\bx) = f(\bx)$ except for $\bx$ in a set of zero content, then $g$ is integrable on $S$ and $\int_S gdA = \int_S fdA$
+    \item Suppose that $f$ is integrable on $S$ and on $T$, and $S\cap T$ has zero content. Then $f$ is integrable on $S\cup T$, and $\int_{S\cup T}fdA = \int_Sfd+ \int_TfdA$
+\end{enumerate}
+ 
 \end{document}
 
