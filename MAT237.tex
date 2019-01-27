@@ -34,69 +34,92 @@
 \date{\today}
 
 \begin{document}
-	\maketitle
-	\tableofcontents
-	\newpage
+    \maketitle
+    \tableofcontents
+    \newpage
 \section{Critical Points}
 \paragraph{Definition} A symmetric $n \times n$ matrix A is
 \begin{enumerate}
-	\item \tb{positive definite} if $\tb{x}^T A \tb{x} > 0$ for all $x \in \real^n \symbol{92} \{\tb{0}\}$
-	\item \tb{nonnegative definite} if $\tb{x}^T A \tb{x} \geq 0$ for all $x \in \real^n$
+    \item \tb{positive definite} if $\tb{x}^T A \tb{x} > 0$ for all $x \in \real^n \symbol{92} \{\tb{0}\}$
+    \item \tb{nonnegative definite} if $\tb{x}^T A \tb{x} \geq 0$ for all $x \in \real^n$
 \end{enumerate}
 In addition, we say that A is
 \begin{enumerate}
-	\item \tb{negative definite} if -A is positive definite
-	\item \tb{nonpositive definite} if -A is nonnegative definite
+    \item \tb{negative definite} if -A is positive definite
+    \item \tb{nonpositive definite} if -A is nonnegative definite
 \end{enumerate}
 A matrix A is \tb{indefinite} if none of the above holds. Equivalently, A is indefinite if there exist $\tb{x, y}\in \real$ such that $\tb{x}^TA\tb{x} < 0 < \tb{y}^TA\tb{y}$
 \paragraph{Theorem 1} Assume that A is a symmetric matrix. Then \newline
 \begin{enumerate}
-	\item A is positive definite $\iff$ all its eigenvalues are positive \newline
+    \item A is positive definite $\iff$ all its eigenvalues are positive \newline
 $\iff \exists \lambda_1 > 0$ such that $\tb{x}^TA\tb{x} \geq \lambda_1|\tb{x}|^2$ for all $\tb{x} \in \real^n $
-	\item A is nonnegative definite $\iff$ all its eigenvalues are nonnegative \newline
-	\item A is indefinite $\iff$ A has both positive and negative eigenvalues
+    \item A is nonnegative definite $\iff$ all its eigenvalues are nonnegative \newline
+    \item A is indefinite $\iff$ A has both positive and negative eigenvalues
 \end{enumerate}
 \paragraph{Remark} If A is a symmetric matrix then \newline
 The smallest eigenvalue of A = $\min_{\{\tb{u}\in \real^n: |\tb{u}| = 1\}} \tb{u}^TA\tb{u}$
 \paragraph{Theorem 2} For the matrix $A = \begin{pmatrix}
-	\alpha & \beta \\
-	\beta & \gamma 
+    \alpha & \beta \\
+    \beta & \gamma 
 \end{pmatrix}$,
 \begin{enumerate}
-	\item if $det A < 0,$ then A is indefinite
-	\item if $det A > 0$, then
-	\subitem if $\alpha > 0$ then A is positive definite
-	\subitem if $\alpha < 0$ then A is negative definite
-	\item if $det A = 0$ then at least one eigenvalue equals zero.
+    \item if $det A < 0,$ then A is indefinite
+    \item if $det A > 0$, then
+    \subitem if $\alpha > 0$ then A is positive definite
+    \subitem if $\alpha < 0$ then A is negative definite
+    \item if $det A = 0$ then at least one eigenvalue equals zero.
 \end{enumerate}
 \paragraph{Definition} A critical point $\tb{a}$ of $C^2$ function $\tb{f}$ is \under{degenerate} if det$(D_\tb{H}(\tb{a})) = 0$
 \paragraph{Theorem 3 - first derivative test} If $\tb{f}: S \in \real^n \rightarrow \real$ is differentiable, then every local extremum is a critical point.
 \paragraph{Theorem 4 - second derivative test}
 \begin{enumerate}
-	\item If $f: S \rightarrow \real$ is $C^2$ and \tb{a} is a local minimum point for $f$, then \tb{a} is a critical point of $f$ and $H(\tb{a})$ is nonnegative definite.
-	\item If \tb{a} is a critical point and $H(\tb{a})$ is positive definite, then \tb{a} is a local minimum point.
+    \item If $f: S \rightarrow \real$ is $C^2$ and \tb{a} is a local minimum point for $f$, then \tb{a} is a critical point of $f$ and $H(\tb{a})$ is nonnegative definite.
+    \item If \tb{a} is a critical point and $H(\tb{a})$ is positive definite, then \tb{a} is a local minimum point.
 \end{enumerate}
 \paragraph{Corollary} Assume that $f$ is $C^2$ and $\nabla f(\tb{a}) = \tb{0}$
 \begin{enumerate}
-	\item If H(a) is positive definite, then a is a local min;
-	\item If H(a) is negative definite, then a is a local max;
-	\item If H(a) is indefinite, then a is a saddle point;
-	\item If none of the above hold, then we cannot determine the character of the critical point without further thought.
+    \item If H(a) is positive definite, then a is a local min;
+    \item If H(a) is negative definite, then a is a local max;
+    \item If H(a) is indefinite, then a is a saddle point;
+    \item If none of the above hold, then we cannot determine the character of the critical point without further thought.
 \end{enumerate} 
+
+\paragraph{E.Knight's approach to critical points.}In solving a question of $f:\real^2 \rightarrow{} \real$ we could use the following ``quick check" approach:
+\begin{enumerate}
+    \item Calculate the gradient of $F$, equating it to zero to find the critical points
+    \item Calculate the Hessian of $F$, find the correspnding matrices for each critical points, where the Hessian is defined as
+    \begin{equation*} H(f) = 
+        \begin{bmatrix}
+             \partial_{xx}f & \partial_{xy}f = \partial_{yx}f \\
+             \partial_{xy}f = \partial_{yx}f & \partial_{yy}f
+        \end{bmatrix}
+    \end{equation*}
+    \item Calculate the determinant of the hessian, and there are the following cases to consider
+    \begin{enumerate}
+        \item det$H<0$, then $sig(H) = (1,1)$ and the point is a saddle point
+        \item det$H<0$, then
+            \begin{enumerate}
+                \item $tr(H)<0 \implies sig(H) = (2,0)$ and the point is a local minimum
+                \item $tr(H)>0 \implies sig(H) = (0,2)$ and the point is a local maximum
+            \end{enumerate}
+        \item det$H=0$, then the test is inconclusive. We have to do this case by starring at it.
+    \end{enumerate}
+\end{enumerate}
+
 \section{The Implicit Function Theorem}
 Assume that S is an open subset of $\real^{n+k}$ and that $F: S \rightarrow \real^k$ is a function of class $C^1$. Assume also that $(\tb{a}, \tb{b})$ is a point in S such that $\tb{F(a, b)=0}$ and det$D_{\tb{y}}\tb{F(a, b)} \neq 0$ \newline
 1. Then there exists $r_0, r_1 > 0$ such that for every $\tb{x} \in \real^n$ such that $|\tb{x} - \tb{a}| < r_0$, there exists a unique $\tb{y} \in \real^k$ such that $|\tb{y} - \tb{b}| < r_1$
-	$$\tb{F(x, y) = 0} (1)$$
-	In other words, equation (1) implicitly defines a function $\tb{y = f(x)}$ for $x \in \real^n$ near \tb{a}, with \tb{y = f(x)} close to \tb{b}. Note in particular that \tb{b = f(a)}. \newline
+    $$\tb{F(x, y) = 0} (1)$$
+    In other words, equation (1) implicitly defines a function $\tb{y = f(x)}$ for $x \in \real^n$ near \tb{a}, with \tb{y = f(x)} close to \tb{b}. Note in particular that \tb{b = f(a)}. \newline
 2. Moreover, the function $\tb{f}: B(r_0,\tb{a}) \rightarrow B(r_1, \tb{b}) \subset \real^k$ from part (1) above is of class $C^1$, and its derivatives may be determined by differentiating the identity $$\tb{F(x,f(x)) = 0}$$ and solving to find the partial derivatives of \tb{f}.
 \paragraph{Remark} $$D\tb{f(a)} = -[D_\tb{y}\tb{F(a, b)}]^{-1}D_\tb{x}\tb{F(a, b)}$$
 \section{The Inverse Function Theorem} Let U and V be open sets in $\real^n$, and assume that $\func{f}{U}{V}$ is a mapping of class $C^1$. \newline
 Assume that \tb{a} $\in U$ is a point such that $D\tb{f(a)}$ is invertible. \newline
 and let $\tb{b} := \tb{f(a)}$. Then there exist open sets $M \subset U$ and $N \subset V$ such that
 \begin{enumerate}
-	\item $\tb{a} \in M$ and $\tb{b} \in N$
-	\item $\tb{f}$ is one-to-one from M onto N (hence invertible), and
-	\item the inverse function $f^{-1}: N \rightarrow M$ is of class $C^1$
+    \item $\tb{a} \in M$ and $\tb{b} \in N$
+    \item $\tb{f}$ is one-to-one from M onto N (hence invertible), and
+    \item the inverse function $f^{-1}: N \rightarrow M$ is of class $C^1$
 \end{enumerate}
 Moreover, if $x \in M$ and $y = \tb{f(x)}\in N$, then $$D(\tb{f}^{-1})(\tb{y}) = [D\tb{f(x)}]^{-1}$$
 In particular, $$D(\tb{f}^{-1})(\tb{b}) = [D\tb{f(a)}]^{-1}$$
@@ -172,7 +195,7 @@ the sums $LS_Pf$ and $US_Pf$ differ from $\int_a^bf(x)dx$ by at most $\epsilon$.
 \section{Generalized Integral Calculus}
 \paragraph{Theorems of double integrals}
 \begin{enumerate}
-    \item If $f_1$ and $f_2$ are integrable on the bounded set $S$ and $c_1,c_2\in \real$, then $c_1f_1 = c_2f_2$ is integrable on $S$, and
+    \item If $f_1$ and $f_2$ are integrable on the bounded set $S$ and $c_1,c_2\in \real$, then $c_1f_1 + c_2f_2$ is integrable on $S$, and
     \begin{equation*}
         \int\int_S[c_1f_1 + c_2f_2]dA = c_1\int\int_Sf_1dA + c_2\int\int_Sf_2dA
     \end{equation*}
