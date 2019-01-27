@@ -160,6 +160,31 @@ $$\begin{pmatrix}
 \end{pmatrix}
 = \tb{f}(r, \theta, z)$$
 
+\section{k-dimensional manifolds in $\real^n$}
+Fix $k < n$. For a k-dimensional manifold $M$ in $\real^n$, we say that $M$ has "degrees of freedom" $k$. There are 3 natural ways to represent $M$ (be careful with the dimensions!!! ):
+\paragraph{1. As a \tb{graph}:}
+		$$\func{f}{U \subset \real^k}{\real^{n-k}}$$ where U is open.
+		$$ S = \{(\tb{x}, \tb{f}(\tb{x})) \in \real^n: \tb{x} = \tb{f}(\tb{x}), \forall \tb{x} \in U \}$$
+\paragraph{2. As a \tb{level set}:}
+	$$ \func{F}{U\in \real^n}{\real^{n-k}}$$ where U is open.
+	$$ S = \{\tb{x} \in U: \tb{F}(\tb{x}) = c\}$$ for some $c \in \real$.\newline
+	This is also called the \ti{"zero locus"} of \tb{F} when $c = 0$
+\paragraph{Remark} The regularity conditions that guarantees that S is smooth is that
+\begin{enumerate}
+	\item $\nabla F_1(\tb{x}), ..., \nabla F_{n-k}(\tb{x})$ are linearly independent at each $\tb{x} \in S$. Or equivalently,
+	\item the matrix $D\tb{F}(\tb{x})$ has rank $n-k$ at every $\tb{x} \in S$.
+\end{enumerate}
+\paragraph{3. Parametrically}
+$$\func{f}{U \subset \real^k}{\real^{n}}$$ where U is open.
+$$ S = \{\tb{f}(\tb{u}): \tb{u} \in U\}$$
+\paragraph{Remark} The regularity conditions that guarantees that S is smooth is that
+\begin{enumerate}
+	\item $\partial_{u_1}\tb{f}(\tb{u}),...,\partial_{u_k}\tb{f}(\tb{u})$ are linearly independent at each $\tb{u} \in U$. Or equivalently,
+	\item the matrix $D\tb{f}(\tb{u})$ has rank $k$ at every $\tb{u} \in U$.
+\end{enumerate}
+\paragraph{Notes} We can prove that if the above conditions are satisfied, then S is smooth. Construct $\func{F}{\real^{2k}}{\real^k}$, then use IFT (the proof is hard but worthwhile to think about since the general case implies every specific case).
+
+
 \section{Zero content}
 \paragraph{Zero content in 1-D} A set $S\subset \real$ is said to have zero content if
 \begin{equation*}
@@ -186,7 +211,7 @@ Where LS and US stands for lower sum and upper sum respectively.
     \item $\forall \epsilon > 0, \exists P$ of $[a,b]$ such that $US_Pf - LS_Pf < \epsilon$
 \end{enumerate}
 
-\paragraph{Theorem:  Integration is ``Linear"}
+\paragraph{Theorem:  Integration is "Linear"}
 \begin{enumerate}
     \item Suppose $a < b<c$. If $f$ is integrable on $[a,b]$ and on $[b,c]$, then $f$ is integrable on $[a,c]$, further more
     \begin{equation*}
