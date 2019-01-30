@@ -43,14 +43,14 @@
 
 For a point $a\in I$, the $kth$ order Taylor polynomial of $f$ at $a$ is the unique polynomial of order at most $k$, denoted$P_{a,k}(h)$ such that
 \begin{align*}
-	f(a) &= P_{a,k}(0)\\
-	f'(a) &= P'_{a,k}(0)\\
-	\vdots\\
-	f^{(k)}(a) &= P_{a,k}^{(k)}(0)
+    f(a) &= P_{a,k}(0)\\
+    f'(a) &= P'_{a,k}(0)\\
+    \vdots\\
+    f^{(k)}(a) &= P_{a,k}^{(k)}(0)
 \end{align*}
 \begin{align*}
-	P_{a,k}(h) &= f(a) + hf'(a) + \frac{h^2}{2}f"(a) +...+\frac{h^k}{k!}f^{(k)}(a)\\
-	&= \sum_{j=0}^{k}\frac{h^j}{j!}f^{(j)}(a)
+    P_{a,k}(h) &= f(a) + hf'(a) + \frac{h^2}{2}f"(a) +...+\frac{h^k}{k!}f^{(k)}(a)\\
+    &= \sum_{j=0}^{k}\frac{h^j}{j!}f^{(j)}(a)
 \end{align*}
 \paragraph{Remark}
 Taylor's Theorem guarantees that $P_{a,k}(h)$ is a very good approximation of $f(a+h)$, and that the quality of the approximation increases as $k$ increases.
@@ -61,8 +61,8 @@ Then $$\lim_{h\rightarrow0}\frac{R_{a,k}(h)}{h^k} = 0$$
 \subsection{Taylor's Theorem in higher dimensions}
 Assume $S \subset \real^n$ is an open set and that $f: S \rightarrow \real$ is a function of class $C^k$ on $S$. For a point $a\in S$, the $kth$ order Taylor polynomial of $f$ at $a$ is the unique polynomial of order at most $k$, denoted$P_{a,k}(\tb{h})$ such that
 \begin{align*}
-	f(\tb{a}) &= P_{\tb{a},k}(\tb{0}) \\
-	\partial^\alpha f(\tb{a}) &= \partial^\alpha P_{\tb{a},k}(\tb{0})
+    f(\tb{a}) &= P_{\tb{a},k}(\tb{0}) \\
+    \partial^\alpha f(\tb{a}) &= \partial^\alpha P_{\tb{a},k}(\tb{0})
 \end{align*}
 for all partial derivatives of order up to $k$.
 
@@ -241,6 +241,15 @@ It says only that the parametrization is regular near $t = c$, it does not say t
 conditions: $\tb{a} \in S$ and $\nabla F(\tb{a}) \neq 0$
 \paragraph{Theorem 4 - When is the parametrization regular?}
 conditions: $D\tb{f}(\tb{c})$ has rank 2 at some $c$
+
+\subsection{Remarks on smoothness of a parametric smooth curve} 
+\paragraph{Definition.}If $I\subseteq \real$ is an interval, a $\mathcal{C}^1$ map $\gamma: I \rightarrow{} \real^2$ is said to be
+\begin{enumerate}
+    \item A \textit{regular curve} if $\gamma'(t)\neq 0, \forall t\in I$
+    \item A \textit{simple curve} if $\gamma$ is injective on the interior of $I$.
+\end{enumerate}
+Hence if $\gamma$ is regular, then there is a neighbourhood if each point whose image looks like a graph of a $\mathcal{C}^1$-function. Simplicity guarantees that no funny overlaps can happen, and this is what is need for the curve to be smooth. Equivalently we could also convert such parametrization into a zero locus of a $F$ to use the good old method of gradient directly.
+
 
 \section{Zero content}
 \paragraph{Zero content in 1-D} A set $S\subset \real$ is said to have zero content if
