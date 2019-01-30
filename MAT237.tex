@@ -37,6 +37,43 @@
     \maketitle
     \tableofcontents
     \newpage
+\section{Taylor's Theorem}
+\subsection{Review of Taylor's Theorem in 1 Dimenson}
+\paragraph{Definition of Taylor polynomials} Assume $I \subset \real$ is an open interval and that $f: I \rightarrow \real$ is a function of class $C^k$ on $I$.
+
+For a point $a\in I$, the $kth$ order Taylor polynomial of $f$ at $a$ is the unique polynomial of order at most $k$, denoted$P_{a,k}(h)$ such that
+\begin{align*}
+	f(a) &= P_{a,k}(0)\\
+	f'(a) &= P'_{a,k}(0)\\
+	\vdots\\
+	f^{(k)}(a) &= P_{a,k}^{(k)}(0)
+\end{align*}
+\begin{align*}
+	P_{a,k}(h) &= f(a) + hf'(a) + \frac{h^2}{2}f"(a) +...+\frac{h^k}{k!}f^{(k)}(a)\\
+	&= \sum_{j=0}^{h^j}f^{(j)}(a)
+\end{align*}
+\paragraph{Remark}
+Taylor's Theorem guarantees that $P_{a,k}(h)$ is a very good approximation of $f(a+h)$, and that the quality of the approximation increases as $k$ increases.
+\paragraph{Taylor's Theorem in 1D}Assume $I \subset \real$ is an open interval and that $f: I \rightarrow \real$ is a function of class $C^k$ on $I$. For $a \in I$ and $h \in \real$ such that $a+h\in I$, let $P_{a,k}(h)$ denote the $k$th-order Taylor polynomial at $a$ and define the remainder
+$$R_{a,k}(h) := f(a+h) - P_{a,k}(h)$$
+Then $$\lim_{h\rightarrow0}\frac{R_{a,k}(h)}{h^k} = 0$$
+
+\subsection{Taylor's Theorem in higher dimensions}
+Assume $S \subset \real^n$ is an open set and that $f: S \rightarrow \real$ is a function of class $C^k$ on $S$. For a point $a\in S$, the $kth$ order Taylor polynomial of $f$ at $a$ is the unique polynomial of order at most $k$, denoted$P_{a,k}(\tb{h})$ such that
+\begin{align*}
+	f(\tb{a}) &= P_{\tb{a},k}(\tb{0}) \\
+	\partial^\alpha f(\tb{a}) &= \partial^\alpha P_{\tb{a},k}(\tb{0})
+\end{align*}
+for all partial derivatives of order up to $k$.
+
+\paragraph{Taylor's Theorem in nD}Assume $S \subset \real^n$ is an open interval and that $f: S \rightarrow \real$ is a function of class $C^k$ on $I$. For $a \in S$ and $h \in \real^n$ such that $a+h\in S$, let $P_{a,k}(h)$ denote the $k$th-order Taylor polynomial at $a$ and define the remainder
+$$R_{a,k}(h) := f(a+h) - P_{a,k}(h)$$
+Then $$\lim_{h\rightarrow0}\frac{R_{a,k}(h)}{|h|^k} = 0$$
+
+\paragraph{A Taylor polynomial formula for k = 2}
+$$P_{\tb{a},2}(\tb{h}) = f(\tb{a}) + \nabla f(\tb{a})\cdot \tb{h} + \frac{1}{2}(H(\tb{a})\tb{h})\cdot \tb{h}$$
+%As a result, $$\lim_{h\rightarrow0}\frac{R_{a,2}(h)}{h^2} = 0$$ for $R_{a,2}(h) = f(a+h) - P_{a,2}(h)$
+
 \section{Critical Points}
 \paragraph{Definition} A symmetric $n \times n$ matrix A is
 \begin{enumerate}
