@@ -71,7 +71,10 @@ $$R_{a,k}(h) := f(a+h) - P_{a,k}(h)$$
 Then $$\lim_{h\rightarrow0}\frac{R_{a,k}(h)}{|h|^k} = 0$$
 
 \paragraph{A Taylor polynomial formula for k = 2}
-$$P_{\tb{a},2}(\tb{h}) = f(\tb{a}) + \nabla f(\tb{a})\cdot \tb{h} + \frac{1}{2}(H(\tb{a})\tb{h})\cdot \tb{h}$$
+\begin{equation*}
+P_{\tb{a},2}(\tb{h}) = f(\tb{a}) + \nabla f(\tb{a})\cdot \tb{h} + \frac{1}{2}(H(\tb{a})\tb{h})\cdot \tb{h}
+\end{equation*}
+where we remember that $\tb{h} = \tb{x} - \tb{a}$ if we want the result in terms of $x,y$. 
 %As a result, $$\lim_{h\rightarrow0}\frac{R_{a,2}(h)}{h^2} = 0$$ for $R_{a,2}(h) = f(a+h) - P_{a,2}(h)$
 
 \section{Critical Points}
