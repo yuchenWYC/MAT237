@@ -159,10 +159,10 @@ Then if $x$ is any solution to the optimization problem, there exists $\lambda_1
 \subsection{Inequality Constraints}
 Consider the problem
 \begin{equation*}
-	\begin{cases}
-		\mbox{minimize/maximize } f(\tb{x})\\
-		\mbox{subject to the constraint: } g(\tb{x}) \leq 0
-	\end{cases}
+    \begin{cases}
+        \mbox{minimize/maximize } f(\tb{x})\\
+        \mbox{subject to the constraint: } g(\tb{x}) \leq 0
+    \end{cases}
 \end{equation*}
 where we assume that $g$ is $C^2$, say, and that $\nabla g(\tb{x} \neq 0$ on the set $\{\tb{x}\in \real^n: g(\tb{x}) = 0\}$ \newline
 We can reduce this to problems we already know how to solve. EVT guarantees that the problem has a solution.
@@ -394,8 +394,8 @@ the sums $LS_Pf$ and $US_Pf$ differ from $\int_a^bf(x)dx$ by at most $\epsilon$.
     \item Suppose that $f$ is integrable on $S$ and on $T$, and $S\cap T$ has zero content. Then $f$ is integrable on $S\cup T$, and $\int_{S\cup T}fdA = \int_Sfd+ \int_TfdA$
 \end{enumerate}
 \paragraph{Fubini's Theorem} Let $R = \{(x,y): a\leq x\leq b, c \leq y \leq d \}$, and let $f$ be an integrable function on R. Suppose that, for each $y \in [c, d]$, the function $f_y$ defined by $f_y(x) = f(x, y)$ is integrable on $[a,b]$, and the function $g(y) = \int_a^bf(x,y)dx$ is integrable on $[c,d]$. Then
-$$\iint_R fdA = \int_c^d[\int_a^b f(x,y)dx]dy$$
+$$\iint_R fdA = \int_c^d\left[\int_a^b f(x,y)dx\right]dy$$
 Likewise, if $f^x(y) = f(x,y)$ is integrable on $[c,d]$ for each $x \in [a,b]$, and $h(x) = \int_c^df(x,y)dy$ is integrable on $[a,b]$, then
-$$\iint_R fdA = \int_a^b[\int_c^d f(x,y)dy]dx$$
+$$\iint_R fdA = \int_a^b\left[\int_c^d f(x,y)dy\right]dx$$
 \end{document}
 
