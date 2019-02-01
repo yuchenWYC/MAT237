@@ -145,7 +145,32 @@ The smallest eigenvalue of A = $\min_{\{\tb{u}\in \real^n: |\tb{u}| = 1\}} \tb{u
         \item det$H=0$, then the test is inconclusive. We have to do this case by starring at it.
     \end{enumerate}
 \end{enumerate}
-
+\section{Lagrange Multipliers}
+\subsection{Two constraints}
+Assume that $f, g_1$ and $g_2$ are functions $\real^n \rightarrow \real$ of class $C^1$. Assume also that $\{ \nabla g_1(\tb{x}), \nabla g_2(\tb{x})\}$ are linearly independent at all $\tb{x}$ where $g_1(\tb{x}) = g_2(\tb{x}) = 0$ \newline
+Then if $x$ is any solution to the optimization problem, there exists $\lambda_1, \lambda_2 \in \real$ such that the following system of equations is satisfies by $\tb{x}, \lambda_1$ and $\lambda_2$:
+\begin{equation*}
+\begin{cases}
+  \nabla f(\tb{x}) + \lambda_1 \nabla g_1(\tb{x}) + \lambda_2 \nabla g_2(\tb{x}) &= \tb{0} \\
+  g_1(\tb{x}) &= 0\\
+  g_2(\tb{x}) &= 0
+\end{cases}
+\end{equation*}
+\subsection{Inequality Constraints}
+Consider the problem
+\begin{equation*}
+	\begin{cases}
+		\mbox{minimize/maximize } f(\tb{x})\\
+		\mbox{subject to the constraint: } g(\tb{x}) \leq 0
+	\end{cases}
+\end{equation*}
+where we assume that $g$ is $C^2$, say, and that $\nabla g(\tb{x} \neq 0$ on the set $\{\tb{x}\in \real^n: g(\tb{x}) = 0\}$ \newline
+We can reduce this to problems we already know how to solve. EVT guarantees that the problem has a solution.
+\paragraph{Case 1} The max or min occurs in the set $\{x\in \real^n: g(\tb{x}) < 0$ \newline
+Then it is a critical point, which we know how to find and classify
+\paragraph{Case 2} The max or min occurs in the set $\{x\in \real^n: g(\tb{x}) = 0$ \newline
+Then we can find it by the Lagrange Multiplier technique. \newline
+Finally we can choose the smallest/largest value of $f$ and the point where that value is attained from among all the candidates found in steps 1 and 2 above.
 \section{The Implicit Function Theorem}
 Assume that S is an open subset of $\real^{n+k}$ and that $F: S \rightarrow \real^k$ is a function of class $C^1$. Assume also that $(\tb{a}, \tb{b})$ is a point in S such that $\tb{F(a, b)=0}$ and det$D_{\tb{y}}\tb{F(a, b)} \neq 0$ \newline
 1. Then there exists $r_0, r_1 > 0$ such that for every $\tb{x} \in \real^n$ such that $|\tb{x} - \tb{a}| < r_0$, there exists a unique $\tb{y} \in \real^k$ such that $|\tb{y} - \tb{b}| < r_1$
@@ -210,11 +235,12 @@ Fix $k < n$. For a k-dimensional manifold $M$ in $\real^n$, we say that $M$ has 
     $$ \func{F}{U\in \real^n}{\real^{n-k}}$$ where U is open.
     $$ S = \{\tb{x} \in U: \tb{F}(\tb{x}) = \tb{c}\}$$ for some $\tb{c} \in \real^{n-k}$.\newline
     This is also called the \ti{"zero locus"} of \tb{F} when $\tb{c} = \tb{0}$
-\paragraph{Remark} The regularity conditions that guarantees that S is smooth is that
+\paragraph{Remark 1} The regularity conditions that guarantees that S is smooth is that
 \begin{enumerate}
     \item $\nabla F_1(\tb{x}), ..., \nabla F_{n-k}(\tb{x})$ are linearly independent at each $\tb{x} \in S$. Or equivalently,
     \item the matrix $D\tb{F}(\tb{x})$ has rank $n-k$ at every $\tb{x} \in S$.
 \end{enumerate}
+\paragraph{Remark 2} It can happen that the above conditions are satisfied but S is not smooth. Example: The square of a smooth F, c = 0
 \paragraph{3. Parametrically}
 $$\func{f}{U \subset \real^k}{\real^{n}}$$ where U is open.
 $$ S = \{\tb{f}(\tb{u}): \tb{u} \in U\}$$
@@ -267,6 +293,13 @@ Hence if $\gamma$ is regular, then there is a neighbourhood if each point whose 
     \forall \epsilon>0, \exists~\text{boxes}~B_1,...,B_n~s.t.~ S\subseteq \bigcup_{i=1}^{n}B^{int}_i \wedge \sum_{i=1}^{n}{Area(B_i)} < \epsilon
 \end{equation*}
 Notice the extra $int$.
+
+\paragraph{Proposition on zero content} 
+\begin{enumerate}
+    \item If $Z\subset \real^2$ has zero content and $U\subset Z$, then $U$ has zero content.
+    \item If $Z_1,...,Z_k$ have zero content, then so does $\bigcup_1^k Z_j$
+    \item $\mathbf{f}:(a_0, b_0) \xrightarrow{} \real^2$ is of class $C_1$, then $\mathbf{f}([a,b])$ has zero content whenever $a_0<a<b<b_0$
+\end{enumerate}
 \section{Theorems of 1-D Integral Calculus}
 \paragraph{Lemma: Refined partitions give better approximations} Let $P$ be some partition over an interval and let $P'$ be a refinement of $P$, then
 \begin{equation*}
@@ -347,12 +380,6 @@ the sums $LS_Pf$ and $US_Pf$ differ from $\int_a^bf(x)dx$ by at most $\epsilon$.
 
 \paragraph{Theorem.} Suppose $f$ is a bounded function on the rectangle $R$. If the set of points in $R$ at which $f$ is discontinuous has zero content, then f is integrable on $R$.
 
-\paragraph{Proposition: on zero content} 
-\begin{enumerate}
-    \item If $Z\subset \real^2$ has zero content and $U\subset Z$, then $U$ has zero content.
-    \item If $Z_1,...,Z_k$ have zero content, then so does $\bigcup_1^k Z_j$
-    \item $\mathbf{f}:(a_0, b_0) \xrightarrow{} \real^2$ is of class $C_1$, then $\mathbf{f}([a,b])$ has zero content whenever $a_0<a<b<b_0$
-\end{enumerate}
 
 \paragraph{Discontinuity of characteristic function} The function $\chi_S$ is discontinuous at $\bx$ if and only if $\bx$ is in the boundary of $S$.
 
