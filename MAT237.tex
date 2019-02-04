@@ -27,6 +27,7 @@
 \newcommand{\under}[1]{\underline{#1}}
 \newcommand{\proof}[0]{\textit{\underline{proof:} }}
 \newcommand{\func}[3]{\tb{#1}: {#2} \rightarrow {#3} }
+\newcommand{\vx}[0]{\tb{x}}
 
 % Attr.
 \title{MAT237 Multivariable Calculus \\ Lecture Notes}
@@ -397,5 +398,24 @@ the sums $LS_Pf$ and $US_Pf$ differ from $\int_a^bf(x)dx$ by at most $\epsilon$.
 $$\iint_R fdA = \int_c^d\left[\int_a^b f(x,y)dx\right]dy$$
 Likewise, if $f^x(y) = f(x,y)$ is integrable on $[c,d]$ for each $x \in [a,b]$, and $h(x) = \int_c^df(x,y)dy$ is integrable on $[a,b]$, then
 $$\iint_R fdA = \int_a^b\left[\int_c^d f(x,y)dy\right]dx$$
+
+\section{Change of Variables}
+\paragraph{Change of Variable formula 1D} If $g$ is a one-to-one function of class $C^1$ on the interval $[a, b]$, then for any continuous function $f$,
+$$\int_{[a,b]} f(g(u))|g'(u)|du = \int_{g([a,b])}f(x)dx$$
+In practice it is often more convenient to have all the $g$'s on one side of the equation. If we set $I = g([a, b])$, we have $[a, b] = g^{-1}(I)$, and
+$$\int_I f(x) fx = \int_{g^{-1}(I)}f(g(u))|g'(u)|du$$
+goal: find the analogous formula for multiple integrals. The questions is: How does the volume of a tiny piece of $n$-space change when one applies the transformation G?
+\paragraph{Theorem - Change of Variable for linear mappings} Let A be an invertible $n \times n$ matrix, and let $\tb{G}(\tb{u}) = A\tb{u}$ be the corresponding linear transformation of $\real^n$. Suppose S is a measurable region in $\real^n$ and $f$ is an integrable function on S. Then $G^{-1}(S) = \{A^{-1}\tb{x}: \tb{x} \in S\}$ is measurable and $f \circ \tb{G}$ is integrable on $\tb{G}^{-1}(S)$, and
+	$$ \int \hdots \int_S f(\vx)d^n\vx = |det A| \int \hdots \int_{\tb{G}^{-1}(S)}f(A\tb{u})d^n\tb{u}$$
+
+\paragraph{Theorem - Change of Variable for general functions} Given open sets U and V in $\real^n$, let $\func{G}{U}{V}$ be a one-to-one transformation of class $C^1$ whose derivative $D\tb{G}(\tb{u})$ is invertible for all $\tb{u} \in U$. Suppose that $T \subset U$ and $S \subset V$ are measurable sets such that $\tb{G}(T) = S$. If $f$ is an integrable function on S, then $f \circ \tb{G}$ is integrable on T, and 
+	$$ \int \hdots \int_S f(\vx)d^n\vx = \int \hdots \int_{T}f(\tb{G}(\tb{u}))|\det D\tb{G}(\tb{u})|d^n\tb{u}$$
+	
+\subsection{Some important determinants}
+\begin{enumerate}
+	\item polar coordinates: factor = $r$
+	\item cylindrical coordinates: factor = $|\det(Dg)| = r$
+	\item spherical coordinates: factor = $r^2\sin\varphi$
+\end{enumerate}
 \end{document}
 
