@@ -451,14 +451,21 @@ based on the idea of cutting up the curve into many tiny pieces, forming appropr
 \paragraph{Differentials on Curve; Arc Length} Suppose C is a smooth curve in $\real^n$. We consider two nearby points \vx and $\vx + d\vx$ on the curve; here
 $$d\vx = (dx_1,\hdots,dx_n)$$
 is the vector difference between the two points, and we imagine it as being infinitely small. We may, however, be more interested in the distance between the two points, traditionally denoted by $ds$, which is $$ds = |d\vx| = \sqrt{dx^2_1+\hdots+d^2x_n}(*)$$
-To give these differentials a precise meaning that can be used for calculations, the best procedure is to parametrize the curve. Thus, we assume that C is given by parametric equations $\vx = \tb{g}(t), a\leq t \leq b$, where $g$ is of class $C^1$ and $g'(t) \neq \vo$. Then the neighboring points \vx and $\vx + d\vx$ are given by $\tb{g}(t)$ and $\tb{g}(t+dt)$, so $$d\vx = \tb{g}(t+dt) - \tb{g}(t) = \tb{g}'(t)dt = (\frac{dx_1}{dt},\hdots,\frac{dx_n}{dt})dt$$. Moreover,
-$$|d\vx| = |\tb{g}'(t)|dt = \sqrt{(\frac{dx_1}{dt})^2+ \hdots + (\frac{dx_n}{dt})^2}dt$$, which is just what one gets by formally multiplying and dividing the expression on the right of (*) by $dt$\\
+To give these differentials a precise meaning that can be used for calculations, the best procedure is to parametrize the curve. Thus, we assume that C is given by parametric equations $\vx = \tb{g}(t), a\leq t \leq b$, where $g$ is of class $C^1$ and $g'(t) \neq \vo$. Then the neighboring points \vx and $\vx + d\vx$ are given by $\tb{g}(t)$ and $\tb{g}(t+dt)$, so $$d\vx = \tb{g}(t+dt) - \tb{g}(t) = \tb{g}'(t)dt = (\frac{dx_1}{dt},\hdots,\frac{dx_n}{dt})dt$$ Moreover,
+$$|d\vx| = |\tb{g}'(t)|dt = \sqrt{(\frac{dx_1}{dt})^2+ \hdots + (\frac{dx_n}{dt})^2}dt$$which is just what one gets by formally multiplying and dividing the expression on the right of (*) by $dt$\\
 What happens if we sum up all the infinitesimal increments $d\vx$ or $ds$ - that is, if we integrate the differentials $d\vx$ or $ds = |d\vx|$ over the curve? Integration of the vector increments $d\vx$ just gives the total vector increment, that is, the vector difference between the initial and final points on the curve:
 $$\int_C d\vx = \int_a^b \tb{g}'(t)dt = \tb{g}(b)-\tb{g}(a)$$
 On the other hand, $ds$ is the straight-line distance between two infinitesimally close points $\vx$ and $\vx + d\vx$ on the curve, and since smooth curves are indistinguishable from their linear approximations on the infinitesimal level, $ds$ is the \ti{arc length} of the bit of curve between $d\vx$ and $\vx + d\vx$. Adding these up gives the total arc length of the curve
 $$\mbox{Arc length} = \int_C ds = \int_a^b|\tb{g}'(t)|dt$$
 This is the \tb{definition of arc length for a smooth curve}
 \paragraph{Notes} The arc length and the vector difference between the two endpoints of the curve should not depend on the particular parametrization we use. The issue here is that a parametrization $\vx = \tb{g}(t)$ determines an \tb{orientation} for the curve C, that is, a determination of which direction along the curve is "forward" (the direction in which the point $\tb{g}(t)$ moves as $t$ increases) and which direction is "backward". 
-
+\paragraph{Definition} The function $\tb{g}: [a,b] \rightarrow \real^n$ is called \tb{piecewise smooth} if
+\begin{enumerate}
+	\item it is continuous
+	\item its derivative exists and is continuous except perhaps at finitely many points $t_j$, at which the one-sided limits $\underset{t\rightarrow t_j\pm}{\lim}\tb{g}'(t)$ exist. 
+\end{enumerate}
+\paragraph{Line Integrals of Scalar Functions} 
+If $f$ is a continuous function whose domain includes a smooth (or piecewise smooth) curve C in $\real^n$, we can integrate $f$ over the curve, taking the differential in the integral to be the element of arc length $ds$. Thus, if C is parametrized by $\vx = \tb{g}(t), a\leq t \leq b$, we define
+$$\int_C f ds = \int_a^b f(\tb{g}(t))|\tb{g}'(t)|dt$$ This is independent of the parametrization and the orientation.
 \end{document}
 
