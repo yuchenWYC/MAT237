@@ -10,6 +10,7 @@
 \usepackage{fancyhdr}
 \usepackage{perpage}
 \usepackage{float}
+\usepackage{esint}
 
 % Property settings.
 \MakePerPage{footnote}
@@ -409,16 +410,16 @@ In practice it is often more convenient to have all the $g$'s on one side of the
 $$\int_I f(x) fx = \int_{g^{-1}(I)}f(g(u))|g'(u)|du$$
 goal: find the analogous formula for multiple integrals. The questions is: How does the volume of a tiny piece of $n$-space change when one applies the transformation G?
 \paragraph{Theorem - Change of Variable for linear mappings} Let A be an invertible $n \times n$ matrix, and let $\tb{G}(\tb{u}) = A\tb{u}$ be the corresponding linear transformation of $\real^n$. Suppose S is a measurable region in $\real^n$ and $f$ is an integrable function on S. Then $G^{-1}(S) = \{A^{-1}\tb{x}: \tb{x} \in S\}$ is measurable and $f \circ \tb{G}$ is integrable on $\tb{G}^{-1}(S)$, and
-	$$ \int \hdots \int_S f(\vx)d^n\vx = |det A| \int \hdots \int_{\tb{G}^{-1}(S)}f(A\tb{u})d^n\tb{u}$$
+    $$ \int \hdots \int_S f(\vx)d^n\vx = |det A| \int \hdots \int_{\tb{G}^{-1}(S)}f(A\tb{u})d^n\tb{u}$$
 
 \paragraph{Theorem - Change of Variable for general functions} Given open sets U and V in $\real^n$, let $\func{G}{U}{V}$ be a one-to-one transformation of class $C^1$ whose derivative $D\tb{G}(\tb{u})$ is invertible for all $\tb{u} \in U$. Suppose that $T \subset U$ and $S \subset V$ are measurable sets such that $\tb{G}(T) = S$. If $f$ is an integrable function on S, then $f \circ \tb{G}$ is integrable on T, and 
-	$$ \int \hdots \int_S f(\vx)d^n\vx = \int \hdots \int_{T}f(\tb{G}(\tb{u}))|\det D\tb{G}(\tb{u})|d^n\tb{u}$$
-	
+    $$ \int \hdots \int_S f(\vx)d^n\vx = \int \hdots \int_{T}f(\tb{G}(\tb{u}))|\det D\tb{G}(\tb{u})|d^n\tb{u}$$
+    
 \paragraph{Some important determinants}
 \begin{enumerate}
-	\item polar coordinates: factor = $r$
-	\item cylindrical coordinates: factor = $|\det(Dg)| = r$
-	\item spherical coordinates: factor = $r^2\sin\varphi$
+    \item polar coordinates: factor = $r$
+    \item cylindrical coordinates: factor = $|\det(Dg)| = r$
+    \item spherical coordinates: factor = $r^2\sin\varphi$
 \end{enumerate}
 
 \subsection{Functions Defined by Integrals}
@@ -434,11 +435,11 @@ $$F'(x) = f(\varphi(x))\varphi'(x) + \int_a^{\varphi(x)}\frac{\partial f}{\parti
 \subsection{Improper Multiple Integrals}
 There are many situations where one needs to integrate functions over infinite intervals(e.g. half-space or the whole space) or functions that are unbounded near some point in the region of integration. Suppose, for example, that $f$ is a continuous function on $\real^2$ and we wish to define $\iint_{\real^2}fdA$. The obvious idea is to set $$\iint_{\real^2} fdA = \underset{r\rightarrow\infty}{\lim} \iint_{S_r}fdA$$ where the $S_r$'s are a family of measurable sets that fill out $\real^2$ as $r \rightarrow \infty$. For example, we could take $S_r$ to be 
 \begin{enumerate}
-	\item the disc of radius $r$ about the origin
-	\item the square of side length $r$ centered at the origin
-	\item the rectangle of side lengths $r$ and $r^2$ centered at the origin
-	\item the disc of radius $r$ centered at $(15, -37)$
-	\item $\hdots$
+    \item the disc of radius $r$ about the origin
+    \item the square of side length $r$ centered at the origin
+    \item the rectangle of side lengths $r$ and $r^2$ centered at the origin
+    \item the disc of radius $r$ centered at $(15, -37)$
+    \item $\hdots$
 \end{enumerate}
 No rationale for choosing one over another and no guarantee that different families $S_r$ will yield the same limit.
 \paragraph{Proposition} For $p > 0$, define $f_p$ on $\real^n \setminus \{\vo\}$ by $f_p(\vx) = |\vx|^{-p}$. The integral of $f_p$ over a ball $\{\vx:|\vx| < a\}$ is finite if and only if $p<n$; the integral of $f_p$ over the complement of a ball, $\{\vx:|\vx| > a\}$, is finite if and only if $p>n$.
@@ -483,8 +484,8 @@ This is the \tb{definition of arc length for a smooth curve}
 \paragraph{Notes} The arc length and the vector difference between the two endpoints of the curve should not depend on the particular parametrization we use. The issue here is that a parametrization $\vx = \tb{g}(t)$ determines an \tb{orientation} for the curve C, that is, a determination of which direction along the curve is "forward" (the direction in which the point $\tb{g}(t)$ moves as $t$ increases) and which direction is "backward". 
 \paragraph{Definition} The function $\tb{g}: [a,b] \rightarrow \real^n$ is called \tb{piecewise smooth} if
 \begin{enumerate}
-	\item it is continuous
-	\item its derivative exists and is continuous except perhaps at finitely many points $t_j$, at which the one-sided limits $\underset{t\rightarrow t_j\pm}{\lim}\tb{g}'(t)$ exist. 
+    \item it is continuous
+    \item its derivative exists and is continuous except perhaps at finitely many points $t_j$, at which the one-sided limits $\underset{t\rightarrow t_j\pm}{\lim}\tb{g}'(t)$ exist. 
 \end{enumerate}
 \paragraph{Line Integrals of Scalar Functions} 
 If $f$ is a continuous function whose domain includes a smooth (or piecewise smooth) curve C in $\real^n$, we can integrate $f$ over the curve, taking the differential in the integral to be the element of arc length $ds$. Thus, if C is parametrized by $\vx = \tb{g}(t), a\leq t \leq b$, we define
@@ -494,5 +495,23 @@ $$\int_C f ds = \int_a^b f(\tb{g}(t))|\tb{g}'(t)|dt$$ This is independent of the
 $$\int_C \tb{F} \cdot d\vx = \int_C (F_1dx_1+F_2dx_2+\hdots+F_ndx_n)$$
 That is, if C is described parametrically by $\vx = \tb{g}(t), a\leq t\leq b$, then
 $$\int_C \tb{F} \cdot d\vx = \int_a^b\tb{F}(\tb{g}(t))\cdot \tb{g}'(t)dt$$
+
+
+\subsection{Green's Theorem}
+\paragraph{Piece-wise smooth.}
+Let $R\subset \real^2$ be a region such that $R = \overline{R^{int}}$. Assume that $R$ is bounded. We say that $R$ is piece-wise defined smooth if the boundaries satisfy:
+\begin{equation*}
+    \partial f = \bigcup_{i = 1}^n C_i~\text{with $C_i$ being smooth, $\forall i$}
+\end{equation*}
+
+\paragraph{Simple-Closed curve.}
+A Jordan Simple-Closed curve is a curve in $\real^2$ that is closed and non-self-overlapping. Such curve divides the region of $\real^2$ into to portions: those that are inside this curve, and those that are outside.
+
+\paragraph{Statement of the Green's Theorem.} Let $C$ be a positively oriented, piece-wise smooth, simple closed curve in a plane, and let $D$ be the region bounded by $C$. If $L(\cdot)$ and $M(\cdot)$ are functions of $(x, y)$ defined on an open region containing $D$ and have continuous partial derivatives there, then
+\begin{equation*}
+    \ointctrclockwise_C \left(Ldx + Mdy\right) = \iint_D \left(\frac{\partial M}{\partial x} - \frac{\partial L}{\partial y}\right) dxdy
+\end{equation*}
+where the path of integration along $C$ is anticlockwise.
+
 \end{document}
 
