@@ -14,7 +14,6 @@
 % Property settings.
 \MakePerPage{footnote}
 \pagestyle{fancy}
-\lhead{Notes by YW, TX}
 
 % Commands
 \newcommand{\ti}[1]{\textit{#1}}
@@ -30,6 +29,7 @@
 \newcommand{\vx}[0]{\tb{x}}
 \newcommand{\vy}[0]{\tb{y}}
 \newcommand{\vo}[0]{\tb{0}}
+\newcommand{\qed}[0]{$\hfill\blacksquare$}
 
 
 % Attr.
@@ -442,6 +442,28 @@ There are many situations where one needs to integrate functions over infinite i
 \end{enumerate}
 No rationale for choosing one over another and no guarantee that different families $S_r$ will yield the same limit.
 \paragraph{Proposition} For $p > 0$, define $f_p$ on $\real^n \setminus \{\vo\}$ by $f_p(\vx) = |\vx|^{-p}$. The integral of $f_p$ over a ball $\{\vx:|\vx| < a\}$ is finite if and only if $p<n$; the integral of $f_p$ over the complement of a ball, $\{\vx:|\vx| > a\}$, is finite if and only if $p>n$.
+\paragraph{Theorem} Suppose $f:\real^n \rightarrow \real$ is bounded and integrable on any bounded set and satisfies $|f(\vx)| \leq C \cdot \frac{1}{||\vx||^p}$ whenever $||\vx|| > R$, for some constants $C,R > 0$.\\
+If $p>n$ then $\int\hdots \int_{\real^n}fd^n\vx$ exists.\\\\
+\begin{proof}
+(n=2)Suppose there exist a $p > 2$ such that the hypothesis of the theorem is satisfied. Consider $B(\vo,R)$.\\
+Then $$\int\hdots \int_{\real^n}fd^n\vx = \int\hdots \int_{B(\vo,R)}fd^n\vx + \int\hdots \int_{\real^2 \setminus B(\vo, R)}fd^n\vx$$
+(if it exists)\\
+It's sufficient to show both (1) and (2) exist for all $R>0$.\\
+By the hypothesis of the theorem (that $f$ is integrable on any bounded set), (1) exists.\\
+Consider (2)\\
+Convert to polar coordinates:
+\begin{align*}
+	\int\hdots \int_{\real^2 \setminus B(\vo, R)}fd^n\vx &= \int_0^{2\pi}\int_0^Rfrdrd\theta\\
+	&\leq \int_0^{2\pi}\int_0^R|f|rdrd\theta\\
+	&= 2\pi \int_0^R|f|rdrd\theta\\
+	&\leq 2\pi \int_0^R C \frac{1}{||\vx||^p}rdr\\
+	&= 2\pi \int_0^R C \frac{1}{r^p}rdr \tag{$||\vx|| = r$}\\
+	&= 2\pi C\int_0^R r^{1-p}dr\\
+	&= 2\pi C\frac{1}{2-p}R^{2-p}
+\end{align*}
+As $R \rightarrow \infty$, $$\underset{R\rightarrow\infty}{\lim}2\pi C\frac{1}{2-p}R^{2-p}$$ exists iff $$2-p<0 \iff p>2$$ \qed
+\end{proof}
+
 \paragraph{Proposition} $$\int_{-\infty}^\infty e^{-x^2}dx = \sqrt{\pi}$$
 \section{Line and Surface Integrals; Vector Analysis}
 Let \tb{F} be an $\real^n$-valued function defined on some subset of $\real^n$. We have encountered such things in previous chapters, where we generally thought of them as representing transformations from one region of $\real^n$ to another or coordinate systems on regions of $\real^n$. In this chapter, however, we think of such an \tb{F} as a function that assigns to each point \vx in its domain a vector $\tb{F}(\vx)$, represented pictorially as an arrow based at \vx, and we therefore call it a \tb{vector field}.
@@ -467,5 +489,10 @@ This is the \tb{definition of arc length for a smooth curve}
 \paragraph{Line Integrals of Scalar Functions} 
 If $f$ is a continuous function whose domain includes a smooth (or piecewise smooth) curve C in $\real^n$, we can integrate $f$ over the curve, taking the differential in the integral to be the element of arc length $ds$. Thus, if C is parametrized by $\vx = \tb{g}(t), a\leq t \leq b$, we define
 $$\int_C f ds = \int_a^b f(\tb{g}(t))|\tb{g}'(t)|dt$$ This is independent of the parametrization and the orientation.
+\paragraph{Line Integrals of Vector Fields} We can define the integral of an $\real^m$-valued function over a curve in $\real^n$, simply by integrating each component separately; that is, if $\tb{F} = (F_1,\hdots,F_m)$, then $\int_C\tb{F}ds = (\int_C F_1ds,\hdots,\int_C F_mds)$
+\paragraph{Definition of line integral} If C is a smooth (or piece wise smooth) curve in $\real^n$ and \tb{F} is a continuous vector field defined on some neighborhood of C in $\real^n$, the \tb{line integral} of \tb{F} over C is
+$$\int_C \tb{F} \cdot d\vx = \int_C (F_1dx_1+F_2dx_2+\hdots+F_ndx_n)$$
+That is, if C is described parametrically by $\vx = \tb{g}(t), a\leq t\leq b$, then
+$$\int_C \tb{F} \cdot d\vx = \int_a^b\tb{F}(\tb{g}(t))\cdot \tb{g}'(t)dt$$
 \end{document}
 
