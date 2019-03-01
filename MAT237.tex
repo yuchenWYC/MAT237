@@ -482,52 +482,75 @@ $$\underset{d\rightarrow\infty}{\lim}2\pi C(d^{1-p}-R^{1-p})$$ exists iff $$ p -
 \end{proof}
 
 \paragraph{Proposition} $$\int_{-\infty}^\infty e^{-x^2}dx = \sqrt{\pi}$$
-\section{Line and Surface Integrals; Vector Analysis}
-Let \tb{F} be an $\real^n$-valued function defined on some subset of $\real^n$. We have encountered such things in previous chapters, where we generally thought of them as representing transformations from one region of $\real^n$ to another or coordinate systems on regions of $\real^n$. In this chapter, however, we think of such an \tb{F} as a function that assigns to each point $\vx$ in its domain a vector $\tb{F}(\vx)$, represented pictorially as an arrow based at \vx, and we therefore call it a \tb{vector field}.
+\section{Line Integrals}
+Let \tb{F} be an $\real^n$-valued function defined on some subset of $\real^n$. In this chapter, we think of such an \tb{F} as a function that assigns to each point $\vx$ in its domain a vector $\tb{F}(\vx)$, represented pictorially as an arrow based at \vx, and we therefore call it a \tb{vector field}.
 \subsection{Arc Length and Line Integrals}
 line integrals: integrals over curves\\
-based on the idea of cutting up the curve into many tiny pieces, forming appropriate Riemann sums, and passing to the limit
+Given a smooth curve C, hot to compute its length? \\
+Based on the idea of cutting up the curve into many tiny pieces, forming appropriate Riemann sums, and passing to the limit
 \paragraph{Differentials on Curve; Arc Length} Suppose C is a smooth curve in $\real^n$. We consider two nearby points $\vx$ and $\vx + d\vx$ on the curve; here
 $$d\vx = (dx_1,\hdots,dx_n)$$
-is the vector difference between the two points, and we imagine it as being infinitely small. We may, however, be more interested in the distance between the two points, traditionally denoted by $ds$, which is $$ds = |d\vx| = \sqrt{dx^2_1+\hdots+dx^2_n}(*)$$
-To give these differentials a precise meaning that can be used for calculations, the best procedure is to parametrize the curve. Thus, we assume that C is given by parametric equations $\vx = \tb{g}(t), a\leq t \leq b$, where $\tb{g}$ is of class $C^1$ and $\tb{g}'(t) \neq \vo$. Then the neighboring points \vx and $\vx + d\vx$ are given by $\tb{g}(t)$ and $\tb{g}(t+dt)$, so $$d\vx = \tb{g}(t+dt) - \tb{g}(t) = \tb{g}'(t)dt = (\frac{dx_1}{dt},\hdots,\frac{dx_n}{dt})dt$$ Moreover,
-$$|d\vx| = |\tb{g}'(t)|dt = \sqrt{(\frac{dx_1}{dt})^2+ \hdots + (\frac{dx_n}{dt})^2}dt$$which is just what one gets by formally multiplying and dividing the expression on the right of (*) by $dt$\\
-What happens if we sum up all the infinitesimal increments $d\vx$ or $ds$ - that is, if we integrate the differentials $d\vx$ or $ds = |d\vx|$ over the curve? Integration of the vector increments $d\vx$ just gives the total vector increment, that is, the vector difference between the initial and final points on the curve:
+is the vector difference between the two points, and we imagine it as being infinitely small. We may, however, be more interested in the distance between the two points, traditionally denoted by $ds$, which is $$ds = |d\vx| = \sqrt{dx^2_1+\hdots+dx^2_n}(*)$$\\
+Arc length of C = result of ``adding up all the $ds$'s" = $\int_Cds$\\\\
+To give these differentials a precise meaning that can be used for calculations, the best procedure is to paramatrize the curve. Thus, we assume that C is given by parametric equations $\vx = \tb{g}(t), a\leq t \leq b$, where $\tb{g}$ is of class $C^1$ and $\tb{g}'(t) \neq \vo$. Then the neighboring points $\vx$ and $\vx + d\vx$ are given by $\tb{g}(t)$ and $\tb{g}(t+dt)$, so $$d\vx = \tb{g}(t+dt) - \tb{g}(t) = \tb{g}'(t)dt = (\frac{dx_1}{dt},\hdots,\frac{dx_n}{dt})dt$$ Moreover,
+$$|d\vx| = |\tb{g}'(t)|dt = \sqrt{(\frac{dx_1}{dt})^2+ \hdots + (\frac{dx_n}{dt})^2}dt$$which is just what one gets by formally multiplying and dividing the expression on the right of (*) by $dt$\\\\
+Integration of the vector increments $d\vx$ just gives the total vector increment, that is, the vector difference between the initial and final points on the curve:
 $$\int_C d\vx = \int_a^b \tb{g}'(t)dt = \tb{g}(b)-\tb{g}(a)$$
-On the other hand, $ds$ is the straight-line distance between two infinitesimally close points $\vx$ and $\vx + d\vx$ on the curve, and since smooth curves are indistinguishable from their linear approximations on the infinitesimal level, $ds$ is the \ti{arc length} of the bit of curve between $d\vx$ and $\vx + d\vx$. Adding these up gives the total arc length of the curve
+\paragraph{Definition of arc length for a smooth curve}
+$ds$ is the \ti{arc length} of the bit of curve between $d\vx$ and $\vx + d\vx$. Adding these up gives the total arc length of the curve
 $$\mbox{Arc length} = \int_C ds = \int_a^b|\tb{g}'(t)|dt$$
-This is the \tb{definition of arc length for a smooth curve}
-\paragraph{Notes} The arc length and the vector difference between the two endpoints of the curve should not depend on the particular parametrization we use. The issue here is that a parametrization $\vx = \tb{g}(t)$ determines an \tb{orientation} for the curve C, that is, a determination of which direction along the curve is "forward" (the direction in which the point $\tb{g}(t)$ moves as $t$ increases) and which direction is "backward". 
-\paragraph{Definition} The function $\tb{g}: [a,b] \rightarrow \real^n$ is called \tb{piecewise smooth} if
+\paragraph{Notes} The arc length and the vector difference between the two endpoints of the curve should not depend on the particular parametrization we use. The issue here is that a parametrization $\vx = \tb{g}(t)$ determines an \tb{orientation} for the curve C, that is, a determination of which direction along the curve is ``forward" (the direction in which the point $\tb{g}(t)$ moves as $t$ increases) and which direction is "backward". 
+\paragraph{Definition of Piecewise Smoothness of a Function} The function $\tb{g}: [a,b] \rightarrow \real^n$ is called \tb{piecewise smooth} if
 \begin{enumerate}
-    \item it is continuous
-    \item its derivative exists and is continuous except perhaps at finitely many points $t_j$, at which the one-sided limits $\underset{t\rightarrow t_j\pm}{\lim}\tb{g}'(t)$ exist. 
+    \item It is continuous
+    \item Its derivative exists and is continuous except perhaps at finitely many points $t_j$, at which the one-sided limits $\underset{t\rightarrow t_j\pm}{\lim}\tb{g}'(t)$ exist. 
 \end{enumerate}
 \paragraph{Line Integrals of Scalar Functions} 
 If $f$ is a continuous function whose domain includes a smooth (or piecewise smooth) curve C in $\real^n$, we can integrate $f$ over the curve, taking the differential in the integral to be the element of arc length $ds$. Thus, if C is parametrized by $\vx = \tb{g}(t), a\leq t \leq b$, we define
 $$\int_C f ds = \int_a^b f(\tb{g}(t))|\tb{g}'(t)|dt$$ This is independent of the parametrization and the orientation.
-\paragraph{Line Integrals of Vector Fields} We can define the integral of an $\real^m$-valued function over a curve in $\real^n$, simply by integrating each component separately; that is, if $\tb{F} = (F_1,\hdots,F_m)$, then $\int_C\tb{F}ds = (\int_C F_1ds,\hdots,\int_C F_mds)$
-\paragraph{Definition of line integral} If C is a smooth (or piece wise smooth) curve in $\real^n$ and \tb{F} is a continuous vector field defined on some neighborhood of C in $\real^n$, the \tb{line integral} of \tb{F} over C is
+\paragraph{Vector-Valued Line Integrals of Vector Fields} We can define the integral of an $\real^m$-valued function over a curve in $\real^n$, simply by integrating each component separately; that is, if $\tb{F} = (F_1,\hdots,F_m)$, then $\int_C\tb{F}ds = (\int_C F_1ds,\hdots,\int_C F_mds)$
+\paragraph{Scalar-Valued Line Integrals for Vector Fields} If C is a smooth (or piecewise smooth) curve in $\real^n$ and \tb{F} is a continuous vector field defined on some neighborhood of C in $\real^n$, the \tb{line integral} of \tb{F} over C is
 $$\int_C \tb{F} \cdot d\vx = \int_C (F_1dx_1+F_2dx_2+\hdots+F_ndx_n)$$
 That is, if C is described parametrically by $\vx = \tb{g}(t), a\leq t\leq b$, then
 $$\int_C \tb{F} \cdot d\vx = \int_a^b\tb{F}(\tb{g}(t))\cdot \tb{g}'(t)dt$$
 
 
-\subsection{Green's Theorem}
-\paragraph{Piece-wise smooth.}
-Let $R\subset \real^2$ be a region such that $R = \overline{R^{int}}$. Assume that $R$ is bounded. We say that $R$ is piece-wise defined smooth if the boundaries satisfy:
+\subsection{Green's Theorem} 
+``The integral of something over the boundary of a region equals the integral of something else over the region itself."\\\\
+Let $R\subset \real^2$ be a region such that $R = \overline{R^{int}}$. Assume that $R$ is bounded. We say that $\partial R$ is piecewise smooth if:
 \begin{equation*}
-    \partial f = \bigcup_{i = 1}^n C_i~\text{with $C_i$ being smooth, $\forall i$}
+    \partial R = \bigcup_{i = 1}^n C_i~\text{with $C_i$ being smooth, $\forall i$}
 \end{equation*}
 
 \paragraph{Simple-Closed curve.}
 A Jordan Simple-Closed curve is a curve in $\real^2$ that is closed and non-self-overlapping. Such curve divides the region of $\real^2$ into to portions: those that are inside this curve, and those that are outside.
+More precisely, a simple closed curve is one that can be parametrized by a continuous map $\vx = \tb{g}(t), a\leq t \leq b$, such that $\tb{g}(a) = \tb{g}(b)$ but $\tb{g}(s) \neq \tb{g}(t) \mbox{ unless } \{s,t\} = \{a, b\}$
+\paragraph{Positive/ Natural Orientation} The \tb{positive orientation} on $\partial S$ is the orientation on each of the closed curves that make up the boundary such that the region S is on the $left$ with respect to the positive direction on the curve
 
-\paragraph{Statement of the Green's Theorem.} Let $C$ be a positively oriented, piece-wise smooth, simple closed curve in a plane, and let $D$ be the region bounded by $C$. If $L(\cdot)$ and $M(\cdot)$ are functions of $(x, y)$ defined on an open region containing $D$ and have continuous partial derivatives there, then
+\paragraph{Regular Region}
+A compact set in $\real^n$ that is the closure of its interior.
+
+\paragraph{Statement of the Green's Theorem - Textbook Version}
+Suppose S is a regular region in $\real^2$ with piecewise smooth boundary $\partial S$. Suppose also that $\tb{F}$ is a vector field of class $C^1$ on $\bar{S}$. Then
+$$\int_{\partial S}\tb{F}\cdot d\vx = \iint_S(\frac{\partial F_2}{\partial x_1} - \frac{\partial F_1}{\partial x_2})dA$$
+In the more common notation, if we set $\tb{F} = (P,Q)$ and $\vx = (x,y)$,
+$$\int_{\partial S}P \, dx + Q \, dy = \iint_S(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y})dA$$
+The sum of line integrals over all curves that make up $\partial S$
+
+\paragraph{Statement of the Green's Theorem - Eric Version} Let $C$ be a positively oriented, piece-wise smooth, simple closed curve in a plane, and let $D$ be the region bounded by $C$. If $L(\cdot)$ and $M(\cdot)$ are functions of $(x, y)$ defined on an open region containing $D$ and have continuous partial derivatives there, then
 \begin{equation*}
     \ointctrclockwise_C \left(Ldx + Mdy\right) = \iint_D \left(\frac{\partial M}{\partial x} - \frac{\partial L}{\partial y}\right) dxdy
 \end{equation*}
 where the path of integration along $C$ is anticlockwise.
 
+\section{Surface Integrals}
+On a curve the orientation is a matter of deciding which direction along a curve is ``positive"; on a surface it is a matter of deciding which side of the surface is the ``positive" side. \\
+Not every surface can be oriented. Counterexample: Mobius band \\
+However, if a surface forms part of the boundary of a regular region in $\real^3$, it is always orientable, and the positive normal vector is defined to be the one pointing out of the region.
+\paragraph{Element of Area}
+$$dA = |\frac{\partial \tb{G}}{\partial u} \times \frac{\partial \tb{G}}{\partial v}| \, du\, dv$$
+\paragraph{Area for a parametrized surface}
+If R is a measurable subset of W in the $uv$-plane and $\tb{G}(R)$ is the corresponding region in the surface S,
+$$\mbox{Area of \tb{G}(R) } = \iint_R|\frac{\partial \tb{G}}{\partial u} \times \frac{\partial \tb{G}}{\partial v}| \, du\, dv$$
 \end{document}
 
