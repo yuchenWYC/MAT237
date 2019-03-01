@@ -552,5 +552,17 @@ $$dA = |\frac{\partial \tb{G}}{\partial u} \times \frac{\partial \tb{G}}{\partia
 \paragraph{Area for a parametrized surface}
 If R is a measurable subset of W in the $uv$-plane and $\tb{G}(R)$ is the corresponding region in the surface S,
 $$\mbox{Area of \tb{G}(R) } = \iint_R|\frac{\partial \tb{G}}{\partial u} \times \frac{\partial \tb{G}}{\partial v}| \, du\, dv$$
+\paragraph{Surface Integrals of scalar Functions}
+If S admits a parametrization $\vx = \tb{G}(u,v)$ with $(u,v)\in W$, where W is tacitly assumed to be measurable,
+$$\iint_S f \, dA = \iint_W f(\tb{G}(u,v))|\frac{\partial \tb{G}}{\partial u}\times \frac{\partial \tb{G}}{\partial v}| \, du\, dv$$
+If S is the graph of a function $z = \varphi(x, y), (x,y) \in W$, the result is
+$$\iint_S f\, dA = \iint_W f(x,y,\varphi(x,y))\sqrt{1+(\partial_x \varphi)^2 + (\partial_y \varphi)^2}\, dx \, dy$$
+\paragraph{Surface Integrals of Vector Fields} It is natural to regard the vector $(\partial_u \tb{G} \times \partial_v \tb{G}) \, du \, dv$ itself as a ``vector element of area" for S: its magnitude gives the area of a small bit of S, and its direction, namely the normal direction to S, specifies how that bit is oriented in space. That is, we have
+$$(\frac{\partial \tb{G}}{\partial u} \times \frac{\partial \tb{G}}{\partial v}) \, du \, dv = \tb{n}\, dA$$ where $\tb{n}$ is a unit normal vector to the surface S. \\
+$dA$ is independent of the parametrization, and clearly so is $\tb{n}$ up to a factor of $\pm 1$ (using a different parametrization might result in replacing $\tb{n}$ by $-\tb{n}$. \\
+Suppose S is a surface with a specified orientation, and $\tb{F}$ is a continuous vector field defined on a neighborhood of S. The $\tb{surface integral}$ of \tb{F} over S is defined to be $$\iint_S \tb{F}\cdot \tb{n}\, dA$$
+Thus, if S is parametrized by $\vx = \tb{G}(u,v), (u,v)\in W$, we have
+$$\iint_S \tb{F}\cdot \tb{n}\, dA = \iint_W \tb{F}(\tb{G}(u,v))\cdot (\frac{\partial \tb{G}}{\partial u} \times \frac{\partial \tb{G}}{\partial v}) \, du \, dv$$
+
 \end{document}
 
