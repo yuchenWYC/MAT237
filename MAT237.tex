@@ -30,6 +30,7 @@
 \newcommand{\vx}[0]{\tb{x}}
 \newcommand{\vy}[0]{\tb{y}}
 \newcommand{\vo}[0]{\tb{0}}
+\newcommand{\va}[0]{\tb{0}}
 \newcommand{\qed}[0]{$\hfill\blacksquare$}
 
 
@@ -407,7 +408,7 @@ $$\iint_R fdA = \int_a^b\left[\int_c^d f(x,y)dy\right]dx$$
 \paragraph{Change of Variable formula 1D} If $g$ is a one-to-one function of class $C^1$ on the interval $[a, b]$, then for any continuous function $f$,
 $$\int_{[a,b]} f(g(u))|g'(u)|du = \int_{g([a,b])}f(x)dx$$
 In practice it is often more convenient to have all the $g$'s on one side of the equation. If we set $I = g([a, b])$, we have $[a, b] = g^{-1}(I)$, and
-$$\int_I f(x) fx = \int_{g^{-1}(I)}f(g(u))|g'(u)|du$$
+$$\int_I f(x) \, dx = \int_{g^{-1}(I)}f(g(u))|g'(u)|du$$
 goal: find the analogous formula for multiple integrals. The questions is: How does the volume of a tiny piece of $n$-space change when one applies the transformation G?
 \paragraph{Theorem - Change of Variable for linear mappings} Let A be an invertible $n \times n$ matrix, and let $\tb{G}(\tb{u}) = A\tb{u}$ be the corresponding linear transformation of $\real^n$. Suppose S is a measurable region in $\real^n$ and $f$ is an integrable function on S. Then $G^{-1}(S) = \{A^{-1}\tb{x}: \tb{x} \in S\}$ is measurable and $f \circ \tb{G}$ is integrable on $\tb{G}^{-1}(S)$, and
     $$ \int \hdots \int_S f(\vx)d^n\vx = |det A| \int \hdots \int_{\tb{G}^{-1}(S)}f(A\tb{u})d^n\tb{u}$$
@@ -427,13 +428,15 @@ goal: find the analogous formula for multiple integrals. The questions is: How d
 \paragraph{Theorem 1 - Continuity of F} Suppose S and T are compact subsets of $\real^n$ and $\real^m$, respectively, and S is measurable. If $f(\vx, \vy)$ is continuous on the set $T \times S = \{(\vx, \vy): \vx \in T, \vy \in S\}$, then the function F defined by $$ F(\vx) = \int\hdots\int_S f(\vx,\vy)d^n\vy$$ is continuous on T.
 \paragraph{Theorem 2 - Differentiability of F} Suppose $S \subset \real^n$ is compact and measurable, and $T \subset \real^m$ is open. If f is a continuous function on $T \times S$ that is of class $C^1$ as a function of $\vx \in T$ for each $\vy \in S$, then the function F defined by $$ F(\vx) = \int\hdots\int_S f(\vx,\vy)d^n\vy$$ is of class $C^1$ on T, and 
     $$ \frac{\partial F}{\partial x_j}(\vx) = \int \hdots \int_S \frac{\partial f}{\partial x_j}(\vx, \vy) d^n\vy (\vx \in T)$$
-\paragraph{Remark} Situation often occur in which the variable \vx occurs in the limits of integration as well as the integrand. For simplicity we consider the case where $x$ and $y$ are scalar variables: $$F(x) = \int_a^{\varphi(x)} f(x,y)dy (*)$$
+\paragraph{Remark} Situation often occur in which the variable $\vx$ occurs in the limits of integration as well as the integrand. For simplicity we consider the case where $x$ and $y$ are scalar variables: $$F(x) = \int_a^{\varphi(x)} f(x,y)dy (*)$$
 We suppose that $f$ is continuous in $x$ and $y$ and of class $C^1$ in $x$ for each $y$, and that $\varphi$ is of class $C^1$. If $f$ does not depend on $x$, the derivative of F can be computed by the fundamental theorem of calculus together with the chain rule:
 $$\frac{d}{dx}\int_a^{\varphi(x)}f(y)fy = f(\varphi(x))\varphi'(x)$$
 For the more general case (*), we can differentiate F by combining this result with Theorem 2: Differentiate with respect to each $x$ in (*) while treating the others as constants, and add the results
 $$F'(x) = f(\varphi(x))\varphi'(x) + \int_a^{\varphi(x)}\frac{\partial f}{\partial x}(x,y) dy$$
-\subsection{Improper Multiple Integrals}
-There are many situations where one needs to integrate functions over infinite intervals(e.g. half-space or the whole space) or functions that are unbounded near some point in the region of integration. Suppose, for example, that $f$ is a continuous function on $\real^2$ and we wish to define $\iint_{\real^2}fdA$. The obvious idea is to set $$\iint_{\real^2} fdA = \underset{r\rightarrow\infty}{\lim} \iint_{S_r}fdA$$ where the $S_r$'s are a family of measurable sets that fill out $\real^2$ as $r \rightarrow \infty$. For example, we could take $S_r$ to be 
+\section{Improper Multiple Integrals}
+There are many situations where one needs to integrate functions over infinite intervals(e.g. half-space or the whole space) or functions that are unbounded near some point in the region of integration. 
+\subsection{Bounded Functions on Unbounded Domains}
+Suppose, for example, that $f$ is a continuous function on $\real^2$ and we wish to define $\iint_{\real^2}fdA$. The obvious idea is to set $$\iint_{\real^2} fdA = \underset{r\rightarrow\infty}{\lim} \iint_{S_r}fdA$$ where the $S_r$'s are a family of measurable sets that fill out $\real^2$ as $r \rightarrow \infty$. For example, we could take $S_r$ to be 
 \begin{enumerate}
     \item the disc of radius $r$ about the origin
     \item the square of side length $r$ centered at the origin
@@ -449,18 +452,8 @@ if $B(R, \vo) \subset S$, then $|\int \hdots \int_S f(\vx) d^n\vx - L| < \vareps
 \paragraph{Theorem 2} Assume that $f: \real^n \rightarrow \real$ is continuous, and that
 $$\underset{R \rightarrow \infty}{\lim} \int \hdots \int_{B(R)} |f(\vx)|d^n\vx =: M \in [0, \infty) \mbox{ exists.}$$
 Then the improper integral $\int \hdots \int_{\real^n}f(\vx)d^n\vx$ is absolutely convergent.
-\paragraph{Definition 2} For continuous $f: S \setminus \{\tb{a}\} \rightarrow \real$, we say the \tb{improper integral} $\int \hdots \int_{\real^n} f(\vx)d^n\vx$ is \tb{absolutely convergent} (or sometimes just "\tb{the improper integral exists}") if there exists $L \in \real$ s.t.
-$$\forall \varepsilon >0, \exists r > 0 \mbox{ such that } \forall U \subset S \mbox{ with } \tb{a} \in U^{int}$$
-if $ U \subset B(r, \tb{a})$, then $|\int \hdots \int_{S\setminus U} f(\vx) d^n\vx - L| < \varepsilon$
 
-\paragraph{Theorem 3} Assume that $f: S\setminus\{\tb{a}\} \rightarrow \real$ is continuous, and that
-$$\underset{r \rightarrow 0}{\lim} \int \hdots \int_{S\setminus B(r, \tb{a})} |f(\vx)|d^n\vx \mbox{ exists (and is finite)}$$
-Then the improper integral $\int \hdots \int_{S}f(\vx)d^n\vx$ is absolutely convergent.
-
-
-
-\paragraph{Proposition} For $p > 0$, define $f_p$ on $\real^n \setminus \{\vo\}$ by $f_p(\vx) = |\vx|^{-p}$. The integral of $f_p$ over a ball $\{\vx:|\vx| < a\}$ is finite if and only if $p<n$; the integral of $f_p$ over the complement of a ball, $\{\vx:|\vx| > a\}$, is finite if and only if $p>n$.
-\paragraph{Corollary} Suppose $f:\real^n \rightarrow \real$ is bounded and integrable on any bounded set and satisfies $|f(\vx)| \leq C \cdot \frac{1}{||\vx||^p}$ whenever $||\vx|| > R$, for some constants $C,R > 0$.\\
+\paragraph{Corollary 1} Suppose $f:\real^n \rightarrow \real$ is bounded and integrable on any bounded set and satisfies $|f(\vx)| \leq C \cdot \frac{1}{||\vx||^p}$ whenever $||\vx|| > R$, for some constants $C,R > 0$.\\
 If $p>n$ then $\int\hdots \int_{\real^n}fd^n\vx$ exists.\\\\
 \begin{proof}
 (n=2)Suppose there exist a $p > 2$ such that the hypothesis of the theorem is satisfied. Consider $B(\vo,R)$.\\
@@ -480,6 +473,24 @@ Convert to polar coordinates:
 \end{align*}
 $$\underset{d\rightarrow\infty}{\lim}2\pi C(d^{1-p}-R^{1-p})$$ exists iff $$ p - 1> 1 \iff p>2$$ \qed
 \end{proof}
+
+\subsection{Unbounded Functions on Bounded Domains}
+Now let S be a measurable subset of $\real^n$, and for a point $\tb{a} \in S^{int}$, and consider a continuous but unbounded function $f: S\setminus\{\va\} \rightarrow \real$.\\
+\paragraph{Example} $$f(x) = |\vx - \va|^{-p}$$ for some $p>0$.
+\paragraph{Definition 2} For continuous $f: S \setminus \{\tb{a}\} \rightarrow \real$, we say the \tb{improper integral} $\int \hdots \int_{\real^n} f(\vx)d^n\vx$ is \tb{absolutely convergent} (or sometimes just "\tb{the improper integral exists}") if there exists $L \in \real$ s.t.
+$$\forall \varepsilon >0, \exists r > 0 \mbox{ such that } \forall U \subset S \mbox{ with } \tb{a} \in U^{int}$$
+if $ U \subset B(r, \tb{a})$, then $|\int \hdots \int_{S\setminus U} f(\vx) d^n\vx - L| < \varepsilon$
+
+\paragraph{Theorem 3} Assume that $f: S\setminus\{\tb{a}\} \rightarrow \real$ is continuous, and that
+$$\underset{r \rightarrow 0}{\lim} \int \hdots \int_{S\setminus B(r, \tb{a})} |f(\vx)|d^n\vx \mbox{ exists (and is finite)}$$
+Then the improper integral $\int \hdots \int_{S}f(\vx)d^n\vx$ is absolutely convergent.
+\paragraph{Corollary 2} Assume that S is a bounded measurable subset of $\real^n$ that contains the origin, and that $f: S \setminus \{\vo\}$ is continuous. If 
+$$\exists C > 0 \mbox{ and } p < n \mbox{ such that } |f(\vx)|\leq C|\vx|^{-p}$$
+for all $\vx \in S \setminus \{\vo\}$, then\\
+the improper integral $\int \hdots \int_S f(\vx)d^n\vx$ is absolutely convergent.
+
+
+\paragraph{Proposition} For $p > 0$, define $f_p$ on $\real^n \setminus \{\vo\}$ by $f_p(\vx) = |\vx|^{-p}$. The integral of $f_p$ over a ball $\{\vx:|\vx| < a\}$ is finite if and only if $p<n$; the integral of $f_p$ over the complement of a ball, $\{\vx:|\vx| > a\}$, is finite if and only if $p>n$.
 
 \paragraph{Proposition} $$\int_{-\infty}^\infty e^{-x^2}dx = \sqrt{\pi}$$
 \section{Line Integrals}
