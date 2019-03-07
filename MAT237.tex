@@ -30,7 +30,13 @@
 \newcommand{\vx}[0]{\tb{x}}
 \newcommand{\vy}[0]{\tb{y}}
 \newcommand{\vo}[0]{\tb{0}}
-\newcommand{\va}[0]{\tb{0}}
+\newcommand{\va}[0]{\tb{a}}
+\newcommand{\vf}[0]{\tb{F}}
+\newcommand{\vi}[0]{\tb{i}}
+\newcommand{\vj}[0]{\tb{j}}
+\newcommand{\vk}[0]{\tb{k}}
+\newcommand{\vg}[0]{\tb{G}}
+\newcommand{\p}[0]{\partial}
 \newcommand{\qed}[0]{$\hfill\blacksquare$}
 
 
@@ -574,6 +580,37 @@ $dA$ is independent of the parametrization, and clearly so is $\tb{n}$ up to a f
 Suppose S is a surface with a specified orientation, and $\tb{F}$ is a continuous vector field defined on a neighborhood of S. The $\tb{surface integral}$ of \tb{F} over S is defined to be $$\iint_S \tb{F}\cdot \tb{n}\, dA$$
 Thus, if S is parametrized by $\vx = \tb{G}(u,v), (u,v)\in W$, we have
 $$\iint_S \tb{F}\cdot \tb{n}\, dA = \iint_W \tb{F}(\tb{G}(u,v))\cdot (\frac{\partial \tb{G}}{\partial u} \times \frac{\partial \tb{G}}{\partial v}) \, du \, dv$$
-
+\section{Vector Derivatives}
+$$\nabla = (\partial_1,\hdots,\partial_n)$$
+$$grad\,f = \nabla f = (\partial_1 f, \hdots, \partial_n f)$$
+$$div \, \tb{F} = \nabla \cdot \tb{F} = \partial_1 F_1 + \hdots+\partial_n F_n$$
+Suppose $n = 3$. If \tb{F} is a $C^1$ vector field on an open subset of $\real^3$, the \tb{curl} of \tb{F} is the vector field defined by
+$$curl\, \tb{F} = \nabla \times \vf = (\partial_2F_3 - \partial_3F_2)\vi +(\partial_3F_1 - \partial_1F_3)\vj + (\partial_1F_2 - \partial_2F_1)\vk$$
+\paragraph{Formulas}
+\begin{align}
+	&grad(fg)=f\,grad g + g\,grad\,f\\
+	&grad(\vf \cdot \tb{G}) = (\vf \cdot \nabla)\vg \times (curl \, \vg) + (curl \vg) + (\vg \cdot \nabla)\vf + \vg \times (curl\, \vf)\\
+	&curl(f\vg)=f\,curl\vg+(grad\,f)\times \vg\\
+	&curl(\vf \times \vg) = (\vg \cdot \nabla)\vf + (div \, \vg)\vf - (\vf \cdot \nabla)\vg - (div \,\vf)\vg\\
+	&div(f\vg)=f\,div\vg+(grad\,f)\cdot\vg\\
+	&div(\vf\times\vg)=\vg \cdot (curl\,\vf) - \vf\cdot(curl\,\vg)
+\end{align}
+\paragraph{Combined Operations}
+\begin{align}
+	&curl(grad\,f) = (\p_2\p_3f-\p_3\p_2f)\vi+(\p_3\p_1f-\p_1\p_3f)\vj+(\p_1\p_2f-\p_2\p_1f)\vk = \vo\\
+	&div(curl\,\vf) = \p_1(\p_2F_3 - \p_3F_2)+\p_2(\p_3F_1-\p_1F_3)+\p_3(\p_1F_2-\p_2F_1) = 0\\
+\end{align}
+\paragraph{Laplacian}
+$$\nabla^2f=\Delta f = div(grad\,f) = \p_1^2f + \hdots + \p_n^2f$$
+Other two combinations together yield the Laplacian for vector fields in $\real^3$:
+$$grad(div\,\vf)-curl(curl\,\vf) = \nabla^2\vf = (\nabla^2F_1)\vi + (\nabla^2F_2)\vj + (\nabla^2F_3)\vk$$
+\section{The Divergence Theorem}
+The 3-dimensional analogue of Green's theorem; Relates surface integrals over the boundary of a regular region in $\real^3$ to volume integrals over the region itself; valid for regions with piece-wise smooth boundaries.
+\paragraph{The Divergence Theorem} Suppose R is a regular region in $\real^3$ with piecewise smooth boundary $\p R$, oriented so that the positive normal points out of R. Suppose also that \vf is a vector field of class $C^1$ on R. Then
+	$$\iint_{\p R}\vf\cdot\tb{n}\,dA = \iiint_R div\, \vf\,dV$$
+\paragraph{Corollary (Green's Formulas)} Suppose R is a regular region in $\real^3$ with piecewise smooth boundary, and $f$ and $g$ are functions of class $C^2$ on $\bar R$. Then
+$$\iint_{\p R}f\nabla g\cdot \tb{n}\,dA = \iint_R(\nabla f \cdot \nabla g + f\nabla^2g)dV$$
+$$\iint_{\p R} (f\nabla g - g\nabla f)\cdot\tb{n}\,dA = \iint_R(f\nabla^2g -g\nabla^2f)\,dV$$
+The directional derivative $\nabla f\cdot\tb{n}$ that occurs in these formulas is called the \tb{outward normal derivative} of $f$ on $\p R$ and is often denoted by $\frac{\p f}{\p n}$.
 \end{document}
 
