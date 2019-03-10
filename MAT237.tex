@@ -560,6 +560,16 @@ The sum of line integrals over all curves that make up $\partial S$
 \end{equation*}
 where the path of integration along $C$ is anticlockwise.
 
+\paragraph{Notes}
+\begin{enumerate}
+	\item Green's Theorem implies that $$\int_{\partial S} x \, dy = -\int_{\partial S} y \, dx = \int_{\partial S} \frac{1}{2}(x\,dy - y\,dx) = \iint_S 1 \, dA = area(S)$$
+\end{enumerate}
+\paragraph{Reformulation of Green's Theorem}
+Let $S \subset \real^2$ be a regular domain with piecewise smooth boundary. If $\vf$ is a $C^1$ vector field defined on an open set that contained S, then
+$$\iint_S (\frac{\partial F_1}{\partial x} + \frac{\partial F_2}{\partial y})\, dA = \int_{\partial S}\vf \cdot \tb{n} \, ds$$
+
+
+
 \section{Surface Integrals}
 On a curve the orientation is a matter of deciding which direction along a curve is ``positive"; on a surface it is a matter of deciding which side of the surface is the ``positive" side. \\
 Not every surface can be oriented. Counterexample: Mobius band \\
