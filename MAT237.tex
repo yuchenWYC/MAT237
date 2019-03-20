@@ -36,6 +36,8 @@
 \newcommand{\vj}[0]{\tb{j}}
 \newcommand{\vk}[0]{\tb{k}}
 \newcommand{\vg}[0]{\tb{G}}
+\newcommand{\vn}[0]{\tb{n}}
+\newcommand{\vu}[0]{\tb{u}}
 \newcommand{\p}[0]{\partial}
 \newcommand{\qed}[0]{$\hfill\blacksquare$}
 
@@ -429,7 +431,7 @@ goal: find the analogous formula for multiple integrals. The questions is: How d
     \item spherical coordinates: factor = $r^2\sin\varphi$
 \end{enumerate}
 
-\subsection{Functions Defined by Integrals}
+\section{Functions Defined by Integrals}
 \paragraph{Question}  $$ F(\vx) = \int\hdots\int_S f(\vx,\vy)d^n\vy$$ What condition on $f$ guarantee that F behaves well?
 \paragraph{Theorem 1 - Continuity of F} Suppose S and T are compact subsets of $\real^n$ and $\real^m$, respectively, and S is measurable. If $f(\vx, \vy)$ is continuous on the set $T \times S = \{(\vx, \vy): \vx \in T, \vy \in S\}$, then the function F defined by $$ F(\vx) = \int\hdots\int_S f(\vx,\vy)d^n\vy$$ is continuous on T.
 \paragraph{Theorem 2 - Differentiability of F} Suppose $S \subset \real^n$ is compact and measurable, and $T \subset \real^m$ is open. If f is a continuous function on $T \times S$ that is of class $C^1$ as a function of $\vx \in T$ for each $\vy \in S$, then the function F defined by $$ F(\vx) = \int\hdots\int_S f(\vx,\vy)d^n\vy$$ is of class $C^1$ on T, and 
@@ -483,7 +485,7 @@ $$\underset{d\rightarrow\infty}{\lim}2\pi C(d^{1-p}-R^{1-p})$$ exists iff $$ p -
 \subsection{Unbounded Functions on Bounded Domains}
 Now let S be a measurable subset of $\real^n$, and for a point $\tb{a} \in S^{int}$, and consider a continuous but unbounded function $f: S\setminus\{\va\} \rightarrow \real$.\\
 \paragraph{Example} $$f(x) = |\vx - \va|^{-p}$$ for some $p>0$.
-\paragraph{Definition 2} For continuous $f: S \setminus \{\tb{a}\} \rightarrow \real$, we say the \tb{improper integral} $\int \hdots \int_{\real^n} f(\vx)d^n\vx$ is \tb{absolutely convergent} (or sometimes just "\tb{the improper integral exists}") if there exists $L \in \real$ s.t.
+\paragraph{Definition 2} For continuous $f: S \setminus \{\tb{a}\} \rightarrow \real$, we say the \tb{improper integral} $\int \hdots \int_{S\setminus\{\va\}} f(\vx)d^n\vx$ is \tb{absolutely convergent} (or sometimes just "\tb{the improper integral exists}") if there exists $L \in \real$ s.t.
 $$\forall \varepsilon >0, \exists r > 0 \mbox{ such that } \forall U \subset S \mbox{ with } \tb{a} \in U^{int}$$
 if $ U \subset B(r, \tb{a})$, then $|\int \hdots \int_{S\setminus U} f(\vx) d^n\vx - L| < \varepsilon$
 
@@ -531,6 +533,10 @@ $$\int_C \tb{F} \cdot d\vx = \int_C (F_1dx_1+F_2dx_2+\hdots+F_ndx_n)$$
 That is, if C is described parametrically by $\vx = \tb{g}(t), a\leq t\leq b$, then
 $$\int_C \tb{F} \cdot d\vx = \int_a^b\tb{F}(\tb{g}(t))\cdot \tb{g}'(t)dt$$
 
+\paragraph{Fundamental Theorem of Line Integrals}
+If $C$ is a curve that starts at $\tb{p} \in \real^n$ and ends at $\tb{q}\in \real^n$, then
+$$\int_C \nabla\tb{f}\cdot d\vx = \tb{f}(\tb{g}(b)) - \tb{f}(\tb{g}(a))$$
+where $\tb{g}(a) = \tb{p}$ and $\tb{g}(b) = \tb{q}$ and the line integral around any closed path is 0.
 
 \subsection{Green's Theorem} 
 ``The integral of something over the boundary of a region equals the integral of something else over the region itself."\\\\
@@ -567,7 +573,7 @@ where the path of integration along $C$ is anticlockwise.
 \paragraph{Reformulation of Green's Theorem}
 Let $S \subset \real^2$ be a regular domain with piecewise smooth boundary. If $\vf$ is a $C^1$ vector field defined on an open set that contained S, then
 $$\iint_S (\frac{\partial F_1}{\partial x} + \frac{\partial F_2}{\partial y})\, dA = \int_{\partial S}\vf \cdot \tb{n} \, ds$$
-
+where $\tb{n}(t) = (t_2, -t_1) \perp \partial S$.
 
 
 \section{Surface Integrals}
@@ -616,11 +622,106 @@ Other two combinations together yield the Laplacian for vector fields in $\real^
 $$grad(div\,\vf)-curl(curl\,\vf) = \nabla^2\vf = (\nabla^2F_1)\vi + (\nabla^2F_2)\vj + (\nabla^2F_3)\vk$$
 \section{The Divergence Theorem}
 The 3-dimensional analogue of Green's theorem; Relates surface integrals over the boundary of a regular region in $\real^3$ to volume integrals over the region itself; valid for regions with piece-wise smooth boundaries.
-\paragraph{The Divergence Theorem} Suppose R is a regular region in $\real^3$ with piecewise smooth boundary $\p R$, oriented so that the positive normal points out of R. Suppose also that \vf is a vector field of class $C^1$ on R. Then
+\paragraph{The Divergence Theorem} Suppose R is a regular region in $\real^3$ with piecewise smooth boundary $\p R$, oriented so that the positive normal points out of R. Suppose also that $\vf$ is a vector field of class $C^1$ on R. Then
 	$$\iint_{\p R}\vf\cdot\tb{n}\,dA = \iiint_R div\, \vf\,dV$$
+\proof \\
+Begin by considering a class of simple regions.\\
+We say that R is $xy$-simple if it has the form
+$$R = \{(x,y,z):(x,y)\in W,\varphi_1(x,y) \leq z \leq \varphi_2(x,y)\}$$
+where W is a regular region in the $xy$-plane and  $\varphi_1$ and $\varphi_2$ are piecewise smooth functions on W. We define the notions of $yz$-simple and $xz$-simple similarly, and we say that R is \under{simple} if it is $xy$-simple, $yz$-simple and $xz$-simple.
+Next, show $\iint_{\partial R}F_3\tb{k}\cdot\tb{n}\,dA = \iint_R \partial_3 F_3 \, dV$\\
+The proof for $F_1i$ and $F_2 j$ is the same.\\
+It now follows that the divergence theorem is valid for regions that can be cut up into finitely many simple regions $R_1, \hdots, R_k$
+
+\subsection{Geometric Interpretation of div}
+Suppose \vf is a $C^1$ vector field on some open set containing the point $\va$.\\
+For $r > 0$, let $B_r$ be the ball of radius $r$ about $\va$. If $r$ is very small, the average value of $div \vf(\vx)$ on the ball $B_r$ is very nearly equal to $div\vf(\va)$. Therefore, by the divergence theorem,
+$$div \vf(\va) \approx \frac{3}{4\pi r^3}\iiint_{B_r} div\vf \, dV = \frac{3}{4\pi r^3} \iint_{\partial B_r}\vf \cdot \vn \, dA$$
+This approximation becomes better and better as $r \rightarrow 0$, and hence
+$$div \vf(\va) = \underset{r\rightarrow 0}{\lim}\frac{3}{4 \pi r^3} \iint_{|\vx - \va| = r} \vf \cdot \vn \, dA$$
+The flux of $\vf$ across $\partial B_r$ from the inside $(B_r) $ to the outside (the complement of $B_r$)
+
+
+
+
 \paragraph{Corollary (Green's Formulas)} Suppose R is a regular region in $\real^3$ with piecewise smooth boundary, and $f$ and $g$ are functions of class $C^2$ on $\bar R$. Then
 $$\iint_{\p R}f\nabla g\cdot \tb{n}\,dA = \iint_R(\nabla f \cdot \nabla g + f\nabla^2g)dV$$
 $$\iint_{\p R} (f\nabla g - g\nabla f)\cdot\tb{n}\,dA = \iint_R(f\nabla^2g -g\nabla^2f)\,dV$$
 The directional derivative $\nabla f\cdot\tb{n}$ that occurs in these formulas is called the \tb{outward normal derivative} of $f$ on $\p R$ and is often denoted by $\frac{\p f}{\p n}$.
+
+\section{Stokes's Theorem}
+"the generalization of Green's theorem in which the plane is replaced by a curved surface"
+\paragraph{Statement of Stokes's Theorem} Suppose $S_0$ is a smooth surface in $\real^3$, and S is a region in $S_0$ bounded by a piecewise curve $\partial S$. Assume S has an orientation given by $\tb{n}$ and $\partial S$ is positively oriented with respect to this orientation.\\
+Let $\tb{F}$ be a $C^1$ vector field defined on some neighborhood of S in $\real^3$. Then
+$$\int_{\partial S} \tb{F}\cdot d\vx = \iint_S (curl \, \vf)\cdot \tb{n} \,dA$$
+\paragraph{Special case} If S is a region in the $xy$-plane, then $\tb{n} = \tb{k} = (0,0,1)$; moreover, $\vf \cdot d\vx$ involves only the $x$- and $y$-components of $\vf$, i.e., $F_1$ and $F_2$, and $(curl \vf) \cdot \tb{n} = \partial_1 F_2 - \partial_2 F_1$. Hence Stokes's theorem reduces to Green's theorem in this case.
+\paragraph{Note} A closed curve in $\real^3$ is the boundary of infinitely many surfaces in $\real^3$. Stokes's theorem says that if C is a closed curve in $\real^3$ and S is \textcolor{red}{any} oriented surfaced bounded by C, then 
+$$\int_{\partial S} \tb{F}\cdot d\vx = \iint_S (curl \, \vf)\cdot \tb{n} \,dA$$
+for any $C^1$ vector field \tb{F}, provided that the orientations on C and S are compatible.
+
+\paragraph{Example}
+Use Stokes's Theorem twice to let the complicated integral vanish
+
+\paragraph{Corollary} If S is a closed surface (i.e., a surface with no boundary) in $\real^3$ with unit outward normal $\tb{n}$, and $\vf$ is a $C^1$ vector field on S, then $\iint_S(curl \tb{F}) \cdot \tb{n} \, dA = 0$ \\
+\proof \\ 
+If \vf is differentiable on the region R inside S, this follows from the divergence theorem since $div(curl \vf) = 0$ for any $\vf$
+More generally, draw a simple closed curve C in S that divides S into two regular regions $S_1$ and $S_2$, and we have
+$$\iint_S (curl \vf)\cdot \vn \,dA = \iint_{S_1}(curl\vf)\cdot\vn\,dA+\iint_{S_2}(curl\vf)\cdot \vn \, dA $$
+On the other hand, if we give C the orientation compatible with $S_1$, Stokes's theorem gives
+$$\iint_S (curl \vf)\cdot \vn \,dA = \int_C \vf \cdot d\vx = - \iint_{S_2}(curl \vf)\cdot \vn \,dA$$
+Hence the terms on the right cancel.
+
+\subsection{Geometric Interpretation of Curl}
+Suppose \vf is a $C^1$ vector field on some open set containing the point $\va$.\\
+Fix a unit vector $\vu$. \\
+Let $D_\epsilon$ be the disc of radius $\epsilon$ centered at $\va$ in the plane perpendicular to $\vu$, oriented so that $\vu$ is the positive normal for $D_\epsilon$.\\
+As $\epsilon \rightarrow 0$, the average value of $(curl \vf) \cdot \vu$ over $D_\epsilon$ approaches its value at $\va$:
+$$(curl \vf ( \va ) ) \cdot \vu = \underset{\epsilon \rightarrow 0}{\lim} \,\frac{1}{\pi \epsilon^2} \iint_{D_\epsilon} (curl\vf) \cdot \vu \,dA$$
+Since $\vu$ is the normal to $D_\epsilon$, Stokes's theorem gives
+$$(curl \vf(\va))\cdot \vu = \underset{\epsilon \rightarrow 0}{\lim} \,\frac{1}{\pi \epsilon^2} \int_{C_\epsilon}\vf\cdot d\vx$$ where $C_\epsilon$ is the circle of radius $\epsilon$ about $\va$ in the plane perpendicular to $\vu$, traversed counterclockwise as viewed from the side on which $\vu$ lies. \\
+Think of $\vf$ as a force field, $\int_{C_\epsilon}\vf\cdot d\vx$ is the \textcolor{blue}{work done by $\vf$ on a particle that moves around $C_\epsilon$.} Thus $(curl \vf(\va))\cdot \vu$ represents the \textcolor{blue}{tendency of the force $\vf$ to push the particle around $C_\epsilon$}.
+\section{Integrating Vector Derivatives}
+Consider the equation $\nabla f = \tb{G}$
+\paragraph{Proposition} Suppose \tb{G} is a continuous vector field on an open set R in $\real^n$. The following two conditions are equivalent:
+\begin{enumerate}
+	\item If $C_1$ and $C_2$ are any two oriented curves in R with the same initial point and the same final point, then $\int_{C_1} \vg \cdot d\vx = \int_{C_2}\vg\cdot d\vx$
+	\item If C is any closed curve in R, $\int_C \vg \cdot d\vx = 0$
+\end{enumerate}
+\proof see textbook p258
+\paragraph{Conservative Vector Field} A vector field $\vg$ is called \under{conservative} in the region R if it satisfies the above conditions.
+\paragraph{Geometric Interpretation} $\vg$ a force field, the force does no net work on a particle that returns to its starting point.
+
+\paragraph{Proposition} A continuous vector field $\vg$ in an open set $R \subset \real^n$ is conservative $\iff$ there is a $C^1$ function $f$ on R such that $\vg = \nabla f$
+\proof \\
+$\leftarrow:$ If $\vg = \nabla f$ and C is a closed curve parametrized by $\vx = \tb{g}(t), a\leq t\leq b$, by the chain rule we have 
+$$\int_C \nabla f \cdot d\vx = \int_a^b \nabla f(\tb{g}(t))\cdot \tb{g}'(t)\,dt = \int_a^b \frac{d}{dt}f(\tb{g}(t))dt = f(\tb{g}(b)) - f(\tb{g}(a)) = 0$$
+$\rightarrow:$ If $\vg$ is conservative in R. Need to construct a function $f$ such that $\nabla f = \vg$. Assume R is (piecewise) connected, pick $\va \in R$. For any $\vx \in R$, let C be a curve in R from $\va$ to $\vx$. We shall show $G_i = \partial_j f$ for each $j$.\\
+For case $j = 1$: \\
+Let $\tb{h} = (h, 0, \hdots, 0)$. Suppose h is small enough so that the line segment L from $\vx$ to $\vx + \tb{h}$ lies entirely in R. We define $f(x) = \int_C \vg \cdot d\vx$ where C is a curve from $\va$ to $\vx$. \\
+Make a curve from $\va$ to $\vx + \tb{h}$ by joining L onto the end of C, so that $$f(\vx + \tb{h}) = \int_C \vg \cdot d\vx + \int_L \vg \cdot d\vx$$But then
+$$\frac{f(\vx+\tb{h}) - f(\vx)}{h} = \frac{1}{h}\int_L \vg \cdot d\vx = \frac{1}{h} \int_0^h G_1(x_1+t,x_2,\hdots,x_n)\,dt$$
+By letting $h \rightarrow 0$ we obtain $\partial_1 f(\vx) = G_1(\vx)$
+\qed
+\paragraph{Theorem} Suppose R is a convex open set in $\real^n$ and $\vg$ is a $C^1$ vector field on R. $curl(\vg) = \vo \implies \vg = \nabla f \implies \vg$ is conservative.
+\proof \\
+Similar as previous proof.\\
+By Stokes's Theorem, $$\int_{\partial S}\vg \cdot d\vx = \iint_S(curl\, \vg)\vn \,dA = 0$$ (since $curl \,\vg = 0$)
+$$f(\vx + \tb{h}) - f(\vx) = \int_{L(\va, \vx)}\vg\cdot d\vx - \int_{L(\va, \vx + \tb{h})} \vg \cdot d\vx = \int_{L(\vx,\vx+\tb{h})}\vg\cdot d\vx$$
+Now the same argument applies.
+\paragraph{Theorem} Suppose R is a convex open set in $\real^3$ and $\vg$ is a $C^1$ vector field on R. If $\vg$ satisfies $div \vg = 0$ on R, then $\vg$ is the curl of a $C^2$ vector field on R.
+\paragraph{Definition} If $div \vg = 0$, a vector field $\vf$ such that $curl \vf = \vg$ is called a \under{vector potential} for $\vg$.
+\paragraph{Theorem} Let R be a bounded convex open set in $\real^3$. For any $C^1$ function $g$ on $\bar{R}$ and any $C^2$ vector field $\vg$ on $\bar{R}$ such that $div \vg = 0$, there is a $C^2$ vector field $\vf$ on $\bar{R}$ such that $curl \vf = \vg$ and $div \vf = g$ on $R$
+\section{Fourier Series}
+\paragraph{Definition} Infinite series that use the trigonometric functions $\cos n\theta$ and $\sin n\theta$, or, equivalently, $e^{in\theta}$ and $e^{-in\theta}$, as the basic building blocks.
+\paragraph{Piecewise Continuity of Functions} A function $f$ defined on an interval $[a,b]$ is \under{piecewise continuous} on $[a,b]$ if it is continuous except at finitely many points in $[a,b]$, and at each such point the one-sided limits
+$$f(x+) = \underset{\epsilon \rightarrow 0+}{\lim} f(\vx + \epsilon), \quad f(x-)=\underset{\epsilon \rightarrow 0+}{\lim} f(\vx - \epsilon)$$
+exist (and are finite)\\
+By making the change of variable $\theta = \frac{2\pi x}{P}$, we can convert any P-periodic function into a $2\pi$-periodic function. 
+\paragraph{Basic Idea} An arbitrary piecewise continuous $2\pi$-periodic function $f(\theta)$ can be expanded as an infinite linear combination of the functions $e^{in\theta}(n = 0,\pm 1, \pm 2,\hdots)$, of the form
+$$f(\theta) = \sum_{-\infty}^{\infty}c_ne^{in\theta}$$
+or
+$$f(\theta) = \frac{1}{2}a_0 + \sum_1^\infty(a_n\cos n\theta+b_n \sin n\theta)$$
+f may be either real-valued or complex-valued
+
 \end{document}
 
