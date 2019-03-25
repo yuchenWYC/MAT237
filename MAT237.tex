@@ -723,5 +723,22 @@ or
 $$f(\theta) = \frac{1}{2}a_0 + \sum_1^\infty(a_n\cos n\theta+b_n \sin n\theta)$$
 f may be either real-valued or complex-valued
 
+\paragraph{E.Knight's Version of Fourier Series} To simplify our 
+calculations, let's reformat the above mentioned form
+of Fourier Seires into the following:
+\begin{equation*}
+    f(\theta) = a_0 + \sum_{n\geq 1}b_n\cos n\theta + \sum_{m \geq 1}c_m\sin m \theta
+\end{equation*}
+where the Fourier coefficients are to be calculated by
+\begin{align*}
+    a_0 &= \frac{1}{2\pi}\int_{0}^{2\pi}f(\theta)d\theta \\
+    b_n &= \frac{1}{\pi}\int_{0}^{2\pi}f(\theta)\cos n\theta d\theta \\
+    c_m &= \frac{1}{\pi}\int_{0}^{2\pi}f(\theta)\sin m\theta d\theta 
+\end{align*}
+notice that we here are integrating over the region $[0, 2\pi]$, but in fact
+any region of length $2\pi$ would do, since we are assuming a $2\pi$-periodicity.
+We simplify our calculation in this reformulation in the way that $a_0$ now is
+just the average value of the original function $f(\theta)$ in some interval
+of length $2\pi$.
 \end{document}
 
