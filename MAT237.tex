@@ -40,6 +40,7 @@
 \newcommand{\vu}[0]{\tb{u}}
 \newcommand{\p}[0]{\partial}
 \newcommand{\qed}[0]{$\hfill\blacksquare$}
+\newcommand{\qerat}{\tag*{$\blacksquare$}}
 
 
 % Attr.
@@ -739,6 +740,31 @@ notice that we here are integrating over the region $[0, 2\pi]$, but in fact
 any region of length $2\pi$ would do, since we are assuming a $2\pi$-periodicity.
 We simplify our calculation in this reformulation in the way that $a_0$ now is
 just the average value of the original function $f(\theta)$ in some interval
-of length $2\pi$.`'
+of length $2\pi$.
+\paragraph{Convergence of Fourier Series Decomposition.} We shall study the convergence of such series since 
+all of these would be pointless if we can not write down an converging series at the end of the day. We shall first look at 
+the following question: ``What can we say about the Fourier coefficients $b_n, c_n$ as $n\rightarrow \infty$''?
+To answer, we look at the following theorem:
+\begin{equation*}
+    \text{Theorem:}~~~~~~\sum_{n=1}^\infty b^2_n < \infty \land \sum_{n=1}^\infty c^2_n < \infty 
+\end{equation*}
+In paticular, we have $\lim_{n\rightarrow \infty}b_n = \lim_{n\rightarrow \infty}c_n = 0$.\newline
+\begin{proof}
+    Let $N\in \mathbb{N}$, and define $f_N(x) = \sum_{n=1}^N\left(b_n\cos(nx) + c_n\sin(nx)\right)$, then we consider
+    \begin{multline}
+        \int_0^{2\pi}f^2(x)dx = \int_0^{2\pi}f_N(x)dx \\+ 2\int_0^{2\pi}f_N(x)(f(x)-f_N(x))dx + \int_0^{2\pi}\left(f(x) - f_N(x)\right)^2dx
+    \end{multline}
+    using brute force, we will find that $\int_0^{2\pi}f_N(x)dx = \sum_{n=1}^N\left( b^2_n\pi + c_n^2\pi \right)$, and that $b_n = 0$.
+    % TODO: Add more on calculations later
+    We look at our equation (10) above, and see that $$\int_0^{2\pi}\left(f(x) - f_N(x)\right)^2dx \geq 0$$ since we are intergrating an non-negative function. So rearranging what we have yields us
+    \begin{equation*}
+        \sum_{n=1}^N\left( b^2_n\pi + c_n^2\pi \right) = \pi\sum_{n=1}^N\left( b^2_n + c_n^2 \right) \leq \frac{1}{\pi}\int_0^{2\pi}f^2(x)dx
+    \end{equation*}
+    but this inequality holds for any choice of $n$, and we can break the series into two as we please, so indeed we have found an upperbound and both of the two serieses are convergent. \qed
+\end{proof}
+
+\paragraph{Piece-wise smooth functions have exact Fourier Decompositions} Suppose that $f(x)$ is $2-\pi$ periodic piece-wise smooth, then $\forall x\in [0, 2\pi)$, we have $$\frac{f(x+) + f(x-)}{2} = a_0 + \sum_{n=1}^N\left(b_n\cos(nx) + c_n\sin(nx)\right)$$
+
+
 \end{document}
 
