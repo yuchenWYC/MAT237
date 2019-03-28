@@ -719,9 +719,19 @@ exist (and are finite)\\
 By making the change of variable $\theta = \frac{2\pi x}{P}$, we can convert any P-periodic function into a $2\pi$-periodic function. 
 \paragraph{Basic Idea} An arbitrary piecewise continuous $2\pi$-periodic function $f(\theta)$ can be expanded as an infinite linear combination of the functions $e^{in\theta}(n = 0,\pm 1, \pm 2,\hdots)$, of the form
 $$f(\theta) = \sum_{-\infty}^{\infty}c_ne^{in\theta}$$
-or
+(advantage: exponentials tend to be easier to manipulate than trig functions)\\
+Since $e^{\pm in\theta} = \cos n\theta \pm i \sin n \theta$, then $c_ne^{in\theta} + c_{-n}e^{-in\theta} = (c_n + c_{-n})\cos n \theta + i(c_n - c_{-n}) \sin n\theta = a_n\cos n \theta + b_n \sin n\theta$
 $$f(\theta) = \frac{1}{2}a_0 + \sum_1^\infty(a_n\cos n\theta+b_n \sin n\theta)$$
-f may be either real-valued or complex-valued
-
+(advantage: $\cos n\theta$ and $\sin n\theta$ are real-valued and are respectively even and odd)\\
+f may be either real-valued or complex-valued\\
+\paragraph{Question}
+Given a $2\pi$-periodic function $f$, can it be expanded in a series of the form as above? If so, how do we find the coefficients $c_n$ in this series?
+\paragraph{Fourier coefficients}
+It can be derived that (see textbook p358)
+$$a_n = \frac{1}{\pi}\int_\pi^\pi f(\theta)\cos n\theta \, d\theta$$
+$$b_n = \frac{1}{\pi}\int_\pi^\pi f(\theta)\sin n\theta \, d\theta$$
+$$c_n = \frac{1}{2\pi}\int_\pi^\pi f(\theta)e^{-in\theta} \, d\theta$$
+\paragraph{Fourier Series}
+$$\sum_{-\infty}^{\infty} c_n e^{in\theta} = \frac{1}{2}a_0 + \sum_1^\infty(a_n\cos n\theta + b_n \sin n\theta)$$
 \end{document}
 
