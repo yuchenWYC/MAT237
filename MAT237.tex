@@ -52,8 +52,54 @@
     \maketitle
     \tableofcontents
     \newpage
+\section{Limits, Continuity, and Related Topics}
+\subsection{Open, Closed, and other subsets of $\real^n$}
+\paragraph{Definition - Open Ball}
+Assume $\va \in \real^n$ and $r > 0$. \\ The \under{open ball with centre $\va$ and radius $r$} is the set denoted $B(r, \va)$, defined by
+$$ B(r, \va) = \{\vx \in \real^n: |\vx - \va| < r \}$$
+
+\paragraph{Definition - Sphere}
+The \under{sphere with centre $\va$ and radius $r$} is the set of points whose distance from $\va$ exactly equals $r$:
+$$ \{ \vx \in \real^n : |\vx - \va| = r \}$$
+
+\paragraph{Set Terminologies}
+\begin{enumerate}
+	\item A set $S \subset \real^n$ is \under{bounded} if there exists some $r > 0$ such that $S \subset B(r, \vo)$
+	\item A set is \under{unbounded} if and only if it is not bounded.
+	\item If $ S \subset \real^n$, then the \under{complement} of S, denoted $S^c$, is the set
+	defined by $$ S^c = \{x \in \real^n: \vx \notin S\}$$
+\end{enumerate}
+\paragraph{Interior, Boundary, and Closure}
+\begin{enumerate}
+    \item We say that $\vx$ belongs to the \under{interior} of S, and we write $\vx \in S^{int}$, if \\\\ $\exists \varepsilon > 0$ such that $B(\varepsilon, \vx) \subset S$
+    \item We say that $\vx$ belongs to the \under{boundary} of S, and we write $\vx \in \partial S$, if \\\\ $\forall \varepsilon > 0, B(\varepsilon, \vx) \cap S \neq \emptyset$ and
+    $B(\varepsilon, \vx) \cap S^c \neq \emptyset$
+    \item We say that $\vx$ belongs to the \under{closure} of S, and we write $\vx \in \bar{S}$, if \\\\ $\forall \varepsilon > 0, B(\varepsilon, \vx) \cap S \neq \emptyset$ \\\\
+    Equivalently, $\bar{S} = S^{int} \cup \partial S$
+\end{enumerate}
+\paragraph{Theorem 1} For any $S \subset \real^n$, $$S^{int} \subset S \subset \bar{S}$$
+\paragraph{Theorem 2} For any $S \subset \real^n$, $$\partial S = \partial (S^c)$$
+\paragraph{Definition - Open and Closed Sets}
+\begin{enumerate}
+    \item A set $S$ is \under{open} if $S = S^{int}$
+    \item A set $S$ IS \under{closed} if $S = \bar{S}$
+\end{enumerate}
+\paragraph{Remark}
+It is possible for a set $S \subset \real^n$ to be ``both open and closed", or ``neither open nor closed".
+\paragraph{Theorem 3}
+S is open $\iff$ every point of S is an interior point\\
+$\iff \forall \vx \in S, \exists \varepsilon > 0$ such that $B(\varepsilon, \vx) \subset S$
+\paragraph{Theorem 4}
+S is closed $\iff$ every boundary point of S belongs to S \\
+$\iff S^c$ is open
+
+\subsection{Limits and Continuity}
+Assume that $S \subset \real^n$, and that $\vf: S \rightarrow \real^k$ is a function. The statement
+$$\underset{\vx \rightarrow \va}{\lim} \vf(\vx) = L$$
+is defined to mean
+$$\forall \varepsilon>0, \exists \delta > 0 \mbox{ such that } \vx \in S \wedge 0<|\vx - \va| < \delta \implies |\vf(\vx) - L| < \varepsilon$$
 \section{Taylor's Theorem}
-\subsection{Review of Taylor's Theorem in 1 Dimenson}
+\subsection{Review of Taylor's Theorem in 1 Dimension}
 \paragraph{Definition of Taylor polynomials} Assume $I \subset \real$ is an open interval and that $f: I \rightarrow \real$ is a function of class $C^k$ on $I$.
 
 For a point $a\in I$, the $kth$ order Taylor polynomial of $f$ at $a$ is the unique polynomial of order at most $k$, denoted$P_{a,k}(h)$ such that
