@@ -14,7 +14,7 @@
 
 % Property settings.
 \MakePerPage{footnote}
-\pagestyle{fancy}
+\pagestyle{headings}
 
 % Commands
 \newcommand{\ti}[1]{\textit{#1}}
@@ -29,8 +29,14 @@
 \newcommand{\func}[3]{\tb{#1}: {#2} \rightarrow {#3} }
 \newcommand{\vx}[0]{\tb{x}}
 \newcommand{\vy}[0]{\tb{y}}
+\newcommand{\vz}[0]{\tb{z}}
 \newcommand{\vo}[0]{\tb{0}}
 \newcommand{\va}[0]{\tb{a}}
+\newcommand{\vb}[0]{\tb{b}}
+\newcommand{\vc}[0]{\tb{c}}
+\newcommand{\ve}[0]{\tb{e}}
+\newcommand{\vm}[0]{\tb{m}}
+\newcommand{\vh}[0]{\tb{h}}
 \newcommand{\vf}[0]{\tb{F}}
 \newcommand{\vi}[0]{\tb{i}}
 \newcommand{\vj}[0]{\tb{j}}
@@ -38,9 +44,13 @@
 \newcommand{\vg}[0]{\tb{G}}
 \newcommand{\vn}[0]{\tb{n}}
 \newcommand{\vu}[0]{\tb{u}}
+\newcommand{\vL}[0]{\tb{L}}
+\newcommand{\ff}[0]{\tb{f}}
+\newcommand{\fg}[0]{\tb{g}}
 \newcommand{\p}[0]{\partial}
 \newcommand{\qed}[0]{$\hfill\blacksquare$}
 \newcommand{\qerat}{\tag*{$\blacksquare$}}
+\newcommand{\lima}{\underset{\vx \rightarrow \va}{\lim}}
 
 
 % Attr.
@@ -86,6 +96,11 @@ $$ \{ \vx \in \real^n : |\vx - \va| = r \}$$
 \end{enumerate}
 \paragraph{Remark}
 It is possible for a set $S \subset \real^n$ to be ``both open and closed", or ``neither open nor closed".
+\paragraph{Examples}
+\begin{enumerate}
+	\item Both open and closed: $\real^n$
+	\item Neither open nor closed: A ball with partial boundary; $[0, 1)$
+\end{enumerate}
 \paragraph{Theorem 3}
 S is open $\iff$ every point of S is an interior point\\
 $\iff \forall \vx \in S, \exists \varepsilon > 0$ such that $B(\varepsilon, \vx) \subset S$
@@ -94,15 +109,270 @@ S is closed $\iff$ every boundary point of S belongs to S \\
 $\iff S^c$ is open
 
 \subsection{Limits and Continuity}
+\paragraph{Homework 1.1 Theorem}
+Consider limits such as
+$$ \underset{(x,y) \rightarrow (0,0)}{\lim}\frac{|x|^{r_1}|y|^{r_2}}{|x|^{s_1} + |y|^{s_2}} $$
+where $r_1, r_2, s_1, s_2$ are positive numbers.\\
+The limit \textcolor{red}{exists and equals 0} if and only if $$\frac{r_1}{s_1} + \frac{r_2}{s_2} > 1$$
+\paragraph{Basic Property of Limits}
+\begin{enumerate}
+	\item The sum of two limits that do not exist can still exist.
+	\item The sum of two limits, one exist, one does not exist, must not exist.
+	\item The product of two limits that do not exist can still exist.
+	\item The product of two limits, one exist, one does not exist, can still exist.
+\end{enumerate}
+
+
+\paragraph{Definition of Limit}
 Assume that $S \subset \real^n$, and that $\vf: S \rightarrow \real^k$ is a function. The statement
-$$\underset{\vx \rightarrow \va}{\lim} \vf(\vx) = L$$
+$$\underset{\vx \rightarrow \va}{\lim} \vf(\vx) = \vL$$
 is defined to mean
-$$\forall \varepsilon>0, \exists \delta > 0 \mbox{ such that } \vx \in S \wedge 0<|\vx - \va| < \delta \implies |\vf(\vx) - L| < \varepsilon$$
-\section{Taylor's Theorem}
-\subsection{Review of Taylor's Theorem in 1 Dimension}
+$$\forall \varepsilon>0, \exists \delta > 0 \mbox{ such that } \vx \in S \wedge 0<|\vx - \va| < \delta \implies |\vf(\vx) - \vL| < \varepsilon$$
+In order for the definition to make sense, we need to assume that $\va$ satisfies
+\begin{equation}
+	\forall \delta > 0, \exists \vx \in S, \,0 < |\vx - \va| < \delta
+\end{equation}
+For example, this always holds if $\va \in S^{int}$, or if $\va \in \overline{S^{int}}$ (the closure of $S^{int}$)
+\paragraph{Theorem 1: Limit Laws}
+Assume that $S \subset \real^n$ and that $\va$ is a point in $\real^n$ satisfying (1). Further assume that $f, g: S \rightarrow \real$ are functions and $L, M$ are numbers such that $\underset{\vx \rightarrow \va}{\lim} f(\vx) = L, \underset{\vx \rightarrow \va}{\lim} g(\vx) = M$ \\
+Then
+$$\lima[f(\vx) + g(\vx)] = L + M, \quad
+\lima [f(\vx)g(\vx)] = LM$$
+\paragraph{Theorem 2: Squeeze Theorem}
+Assume that $S \subset \real^n$ and that $\va$ is a point in $\real^n$ satisfying (1). Further assume that $f, g, h: S \rightarrow \real$ are functions and $p > 0$ and L are numbers such that \\
+$f(\vx) \leq g(\vx) \leq h(\vx)$ for all $\vx \in S$ such that $|\vx - \va| < p$\\
+and $$\lima f(\vx) = \lima h(\vx) = L$$
+Then $\lima g(\vx) = L$
+\paragraph{Remark}
+These theorems are only for real-valued functions, because with vector-valued functions it is not clear how to generalize the hypothesis $f \leq g\leq h$ and we have several choices for the definition of a product of functions.
+\paragraph{Corollary of the Squeeze Theorem}
+Assume that $S \subset \real^n$ and that $\va$ is a point in $\real^n$ satisfying (1). Further assume that $g, h: S \rightarrow \real$ are functions such that 
+$$|g(\vx)| \leq h(\vx) \mbox{ for all } \vx \in S, \lima h(\vx) = 0$$
+Then
+$$\lima g(\vx) = 0$$
+\proof The conclusion follows directly from the Squeeze Theorem with $-h(\vx)$ playing the role of $f(\vx)$. \qed
+
+\paragraph{Theorem 3} Assume that $S \subset \real^n$ and that $\va$ is a point in $\real^n$ satisfying (1). If $\vf = (f_1, \hdots, f_k)$ is a vector-valued function $S \rightarrow \real^k$, then
+$$\lima \vf(\vx) = \vL \mbox{ if and only if } \lima f_j(\vx) = L_j \, \forall j = 1, \hdots, k$$
+
+\paragraph{\textcolor{blue}{Question Type}: Determine whether a limit exist}
+\begin{enumerate}
+	\item For a limit that does not exist, find two $y$ functions that yield different limits.
+	\item For a limit that does exist, an explanation must involve using the squeeze theorem.
+\end{enumerate}
+
+
+\paragraph{Definition of Continuity}
+If $S \subset \real^n$, then a function $\vf: S \rightarrow \real^k$ is continuous at $\va \in S$ if 
+$$ \lima f(\vx) = f(\va)$$ or
+$$\forall \varepsilon > 0, \exists \delta > 0 \mbox{ such that } \vx \in S \wedge |\vx - \va| < \delta \implies |\vf(\vx) - \vf(\va)| < \varepsilon$$
+\textcolor{red}{If $\vf$ is continuous at every point in S, then we say simply that $\vf$ is continuous.}
+\paragraph{Theorem 4: Basic properties of Continuity} Assume that $S \subset \real^n$ and that $\va \in S$
+\begin{enumerate}
+	\item If $\vf: S \rightarrow \real^k$ is a vector-valued function with components $(f_1, \hdots, f_k)$, then $\vf$ is continuous at $\va$ if and only if every component function $f_j$ is continuous at $\va$.
+	\item If $\vf, \vg: S \rightarrow \real^k$ are continuous at $\va$, then the sum $\vf + \vg$ is continuous at $\va$.
+	\item If $f, g: S \rightarrow \real$ are continuous at $\va$, then the product $fg$ is continuous at $\va$. If in addition $g(\va) \neq 0$< then the quotient $f/g$ is continuous at $\va$.
+	\item A composition of continuous functions is continuous. That is, assume that $S \subset \real^n$ and $T \subset \real^k$, and that $\vf: S \rightarrow \real^k$ and $\vg: T \rightarrow \real^l$ are functions such that $\vg \circ \vf $ is well-defined. (Thus, the image of $\vf$ is a subset of T.). If $\vf$ is continuous at $\va$ and $\vg$ is continuous at $\vf(\va)$, then $\vg \circ \vf$ is continuous at $\va$.
+	\item The elementary functions of a single variable (trigonometric functions and their inverses, polynomials, exponentials and log) are continuous on their domains.
+\end{enumerate}
+\paragraph{Theorem 5} Assume that $\vf$ is a function $\real^n \rightarrow \real^k$. Then the following are equivalent:
+\begin{enumerate}
+	\item $\vf$ is continuous.
+	\item For every open set $U \subset \real^k$, the set $\{ \vx \in \real^n: \vf(\vx) \in U\}$ is open.
+	\item For every closed set $K \subset \real^k$, the set $\{ \vx \in \real^n: \vf(\vx) \in K \}$ is closed.
+\end{enumerate}
+\subsection{Sequences and Completeness}
+\paragraph{Theorem 1: Bounded Sequence Theorem} Every bounded sequence in $\real^n$ has a subsequence that converges to a limit.
+\paragraph{Basic of Sequences}
+\begin{enumerate}
+	\item A \under{sequence in $\real^n$} may be written as
+	$$\{\va_j\}_{j=1}^\infty, \quad \{\va_j\}_j, \quad \{\va_j\}, \quad \hdots$$
+	\item We say that a sequence $\{\va_j\}_j$ in $\real^n$ \under{converges to the limit $L \in \real^n$} if
+	$$ \forall \varepsilon > 0, \exists J > 0 \mbox{ such that } j\geq J \implies |\va_j - \vL| < \varepsilon$$
+\end{enumerate}
+\paragraph{Theorem 2} Let $\{\va_j\}_j$ be a sequence in $\real^n$, and let $\vL = (L_1, \hdots, L_n) \in \real^n$. Then
+$$\underset{j\rightarrow\infty}{\lim} \va_j = \vL \iff \underset{j\rightarrow\infty}{\lim}a_{jk} = L_k \forall k = 1,\hdots,n$$
+
+\paragraph{Theorem 3: Monotone Sequence Theorem} Every bounded nondecreasing sequence of real numbers converges to a limit.
+
+\paragraph{Definition of Subsequences} A \under{subsequence} of a sequence $\{\va_j\}_{j\geq j_0}$ in $\real^n$, is a new sequence, denoted $\{\va_{k_j}\}_j$, where $\{k_j\}$ is an increasing sequence of integers such that $k_j \geq j_0$ for every $j$. Thus, the $j$th term $\va_{k_j}$ of the subsequence is the $k_j$th term of the original sequence.
+\paragraph{Fact} If $\{\va_j\}_j$ is a sequence in $\real^n$ that converges to a limit $\vL \in \real^n$, then any subsequence of $\{\va_j\}_j$ converges to the same limit.
+
+\subsection{Compactness}
+\paragraph{Definition} A set $S \subset \real^n$ is said to be \under{compact} if \textcolor{red}{every} sequence in S has a subsequence that converges to a limit in S.
+\paragraph{Theorem 1: Bolzano-Weierstrass Theorem} $S \subset \real^n$ is compact $\iff S$ is closed and bounded.
+\paragraph{Proposition 1} if $\{\vx_j\}_j$ is a \under{convergent} sequence in a \textcolor{red}{closed} set $S \subset \real^n$, then the limit of the sequence must belong to S.
+
+\paragraph{Theorem 2: The Extreme Value Theorem} Assume that K is a compact subset of $\real^n$, and that $f: K \rightarrow R$ is continuous. Then
+\begin{equation*}
+	\mbox{the set }\{f(\vx): \vx \in K\} \mbox{ is compact}
+\end{equation*}
+and there exists $\vx^*$ and $\vx_*$ in $K$ such that
+$$f(\vx^*) = \sup\{f(\vx): \vx \in K\}, \quad f(\vx_*) = \inf\{f(\vx): \vx \in K\}$$
+When there exists $\vx^*$, we say that \under{f attains its supremum}, and when there exists $\vx_*$, we say that \under{f attains its infimum}.
+\paragraph{Notation} We often use the abbreviations
+$$\underset{S}{\inf} f := \inf\{f(\vx): \vx \in S\}, \quad \underset{S}{\sup} f:= \sup\{f(\vx): \vx \in S\}$$
+
+\paragraph{Application of the EVT}
+It can sometimes guarantee that an optimization problem \tb{must have a solution}.
+(It does not given any indication how to find the solution, when it exists.)
+
+\paragraph{Proposition 2} Assume that $\{\vz_j\}_j$ is a sequence in a set $S \subset \real^k$ for some $k \geq 1$ and that $\vz_j \rightarrow \vz \in S$ as $ j \rightarrow \infty$. Assume also that $f$ is a continuous function on S. Then $f(\vz_j) \rightarrow f(\vz)$ as $j \rightarrow \infty$.
+\paragraph{Proposition 3} If S is a compact subset of $\real$< then $\sup S \in S$ and $\inf S \in S$
+\paragraph{Definition of Uniformly Continuous Functions} A function $\vf: S \rightarrow \real^k$ (for some $S \subset \real^n$) is \under{uniformly continuous} if
+$$\forall \varepsilon > 0, \exists \delta > 0, \vx, \vy \in S \wedge |\vx - \vy| < \delta \implies |\vf(\vx) - \vf(\vy)| < \varepsilon$$
+\paragraph{Remark} Uniform continuity will be important for us when we begin to look at integration of functions of several variables. 
+\paragraph{The difference between continuity and uniform continuity} is that if a functions is continuous, then the choice of $\delta$ may depend on $\vx$, whereas if it is uniformly continuous, then given $\varepsilon >0$ we can find a $\delta > 0$ that "works" for all $\vx \in S$ simultaneously.
+\paragraph{Examples} Sine and cosine functions
+\paragraph{Theorem 3} If $K$ is a \textcolor{red}{compact subset of $\real^n$} and $f: K \rightarrow \real^k$ is \textcolor{red}{continuous}, then $f$ is uniformly continuous.
+\paragraph{Corollary}
+If $S_1$ and $S_2$ are path-connected, and $S_1 \cap S_2 \neq \emptyset$, then $S := S_1 \cup S_2$ is path-connected.
+\subsection{The Intermediate Value Theorem}
+\paragraph{Definition of Path-connectedness} A set $S \subset \real^n$ is \under{path-connected} if, for every pair of points $\vx$ and $\vy$ in $S$,
+$$\exists \mbox{ continuous } \gamma: [0,1] \rightarrow S, \gamma(0) = \vx, \gamma(1) = \vy$$
+\paragraph{Theorem 1: the Intermediate Value Theorem} Assume that $S$ is a path-connected subset of $\real^n$ and that $f: S \rightarrow \real$ is continuous. If $\va, \vb$ are points in $S$ and either
+$$f(\va) < t < f(\vb)$$ or
+$$f(\vb) < t < f(\va)$$
+then there exists a point $\vc \in S$ such that $f(\vc) = t$. 
+
+\section{Differentiation and related topics}
+\subsection{Differentiation of Real-valued Functions}
+\paragraph{Definition of Linearity}
+A function $l: \real^n \rightarrow \real^m$ is linear if it has the form
+$$l(\vx) = M\vx$$
+where $M$ is a $m \times n$ matrix.
+Alternatively, a function $l: \real^n \rightarrow \real^m$ is linear if
+$$l(a\vx + b\vy) = al(\vx) + bl(\vy)$$
+for all $a,b \in \real$ and $\vx, \vy \in \real^n$. \\
+If a function has the form $f(\vx) = M\vx + \vb$, we may say that it is \under{affine}. We may also sometimes call it a ``first-order polynomial" or a "polynomial of degree 1".
+\paragraph{Definition of Differentiability - Single Variable}
+Function $f: (a,b) \rightarrow \real$ is differentiable at $x$ if $x \in (a,b)$ and
+$$\underset{h\rightarrow 0}{\lim}\frac{f(x+h) - f(x)}{h}$$ exists. \\
+\textcolor{red}{Equivalently,}
+Function $f: (a,b) \rightarrow \real$ is differentiable at $x$ if $x \in (a,b)$ and there exists a number $m$ such that
+$$\underset{h\rightarrow 0}{\lim}\frac{f(x+h) - f(x) - mh}{h}$$
+and the number $m$ is the derivative of $f$ at $x$, denoted $f'(x)$.\\
+\paragraph{Interpretation}
+Temporarily fix $x$, and view $h$ as a variable, and view $f(x+h) - f(x)$ as a function of $h$. Then $f$ is differentiable at $x$ if the linear function $mh$ approximates $f(x+h) - f(x)$, with errors that are \textcolor{red}{smaller than linear} as $h \rightarrow 0$. When this holds, $f'(x) = m$.
+\textcolor{red}{Alternatively,}
+Function $f: (a,b) \rightarrow \real$ is differentiable at $x$ if $x \in (a,b)$ and there exists a number $m$ and a function $E(h)$ such that
+$$f(x+h) = f(x) + mh + E(h), \quad \mbox{and } \underset{h\rightarrow 0}{\lim}\frac{E(h)}{h} = 0$$
+and the number $m$ is the derivative of $f$ at $x$, denoted $f'(x)$.
+\paragraph{Definition of Differentiability - Multi Variable}
+Assume that $f$ is a function $S \rightarrow \real$, where S is an open subset of $\real^n$. We say that $f$ is \under{differentiable} at a point $\vx \in S$ if there exists a \textcolor{red}{vector} $\vm \in \real^n$ such that
+$$ \underset{\vh \rightarrow \vo}{\lim} \frac{f(\vx + \vh) - f(\vx) - \vm\cdot \vh}{|\vh|} = 0$$
+When this holds, we say that the vector $\vm$ (\textcolor{red}{which is uniquely determined by the above condition} is the \under{gradient of f at \vx}, which is denoted $\nabla f(\vx)$. Thus, the gradient $\nabla f$(when it exists) is characterized by the property that
+$$ \underset{\vh \rightarrow \vo}{\lim} \frac{f(\vx + \vh) - f(\vx) - \nabla f(\vx)\cdot \vh}{|\vh|} = 0$$
+\paragraph{Alternatively}, $f$ is differentiable at $\vx$ if there exists a vector $\vm$ such that
+$$f(\vx + \vh) = f(\vx) + \vm \cdot \vh + E(\vh)$$
+where $\underset{\vh \rightarrow \vo}{\lim} \frac{E(\vh)}{|\vh|} = 0$.
+When this holds, we define $\nabla f(\vx) = m$.
+\paragraph{Theorem 1} Assume that $f: S \rightarrow \real$, where S is an open subset of $\real^n$, and that $\vx \in S$. If $f$ is differentiable at $\vx$, then $f$ is continuous at $\vx$.
+\paragraph{Definition of Partial Derivatives}
+If $f$ is a function defined on an open subset $S \subset \real^n$, then at a point $\vx \in S$, we define $$\frac{\p f}{\p x_j}(\vx) := \underset{h \rightarrow 0}{\lim} \frac{f(\vx+h\ve_j) - f(\vx)}{h}$$
+This is called the \ti{jth partial derivative of f, the partial derivative of f in the $x_j$ direction}, or the \ti{partial derivative of f with respect to $x_j$}.
+\paragraph{Theorem 2} Let $f$ be a function $S \rightarrow \real$, where $S$ is an open subset of $\real^n$. If $f$ is differentiable at a point $\vx \in S$, then $\frac{\p f}{\p x_j}$ exists at $\vx$ for all $j = 1, \hdots, n$, and in addition, $$\nabla f(\vx) = (\frac{\p f}{\p x_1}, \hdots, \frac{\p f}{\p x_n})$$
+\textcolor{blue}{That is, the partial derivatives are the components of the gradient vector.}\\
+\textcolor{red}{The converse is not true:} It can happen that all partial derivatives $\frac{\p f}{\p x_j}$ exist at $\vx$ but that $f$ is not differentiable at $\vx$.
+
+\paragraph{\textcolor{blue}{Question Type} - Determine whether a function $f$ is differentiable at a point $\vx$}
+\begin{enumerate}
+	\item If any partial derivatives $\p f/\p x_j$ fail to exist at $\vx$, then $f$ is not differentiable there, and
+	\item If all partial derivatives exist, then the vector $\vm = (\p f/\p x_1, \hdots, \p f/ \p x_n)$ is the \textcolor{red}{only} possible vector that can ``work" in the definition of differentiability.
+\end{enumerate}
+\paragraph{Theorem 3} Assume $f$ is a function $S \rightarrow \real$ for some open $S \subset \real^n$. If all partial derivatives of $f$ \textcolor{red}{exist and are continuous} at every point of $S	$, then $f$ is differentiable at every point of $S$.
+\paragraph{Definition of Class $C^1$} A function $f : S \rightarrow \real$ is said to be "of class $C^1$, or simply "$C^1$" for short, if all partial derivatives of $f$ exist and are continuous at every point of S.
+
+\paragraph{Definition of Directional Derivatives}
+A direction if $\real^n$ is naturally represented by a unit vector.\\
+Given a unit vector $\vu$ and a point $\vx \in \real^n$, the point $\vx + h\vu$ is the point reached by starting at $\vx$ and traveling a distance $h$ in the direction $\vu$. So $f(\vx + h\vu) - f(\vx)$ represents the change in $f$ if we start at $\vx$ and move at a distance in the direction $\vu$.\\
+The \under{directional derivative} of $f$ at $\vx$ in the direction $\vu$ is defined to be 
+$$\p_\vu f(\vx) := \underset{h \rightarrow 0}{\lim} \frac{f(\vx+h \vu) - f(\vx)}{h}$$
+whenever the limit exists.
+\paragraph{Remark}
+\begin{enumerate}
+	\item $\p_\vu f(\vx)$ represents the instantaneous rate of change of $f$ if we move in the direction $\vu$ through the point $\vx$.
+	\item $\forall j \in {1, \hdots, n}$, $$\frac{\p f}{\p x_j} = \p_{\ve_j}f$$
+\end{enumerate}
+\paragraph{Theorem 4} If $f$ is differentiable at a point $\vx$, then $\p_\vu f(\vx)$ exists for every unit vector $\vu$< and moreover 
+$$\p_\vu f(\vx) = \vu \cdot \nabla f(\vx)$$
+\paragraph{\textcolor{red}{Fundamental Principle}} When it not equal to zero, $\nabla f(\vx)$ points in the direction in which $f$ is increasing most rapidly at $\vx$. 
+\subsection{Differentiation (continued)}
+\subsubsection{Differentiation of vector-valued functions}
+Suppose that $S$ is an open subset of $\real^n$, and consider a vector-valued function $\tb{f}: S \rightarrow \real^m$. \\
+Idea: $\tb{f}$ is differentiable at a point $\va \in S$ if $\ff$ can be approximated by a linear map $\real^n \rightarrow \real^m$ near $\va$, with errors that are ``smaller than linear".
+\paragraph{Definition} Assume that $S$ is an open subset of $\real^n$. Given a function $\ff: S \rightarrow \real^m$, we say that $\ff$ is differentiable at a point $\va \in S$ if there exists a $m \times n$ matrix $M$ such that 
+$$\vf(\va + \vh) = \vf(\va) + M\vh + \tb{E}(\vh), \quad \mbox{where } \underset{\vh \rightarrow \vo}{\lim} \frac{\tb{E}(\vh)}{|\vh|} = \vo \in \real^m$$
+or
+$$ \underset{\vh \rightarrow \vo}{\lim} \frac{f(\vx + \vh) - f(\vx) - \vm\cdot \vh}{|\vh|} = 0$$
+When this holds, we say that $M$ is the derivative of $\vf$ at $\va$, and we write $M = D\ff(\va)$.
+\paragraph{Definition of Jacobian Matrix}
+When $M$ satisfy the above definition of differentiability, we say that $M$ is a $Jacobian$ matrix.
+\subsubsection{The differential}
+\paragraph{Definition} Given a differentiable function $f: S \rightarrow \real$, where S is an open subset of $\real^n$, at a point $\va \in S$ we define $df|_{\va}$ to be the linear map $\real^n \rightarrow \real$ given by
+$$df|_{\va}(\vh) = \nabla f(\va)\cdot \vh$$
+\paragraph{Notation for differentials}
+$$df = \frac{\p f}{\p x_1} dx_1 + \hdots + \frac{\p f}{\p x_n} d_xn$$
+\paragraph{\textcolor{blue}{linear approximation}} The definition of the differential implies that if $f$ is differentiable at $\va$, then
+$$f(\va + \vh) \approx f(\va) + df|_{\va}(\vh)$$
+for $\vh$ small.
+\subsection{the Chain Rule}
+\paragraph{Theorem 1: the Chain Rule} Assume that S and T are open subsets of $\real^n$ and $\real^m$, and that we are given functions $\fg: S \rightarrow \real^m$ and $\ff: T \rightarrow \real^l$. Assume also that $\va \in S$ is a point such that $\fg(\va) \in T$; thus $\ff \circ \fg(\vx) = \ff(\fg(\vx))$ is well-defined for all $\vx$ close to $\va$. \\
+$$D(\ff \circ \fg)(\va) = D\ff(\fg(\va)) \, D\fg(\va)$$
+Equivalently, $$\frac{\p}{\p x_j}(f_k \circ \fg)(\va) = \sum_{i=1}^m \frac{\p f_k}{\p y_i}(\vg(\va)) \frac{\p g_i}{\p x_j}(\va)$$ for $k = 1, \hdots, l$ and $j = 1,\hdots, n$
+\paragraph{Different Notation}
+Write $\vu = (u_1,\hdots,u_l)$ to denote a typical point in $\real^l$. If we suppose that the $\vx, \vy$ and $\vu$ variables are related by
+$$\vy = \fg(\vx), \quad \vu = \ff(\vy) = \ff(\fg(\vx))$$
+Then the Chain Rule becomes
+$$\frac{\p u_k}{\p x_j} = \frac{\p u_k}{\p y_1}\frac{\p y_1}{\p x_j} + \hdots + \frac{\p u_k}{\p y_m}\frac{\p y_m}{\p x_j}$$
+for $k = 1,\hdots, l$ and $j = 1,\hdots,n$
+\paragraph{Examples}
+\begin{enumerate}
+	\item $f(\vx) = |\vx| \implies \nabla f(\vx) = \frac{\vx}{|\vx|}$ for $\vx \neq \vo$
+	\item \tb{homogeneous functions}\\
+	A function $f: \real^n \rightarrow \real$ is said to be \under{homogeneous of degree $\alpha$} if $$f(\lambda\vx) = \lambda^\alpha f(\vx)$$
+	for all $\vx \neq \vo$ and $\lambda > 0$.
+\end{enumerate}
+\subsubsection{Level Sets and the Gradient}
+Assume that $S$ is an open subset of $\real^n$ and that $f: S \rightarrow \real$ is differentiable at $\va$. Then \\
+\textcolor{red}{$\nabla f(\va)$ is orthogonal to the level set of $f$ that passes through $\va$.}
+\paragraph{Tangent plane to a level set}
+Suppose $S$ is an open subset of $\real^3$ and that $f: S \rightarrow \real$ is a function that is differentiable at a point $\va \in S$. Assume also that
+$$\nabla f(\va) \neq 0$$
+We define the \under{tangent plane to C at $\va$} $:= \{\vx \in \real^3: (\vx - \va)\cdot \nabla f(\va) = 0\}$.
+\subsection{The Mean Value Theorem}
+\paragraph{Theorem 1: the Mean Value Theorem} Assume that $f$ is a real-valued function of class $C^1$ defined on an open set $S \subset \real^n$. For two points $\va, \vb \in S$, let $L_{\va, \vb}$ denote the line segment that connects them. If $L_{\va, \vb} \subset S$, then there exists $\vc \in L_{\va, \vb}$ such that $$f(\vb) - f(\va) = (\vb - \va)\cdot \nabla f(\vc)$$
+\paragraph{\textcolor{red}{Applications}}
+\begin{enumerate}
+	\item If a function $f$ has the property that $f'(t) = 0$ for all $t$ in an interval $(a,b)$, then $f$ is constant on $(a,b)$.
+	\item If a function $f$ has the property that $|f'(t)| \leq M$ for all $t$ in an interval $(a,b)$, then the slope of $f$ between any two points is at most $M$. More precisely,
+	$$|f'(t)| \leq M \mbox{ for all }t \in (a,b) \implies |f(t) - f(s)| \leq M|t-s| \mbox { for all }s, t \in (a,b)$$
+\end{enumerate}
+\paragraph{Theorem 2} Assume that $S$ is an open, convex subset of $\real^n$ and that $f: \real^n \rightarrow \real$ is a function that is differentiable in $S$, and moreover that there exists $M \geq 0$ such that $|\nabla f(\vx)| \leq M$ for all $\vx \in S$. Then for every $\va, \vb \in S$,
+$$|f(\vb) - f(\va)| \leq M|\vb - \va|$$
+\paragraph{Theorem 3} Assume that $S$ is an open, convex subset of $\real^n$ and that $f: \real^n \rightarrow \real$ is a function that is differentiable in $S$. If $\nabla f(\vx) = \vo$ for every $\vx \in S$, then $f$ is constant on $S$.
+
+\paragraph{Theorem 4} Assume that $S$ is an open, \textcolor{red}{path-connected} subset of $\real^n$ and that $f: \real^n \rightarrow \real$ is a function that is differentiable on $S$. If $\nabla f(\vx) = \vo$ for every $\vx \in S$, then $f$ is constant on $S$.
+
+\subsection{Higher Order Derivatives}
+\paragraph{Theorem 1} Assume that $S$ is an open subset of $\real^n$. If $f: S \rightarrow \real$ is \textcolor{red}{$C^2$},
+$$\frac{\p^2 f}{\p x_i\p x_j} = \frac{\p^2 f}{\p x_j \p x_i}$$
+for all $i,j = 1, \hdots, n$ everywhere in $S$.
+\paragraph{Theorem 2} Assume that $S$ is an open subset of $\real^n$. If $f: S \rightarrow \real$ is \textcolor{red}{$C^k$}. For any integers $i_1, \hdots, i_k$ between 1 and $n$, if $j_1, \hdots, j_k$ is a reordering of $i_1, \hdots, i_k$, then
+$$\frac{\p}{\p x_{i_k}}\hdots\frac{\p}{\p x_{i_1}} = \frac{\p}{\p x_{j_k}}\hdots\frac{\p}{\p x_{j_1}}$$
+everywhere in $S$.
+\paragraph{The Hessian Matrix} If $f$ is a $C^2$ function of $n$ variables, then it is customary to arrange the second derivatives of $f$ into a $n \times n$ matrix, called the \under{Hessian matrix} (or sometimes just \under{the Hessian} and denote H:
+$$H = \begin{pmatrix}
+	\p_1\p_1 f &\hdots &\p_n\p_1 f\\
+	\vdots &\ddots &\vdots \\
+	\p_1\p_n f &\hdots &\p_n\p_n f
+\end{pmatrix}$$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Taylor's Theorem}
+\subsubsection{Review of Taylor's Theorem in 1 Dimension}
 \paragraph{Definition of Taylor polynomials} Assume $I \subset \real$ is an open interval and that $f: I \rightarrow \real$ is a function of class $C^k$ on $I$.
 
-For a point $a\in I$, the $kth$ order Taylor polynomial of $f$ at $a$ is the unique polynomial of order at most $k$, denoted$P_{a,k}(h)$ such that
+For a point $a\in I$, the \under{$k$th order Taylor polynomial of $f$ at $a$} is the unique polynomial of order at most $k$, denoted $P_{a,k}(h)$ such that
 \begin{align*}
     f(a) &= P_{a,k}(0)\\
     f'(a) &= P'_{a,k}(0)\\
@@ -110,27 +380,28 @@ For a point $a\in I$, the $kth$ order Taylor polynomial of $f$ at $a$ is the uni
     f^{(k)}(a) &= P_{a,k}^{(k)}(0)
 \end{align*}
 \begin{align*}
-    P_{a,k}(h) &= f(a) + hf'(a) + \frac{h^2}{2}f"(a) +...+\frac{h^k}{k!}f^{(k)}(a)\\
+    P_{a,k}(h) &= f(a) + hf'(a) + \frac{h^2}{2}f''(a) +...+\frac{h^k}{k!}f^{(k)}(a)\\
     &= \sum_{j=0}^{k}\frac{h^j}{j!}f^{(j)}(a)
 \end{align*}
 \paragraph{Remark}
-Taylor's Theorem guarantees that $P_{a,k}(h)$ is a very good approximation of $f(a+h)$, and that the quality of the approximation increases as $k$ increases.
-\paragraph{Taylor's Theorem in 1D}Assume $I \subset \real$ is an open interval and that $f: I \rightarrow \real$ is a function of class $C^k$ on $I$. For $a \in I$ and $h \in \real$ such that $a+h\in I$, let $P_{a,k}(h)$ denote the $k$th-order Taylor polynomial at $a$ and define the remainder
+Taylor's Theorem guarantees that $P_{a,k}(h)$ is a very good approximation of $f(a+h)$, and that \textcolor{red}{the quality of the approximation increases as $k$ increases.}
+\paragraph{Theorem 1: Taylor's Theorem in 1D}Assume $I \subset \real$ is an open interval and that $f: I \rightarrow \real$ is a function of class $C^k$ on $I$. For $a \in I$ and $h \in \real$ such that $a+h\in I$, let $P_{a,k}(h)$ denote the $k$th-order Taylor polynomial at $a$ and define the remainder
 $$R_{a,k}(h) := f(a+h) - P_{a,k}(h)$$
 Then $$\lim_{h\rightarrow0}\frac{R_{a,k}(h)}{h^k} = 0$$
 
-\subsection{Taylor's Theorem in higher dimensions}
-Assume $S \subset \real^n$ is an open set and that $f: S \rightarrow \real$ is a function of class $C^k$ on $S$. For a point $a\in S$, the $kth$ order Taylor polynomial of $f$ at $a$ is the unique polynomial of order at most $k$, denoted$P_{a,k}(\tb{h})$ such that
+\subsubsection{Taylor's Theorem in higher dimensions}
+Assume $S \subset \real^n$ is an open set and that $f: S \rightarrow \real$ is a function of class $C^k$ on $S$. For a point $a\in S$, the $kth$ order Taylor polynomial of $f$ at $a$ is the unique polynomial of order at most $k$, denoted $P_{a,k}(\tb{h})$ such that
 \begin{align*}
     f(\tb{a}) &= P_{\tb{a},k}(\tb{0}) \\
     \partial^\alpha f(\tb{a}) &= \partial^\alpha P_{\tb{a},k}(\tb{0})
 \end{align*}
 for all partial derivatives of order up to $k$.
 
-\paragraph{Taylor's Theorem in nD}Assume $S \subset \real^n$ is an open interval and that $f: S \rightarrow \real$ is a function of class $C^k$ on $I$. For $a \in S$ and $h \in \real^n$ such that $a+h\in S$, let $P_{a,k}(h)$ denote the $k$th-order Taylor polynomial at $a$ and define the remainder
-$$R_{a,k}(h) := f(a+h) - P_{a,k}(h)$$
-Then $$\lim_{h\rightarrow0}\frac{R_{a,k}(h)}{|h|^k} = 0$$
-
+\paragraph{Theorem 2: Taylor's Theorem in $n$ Dimensions}Assume $S \subset \real^n$ is an open interval and that $f: S \rightarrow \real$ is a function of class $C^k$ on $I$. For $a \in S$ and $h \in \real^n$ such that $a+h\in S$, let $P_{a,k}(h)$ denote the $k$th-order Taylor polynomial at $a$ and define the remainder
+$$R_{\va,k}(\vh) := f(\va+\vh) - P_{\va,k}(\vh)$$
+Then $$\lim_{\vh\rightarrow\vo}\frac{R_{\va,k}(\vh)}{|\vh|^k} = 0$$
+c
+\subsubsection{The Quadratic case}
 \paragraph{A Taylor polynomial formula for k = 2}
 \begin{equation*}
 P_{\tb{a},2}(\tb{h}) = f(\tb{a}) + \nabla f(\tb{a})\cdot \tb{h} + \frac{1}{2}(H(\tb{a})\tb{h})\cdot \tb{h}
@@ -138,7 +409,7 @@ P_{\tb{a},2}(\tb{h}) = f(\tb{a}) + \nabla f(\tb{a})\cdot \tb{h} + \frac{1}{2}(H(
 where we remember that $\tb{h} = \tb{x} - \tb{a}$ if we want the result in terms of $x,y$. 
 %As a result, $$\lim_{h\rightarrow0}\frac{R_{a,2}(h)}{h^2} = 0$$ for $R_{a,2}(h) = f(a+h) - P_{a,2}(h)$
 
-\section{Critical Points}
+\subsection{Critical Points}
 \paragraph{Definition} A symmetric $n \times n$ matrix A is
 \begin{enumerate}
     \item \tb{positive definite} if $\tb{x}^T A \tb{x} > 0$ for all $x \in \real^n \symbol{92} \{\tb{0}\}$
@@ -170,7 +441,7 @@ The smallest eigenvalue of A = $\min_{\{\tb{u}\in \real^n: |\tb{u}| = 1\}} \tb{u
     \subitem if $\alpha < 0$ then A is negative definite
     \item if $det A = 0$ then at least one eigenvalue equals zero.
 \end{enumerate}
-\paragraph{Definition} A critical point $\tb{a}$ of $C^2$ function $\tb{f}$ is \under{degenerate} if det$(D_\tb{H}(\tb{a})) = 0$
+\paragraph{Definition} A critical point $\tb{a}$ of $C^2$ function $\tb{f}$ is \under{degenerate} if det$(D\tb{H}(\tb{a})) = 0$
 \paragraph{Theorem 3 - first derivative test} If $\tb{f}: S \in \real^n \rightarrow \real$ is differentiable, then every local extremum is a critical point.
 \paragraph{Theorem 4 - second derivative test}
 \begin{enumerate}
@@ -188,7 +459,7 @@ The smallest eigenvalue of A = $\min_{\{\tb{u}\in \real^n: |\tb{u}| = 1\}} \tb{u
 \paragraph{E.Knight's approach to critical points.}In solving a question of $f:\real^2 \rightarrow{} \real$ we could use the following ``quick check" approach:
 \begin{enumerate}
     \item Calculate the gradient of $F$, equating it to zero to find the critical points
-    \item Calculate the Hessian of $F$, find the correspnding matrices for each critical points, where the Hessian is defined as
+    \item Calculate the Hessian of $F$, find the corresponding matrices for each critical points, where the Hessian is defined as
     \begin{equation*} H(f) = 
         \begin{bmatrix}
              \partial_{xx}f & \partial_{xy}f = \partial_{yx}f \\
@@ -206,9 +477,12 @@ The smallest eigenvalue of A = $\min_{\{\tb{u}\in \real^n: |\tb{u}| = 1\}} \tb{u
         \item det$H=0$, then the test is inconclusive. We have to do this case by starring at it.
     \end{enumerate}
 \end{enumerate}
-\section{Lagrange Multipliers}
-\subsection{Two constraints}
-Assume that $f, g_1$ and $g_2$ are functions $\real^n \rightarrow \real$ of class $C^1$. Assume also that $\{ \nabla g_1(\tb{x}), \nabla g_2(\tb{x})\}$ are linearly independent at all $\tb{x}$ where $g_1(\tb{x}) = g_2(\tb{x}) = 0$ \newline
+\subsection{Lagrange Multipliers}
+\subsubsection{One constraint}
+\paragraph{\textcolor{blue}{Proposition}}
+the Lagrange multiplier equations $\implies \nabla f(\vx)$ is orthogonal at $\vx$ to the set of points satisfying the constraint.
+\subsubsection{Two constraints}
+Assume that $f, g_1$ and $g_2$ are functions $\real^n \rightarrow \real$ of class $C^1$. Assume also that $\{ \nabla g_1(\tb{x}), \nabla g_2(\tb{x})\}$ are \textcolor{red}{linearly independent} at all $\tb{x}$ where $g_1(\tb{x}) = g_2(\tb{x}) = 0$ \newline
 Then if $x$ is any solution to the optimization problem, there exists $\lambda_1, \lambda_2 \in \real$ such that the following system of equations is satisfies by $\tb{x}, \lambda_1$ and $\lambda_2$:
 \begin{equation*}
 \begin{cases}
@@ -217,7 +491,7 @@ Then if $x$ is any solution to the optimization problem, there exists $\lambda_1
   g_2(\tb{x}) &= 0
 \end{cases}
 \end{equation*}
-\subsection{Inequality Constraints}
+\subsubsection{Inequality Constraints}
 Consider the problem
 \begin{equation*}
     \begin{cases}
@@ -225,11 +499,11 @@ Consider the problem
         \mbox{subject to the constraint: } g(\tb{x}) \leq 0
     \end{cases}
 \end{equation*}
-where we assume that $g$ is $C^2$, say, and that $\nabla g(\tb{x} \neq 0$ on the set $\{\tb{x}\in \real^n: g(\tb{x}) = 0\}$ \newline
+where we assume that $g$ is $C^2$, say, and that $\nabla g(\tb{x}) \neq 0$ on the set $\{\tb{x}\in \real^n: g(\tb{x}) = 0\}$ \newline
 We can reduce this to problems we already know how to solve. EVT guarantees that the problem has a solution.
-\paragraph{Case 1} The max or min occurs in the set $\{x\in \real^n: g(\tb{x}) < 0$ \newline
+\paragraph{Case 1} The max or min occurs in the set $\{x\in \real^n: g(\tb{x}) < 0\}$ \newline
 Then it is a critical point, which we know how to find and classify
-\paragraph{Case 2} The max or min occurs in the set $\{x\in \real^n: g(\tb{x}) = 0$ \newline
+\paragraph{Case 2} The max or min occurs in the set $\{x\in \real^n: g(\tb{x}) = 0\}$ \newline
 Then we can find it by the Lagrange Multiplier technique. \newline
 Finally we can choose the smallest/largest value of $f$ and the point where that value is attained from among all the candidates found in steps 1 and 2 above.
 \section{The Implicit Function Theorem}
@@ -554,7 +828,7 @@ Let \tb{F} be an $\real^n$-valued function defined on some subset of $\real^n$. 
 line integrals: integrals over curves\\
 Given a smooth curve C, hot to compute its length? \\
 Based on the idea of cutting up the curve into many tiny pieces, forming appropriate Riemann sums, and passing to the limit
-\paragraph{Differentials on Curve; Arc Length} Suppose C is a smooth curve in $\real^n$. We consider two nearby points $\vx$ and $\vx + d\vx$ on the curve; here
+\subsubsection{Differentials on Curve; Arc Length} Suppose C is a smooth curve in $\real^n$. We consider two nearby points $\vx$ and $\vx + d\vx$ on the curve; here
 $$d\vx = (dx_1,\hdots,dx_n)$$
 is the vector difference between the two points, and we imagine it as being infinitely small. We may, however, be more interested in the distance between the two points, traditionally denoted by $ds$, which is $$ds = |d\vx| = \sqrt{dx^2_1+\hdots+dx^2_n}(*)$$\\
 Arc length of C = result of ``adding up all the $ds$'s" = $\int_Cds$\\\\
@@ -566,6 +840,7 @@ $$\int_C d\vx = \int_a^b \tb{g}'(t)dt = \tb{g}(b)-\tb{g}(a)$$
 $ds$ is the \ti{arc length} of the bit of curve between $d\vx$ and $\vx + d\vx$. Adding these up gives the total arc length of the curve
 $$\mbox{Arc length} = \int_C ds = \int_a^b|\tb{g}'(t)|dt$$
 \paragraph{Notes} The arc length and the vector difference between the two endpoints of the curve should not depend on the particular parametrization we use. The issue here is that a parametrization $\vx = \tb{g}(t)$ determines an \tb{orientation} for the curve C, that is, a determination of which direction along the curve is ``forward" (the direction in which the point $\tb{g}(t)$ moves as $t$ increases) and which direction is "backward". 
+\subsubsection{Line Integrals of Scalar Functions} 
 \paragraph{Definition of Piecewise Smoothness of a Function} The function $\tb{g}: [a,b] \rightarrow \real^n$ is called \tb{piecewise smooth} if
 \begin{enumerate}
     \item It is continuous
@@ -574,17 +849,40 @@ $$\mbox{Arc length} = \int_C ds = \int_a^b|\tb{g}'(t)|dt$$
 \paragraph{Line Integrals of Scalar Functions} 
 If $f$ is a continuous function whose domain includes a smooth (or piecewise smooth) curve C in $\real^n$, we can integrate $f$ over the curve, taking the differential in the integral to be the element of arc length $ds$. Thus, if C is parametrized by $\vx = \tb{g}(t), a\leq t \leq b$, we define
 $$\int_C f ds = \int_a^b f(\tb{g}(t))|\tb{g}'(t)|dt$$ This is independent of the parametrization and the orientation.
+\paragraph{Definition of Average of $f$ over $C$}
+$$\mbox{Average of $f$ over $C$} = \frac{\int_C f\, ds}{\int_C \, ds}$$
+integral of $f$ over $C$ = (arclength of $C$) $\times$ (average of $f$ over $C$)
+\subsubsection{Rectifiable Curves}
+Let $C$ be a curve in $\real^n$ parametrized by injection $\tb{g}: [a,b] \rightarrow \real^n$ such that $g'(t) \neq 0$. Let $P = \{t_0, \hdots, t_J\}$ be any partition of $[a,b]$. The length of $C$ may be approximated by the sum of the lengths of the line segments connecting $\tb{g}(t_{j-1})$ to $\tb{g}(t_j)$ for $j = 1, \hdots, J$:
+$$L_P(C) := \sum_{j=1}^J |\tb{g}(t_j) - \tb{g}(t_{j-1})|$$
+We say that C is \under{rectifiable} if
+$$\{L_P(C): P \mbox{ is a partition of } [a,b]\} \mbox{ is bounded}$$
+and in this case, we define
+$$\mbox{arclength of }C := L(C) := \sup\{L_P(C): P \mbox{ is a partition of } [a,b]\}$$
+\paragraph{Theorem} If $\tb{g}: [a,b] \rightarrow \real^n$ is $C^1$, then
+$$L(C) = \int_a^b|\tb{g}'(t)|\,dt$$
+
+\subsubsection{The Line Integral of a Vector Field}
 \paragraph{Vector-Valued Line Integrals of Vector Fields} We can define the integral of an $\real^m$-valued function over a curve in $\real^n$, simply by integrating each component separately; that is, if $\tb{F} = (F_1,\hdots,F_m)$, then $\int_C\tb{F}ds = (\int_C F_1ds,\hdots,\int_C F_mds)$
 \paragraph{Scalar-Valued Line Integrals for Vector Fields} If C is a smooth (or piecewise smooth) curve in $\real^n$ and \tb{F} is a continuous vector field defined on some neighborhood of C in $\real^n$, the \tb{line integral} of \tb{F} over C is
 $$\int_C \tb{F} \cdot d\vx = \int_C (F_1dx_1+F_2dx_2+\hdots+F_ndx_n)$$
 That is, if C is described parametrically by $\vx = \tb{g}(t), a\leq t\leq b$, then
 $$\int_C \tb{F} \cdot d\vx = \int_a^b\tb{F}(\tb{g}(t))\cdot \tb{g}'(t)dt$$
+\paragraph{Proposition} The line integral $\int_C \vf \cdot d\vx$ is independent of the parametrization \ti{as long as the orientation is unchanged.}
+\subsubsection{Tangential Component}
+\paragraph{Definition of unit tangent vector}
+Since we have assumed that $\tb{g}'(t) \neq 0$, it makes sense to define $\tb{t}(\tb{g}(t)):= \frac{\tb{g}'(t)}{|\tb{g}'(t)|}$, which is the \under{unit tangent vector} to the curve $C$ at $\tb{g}(t)$, pointing to the direction given by the orientation.
+\paragraph{Definition of tangential component}
+$$F_{tang}(\vx):=\vf(\vx)\cdot \tb{t}(\vx)$$
 
-\paragraph{Fundamental Theorem of Line Integrals}
+\paragraph{Interpretation of line integral of a vector field using $\vf_{tang}$}
+$$\int_C \vf \cdot d\vx = \int_a^b\vf(\tb{g}(t))\cdot(\frac{\tb{g}'(t)}{|\tb{g}'(t)|})|\tb{g}'(t)|\,dt = \int_C F_{tang}\,ds$$
+We can interpret $\int_C \vf \cdot d\vx$ as the scalar integral of the tangential component of $\vf$ over the curve $C$.
+
+\subsubsection{Fundamental Theorem of Line Integrals}
 If $C$ is a curve that starts at $\tb{p} \in \real^n$ and ends at $\tb{q}\in \real^n$, then
 $$\int_C \nabla\tb{f}\cdot d\vx = \tb{f}(\tb{g}(b)) - \tb{f}(\tb{g}(a))$$
 where $\tb{g}(a) = \tb{p}$ and $\tb{g}(b) = \tb{q}$ and the line integral around any closed path is 0.
-
 \subsection{Green's Theorem} 
 ``The integral of something over the boundary of a region equals the integral of something else over the region itself."\\\\
 Let $R\subset \real^2$ be a region such that $R = \overline{R^{int}}$. Assume that $R$ is bounded. We say that $\partial R$ is piecewise smooth if:
@@ -623,7 +921,8 @@ $$\iint_S (\frac{\partial F_1}{\partial x} + \frac{\partial F_2}{\partial y})\, 
 where $\tb{n}(t) = (t_2, -t_1) \perp \partial S$.
 
 
-\section{Surface Integrals}
+\subsection{Surface Integrals}
+\subsubsection{Surface Area and Surface Integrals}
 On a curve the orientation is a matter of deciding which direction along a curve is ``positive"; on a surface it is a matter of deciding which side of the surface is the ``positive" side. \\
 Not every surface can be oriented. Counterexample: Mobius band \\
 However, if a surface forms part of the boundary of a regular region in $\real^3$, it is always orientable, and the positive normal vector is defined to be the one pointing out of the region.
@@ -643,13 +942,28 @@ $dA$ is independent of the parametrization, and clearly so is $\tb{n}$ up to a f
 Suppose S is a surface with a specified orientation, and $\tb{F}$ is a continuous vector field defined on a neighborhood of S. The $\tb{surface integral}$ of \tb{F} over S is defined to be $$\iint_S \tb{F}\cdot \tb{n}\, dA$$
 Thus, if S is parametrized by $\vx = \tb{G}(u,v), (u,v)\in W$, we have
 $$\iint_S \tb{F}\cdot \tb{n}\, dA = \iint_W \tb{F}(\tb{G}(u,v))\cdot (\frac{\partial \tb{G}}{\partial u} \times \frac{\partial \tb{G}}{\partial v}) \, du \, dv$$
-\section{Vector Derivatives}
+\subsubsection{Normal Component}
+\paragraph{Definition of Unit Normal Vector}
+Since $\frac{\p \vg}{\p u} \times \frac{\p \vg}{\p v}$ is orthogonal to $S$,
+$$\frac{\frac{\p \vg}{\p u} \times \frac{\p \vg}{\p v}}{|\frac{\p \vg}{\p u} \times \frac{\p \vg}{\p v}|} \mbox{ and } -\frac{\frac{\p \vg}{\p u} \times \frac{\p \vg}{\p v}}{|\frac{\p \vg}{\p u} \times \frac{\p \vg}{\p v}|}$$
+are \under{unit normal vectors} to $S$. \\
+Therefore, we write $\vn(\vg(\vu)) := \frac{\frac{\p \vg}{\p u} \times \frac{\p \vg}{\p v}}{|\frac{\p \vg}{\p u} \times \frac{\p \vg}{\p v}|}$.
+With this notation,
+\begin{align*}
+	\iint_S \vf \cdot \vn \, dA &= \iint_R \vf(\vg(\vu))\cdot (\frac{\p \vg}{\p u} \times \frac{\p \vg}{\p v}) \,du\,dv \\
+	&= \iint_R \vf(\vg(\vu))\cdot \vn(\vg(\vu))|\frac{\p \vg}{\p u} \times \frac{\p \vg}{\p v}| \,du\,dv\\
+	&= \mbox{surface integral of the scalar function ($\vf \cdot \vn$) over $S$}
+\end{align*}
+
+
+
+\subsection{Vector Derivatives}
 $$\nabla = (\partial_1,\hdots,\partial_n)$$
 $$grad\,f = \nabla f = (\partial_1 f, \hdots, \partial_n f)$$
 $$div \, \tb{F} = \nabla \cdot \tb{F} = \partial_1 F_1 + \hdots+\partial_n F_n$$
 Suppose $n = 3$. If \tb{F} is a $C^1$ vector field on an open subset of $\real^3$, the \tb{curl} of \tb{F} is the vector field defined by
 $$curl\, \tb{F} = \nabla \times \vf = (\partial_2F_3 - \partial_3F_2)\vi +(\partial_3F_1 - \partial_1F_3)\vj + (\partial_1F_2 - \partial_2F_1)\vk$$
-\paragraph{Formulas}
+\paragraph{Product Rules}
 \begin{align}
 	&grad(fg)=f\,grad g + g\,grad\,f\\
 	&grad(\vf \cdot \tb{G}) = (\vf \cdot \nabla)\vg \times (curl \, \vg) + (curl \vg) + (\vg \cdot \nabla)\vf + \vg \times (curl\, \vf)\\
@@ -667,7 +981,7 @@ $$curl\, \tb{F} = \nabla \times \vf = (\partial_2F_3 - \partial_3F_2)\vi +(\part
 $$\nabla^2f=\Delta f = div(grad\,f) = \p_1^2f + \hdots + \p_n^2f$$
 Other two combinations together yield the Laplacian for vector fields in $\real^3$:
 $$grad(div\,\vf)-curl(curl\,\vf) = \nabla^2\vf = (\nabla^2F_1)\vi + (\nabla^2F_2)\vj + (\nabla^2F_3)\vk$$
-\section{The Divergence Theorem}
+\subsection{The Divergence Theorem}
 The 3-dimensional analogue of Green's theorem; Relates surface integrals over the boundary of a regular region in $\real^3$ to volume integrals over the region itself; valid for regions with piece-wise smooth boundaries.
 \paragraph{The Divergence Theorem} Suppose R is a regular region in $\real^3$ with piecewise smooth boundary $\p R$, oriented so that the positive normal points out of R. Suppose also that $\vf$ is a vector field of class $C^1$ on R. Then
 	$$\iint_{\p R}\vf\cdot\tb{n}\,dA = \iiint_R div\, \vf\,dV$$
@@ -680,7 +994,7 @@ Next, show $\iint_{\partial R}F_3\tb{k}\cdot\tb{n}\,dA = \iint_R \partial_3 F_3 
 The proof for $F_1i$ and $F_2 j$ is the same.\\
 It now follows that the divergence theorem is valid for regions that can be cut up into finitely many simple regions $R_1, \hdots, R_k$
 
-\subsection{Geometric Interpretation of div}
+\subsubsection{Geometric Interpretation of div}
 Suppose \vf is a $C^1$ vector field on some open set containing the point $\va$.\\
 For $r > 0$, let $B_r$ be the ball of radius $r$ about $\va$. If $r$ is very small, the average value of $div \vf(\vx)$ on the ball $B_r$ is very nearly equal to $div\vf(\va)$. Therefore, by the divergence theorem,
 $$div \vf(\va) \approx \frac{3}{4\pi r^3}\iiint_{B_r} div\vf \, dV = \frac{3}{4\pi r^3} \iint_{\partial B_r}\vf \cdot \vn \, dA$$
@@ -696,8 +1010,8 @@ $$\iint_{\p R}f\nabla g\cdot \tb{n}\,dA = \iint_R(\nabla f \cdot \nabla g + f\na
 $$\iint_{\p R} (f\nabla g - g\nabla f)\cdot\tb{n}\,dA = \iint_R(f\nabla^2g -g\nabla^2f)\,dV$$
 The directional derivative $\nabla f\cdot\tb{n}$ that occurs in these formulas is called the \tb{outward normal derivative} of $f$ on $\p R$ and is often denoted by $\frac{\p f}{\p n}$.
 
-\section{Stokes's Theorem}
-"the generalization of Green's theorem in which the plane is replaced by a curved surface"
+\subsection{Stokes's Theorem}
+``the generalization of Green's theorem in which the plane is replaced by a curved surface"
 \paragraph{Statement of Stokes's Theorem} Suppose $S_0$ is a smooth surface in $\real^3$, and S is a region in $S_0$ bounded by a piecewise curve $\partial S$. Assume S has an orientation given by $\tb{n}$ and $\partial S$ is positively oriented with respect to this orientation.\\
 Let $\tb{F}$ be a $C^1$ vector field defined on some neighborhood of S in $\real^3$. Then
 $$\int_{\partial S} \tb{F}\cdot d\vx = \iint_S (curl \, \vf)\cdot \tb{n} \,dA$$
@@ -709,16 +1023,28 @@ for any $C^1$ vector field \tb{F}, provided that the orientations on C and S are
 \paragraph{Example}
 Use Stokes's Theorem twice to let the complicated integral vanish
 
-\paragraph{Corollary} If S is a closed surface (i.e., a surface with no boundary) in $\real^3$ with unit outward normal $\tb{n}$, and $\vf$ is a $C^1$ vector field on S, then $\iint_S(curl \tb{F}) \cdot \tb{n} \, dA = 0$ \\
+\paragraph{Definition of a closed surface} A piecewise smooth surface $S$ in $\real^3$ is \under{closed} if there exist subsets $S_1, S_2$ such that $\p S_1 = \p S_2 = S_1 \cap S_2$, and $\p S_1, \p S_2$ have opposite orientations.
+
+\paragraph{Remark} One can check that if $R \subset \real^3$ is a regular region with piecewise smooth boundary, then $S:= \p R$ is a closed surface.
+
+\paragraph{Corollary} If S is a closed surface (i.e., a surface with no boundary) in $\real^3$ with unit outward normal $\tb{n}$, and $\vf$ is a $C^1$ vector field on S, then $$\iint_S(curl \,\tb{F}) \cdot \tb{n} \, dA = 0$$
 \proof \\ 
-If \vf is differentiable on the region R inside S, this follows from the divergence theorem since $div(curl \vf) = 0$ for any $\vf$
+If $\vf$ is differentiable on the region R inside S, this follows from the divergence theorem since $div(curl \,\vf) = 0$ for any $\vf$
 More generally, draw a simple closed curve C in S that divides S into two regular regions $S_1$ and $S_2$, and we have
-$$\iint_S (curl \vf)\cdot \vn \,dA = \iint_{S_1}(curl\vf)\cdot\vn\,dA+\iint_{S_2}(curl\vf)\cdot \vn \, dA $$
+$$\iint_S (curl \,\vf)\cdot \vn \,dA = \iint_{S_1}(curl\,\vf)\cdot\vn\,dA+\iint_{S_2}(curl\,\vf)\cdot \vn \, dA $$
 On the other hand, if we give C the orientation compatible with $S_1$, Stokes's theorem gives
-$$\iint_S (curl \vf)\cdot \vn \,dA = \int_C \vf \cdot d\vx = - \iint_{S_2}(curl \vf)\cdot \vn \,dA$$
+$$\iint_S (curl \,\vf)\cdot \vn \,dA = \int_C \vf \cdot d\vx = - \iint_{S_2}(curl \, \vf)\cdot \vn \,dA$$
 Hence the terms on the right cancel.
 
-\subsection{Geometric Interpretation of Curl}
+\subsubsection{Moving the Surface}
+It follows immediately from Stokes' Theorem that if $S$ and $S'$ are two (oriented) surfaces such that $\p S = \p S'$ (with the same orientation), then
+$$\iint_S curl\, \vf \cdot \vn \, dA = \int_{\p S}\vf \cdot d\vx = \int_{\p S'}\vf\cdot d\vx = \iint_{S'} curl\, \vf \cdot \vn \, dA$$
+This means that to evaluate an integral $$\int_S curl\,\vf\cdot \vn \, dA$$ we can \ti{move the surface} to a (suitable and simpler) new surface $S'$.
+
+
+
+
+\subsubsection{Geometric Interpretation of Curl}
 Suppose \vf is a $C^1$ vector field on some open set containing the point $\va$.\\
 Fix a unit vector $\vu$. \\
 Let $D_\epsilon$ be the disc of radius $\epsilon$ centered at $\va$ in the plane perpendicular to $\vu$, oriented so that $\vu$ is the positive normal for $D_\epsilon$.\\
@@ -727,10 +1053,14 @@ $$(curl \vf ( \va ) ) \cdot \vu = \underset{\epsilon \rightarrow 0}{\lim} \,\fra
 Since $\vu$ is the normal to $D_\epsilon$, Stokes's theorem gives
 $$(curl \vf(\va))\cdot \vu = \underset{\epsilon \rightarrow 0}{\lim} \,\frac{1}{\pi \epsilon^2} \int_{C_\epsilon}\vf\cdot d\vx$$ where $C_\epsilon$ is the circle of radius $\epsilon$ about $\va$ in the plane perpendicular to $\vu$, traversed counterclockwise as viewed from the side on which $\vu$ lies. \\
 Think of $\vf$ as a force field, $\int_{C_\epsilon}\vf\cdot d\vx$ is the \textcolor{blue}{work done by $\vf$ on a particle that moves around $C_\epsilon$.} Thus $(curl \vf(\va))\cdot \vu$ represents the \textcolor{blue}{tendency of the force $\vf$ to push the particle around $C_\epsilon$}.
-\section{Integrating Vector Derivatives}
-Consider the equation $\nabla f = \tb{G}$
-\paragraph{Proposition} Suppose \tb{G} is a continuous vector field on an open set R in $\real^n$. The following two conditions are equivalent:
+\subsection{Vector Fields That Are Gradients or Curls}
+``Inverse" question of computing $grad \,f$ or $curl \,\vf$:\\
+$\bullet$ does there exist some function $f$ such that $\vg = grad \, f$? If so, can we find $f$? \\
+$\bullet$ does there exist some vector field $\vf$ such that $\vg = curl \, \vf$? If so, can we find $\vf$?
+\subsubsection{Vector Field that are Gradients}
+\paragraph{Proposition} Suppose \tb{G} is a continuous vector field on an open set R in $\real^n$. The following 3 conditions are equivalent:
 \begin{enumerate}
+	\item There exists a function $f: U \rightarrow \real$ of class $C^1$ such that $\vg = \nabla f$
 	\item If $C_1$ and $C_2$ are any two oriented curves in R with the same initial point and the same final point, then $\int_{C_1} \vg \cdot d\vx = \int_{C_2}\vg\cdot d\vx$
 	\item If C is any closed curve in R, $\int_C \vg \cdot d\vx = 0$
 \end{enumerate}
@@ -738,7 +1068,7 @@ Consider the equation $\nabla f = \tb{G}$
 \paragraph{Conservative Vector Field} A vector field $\vg$ is called \under{conservative} in the region R if it satisfies the above conditions.
 \paragraph{Geometric Interpretation} $\vg$ a force field, the force does no net work on a particle that returns to its starting point.
 
-\paragraph{Proposition} A continuous vector field $\vg$ in an open set $R \subset \real^n$ is conservative $\iff$ there is a $C^1$ function $f$ on R such that $\vg = \nabla f$
+\paragraph{Proposition} A continuous vector field $\vg$ in an open set $R \subset \real^n$ is conservative $\iff$ there is a $C^1$ function $f$ on R such that $\vg = \nabla f$.\\
 \proof \\
 $\leftarrow:$ If $\vg = \nabla f$ and C is a closed curve parametrized by $\vx = \tb{g}(t), a\leq t\leq b$, by the chain rule we have 
 $$\int_C \nabla f \cdot d\vx = \int_a^b \nabla f(\tb{g}(t))\cdot \tb{g}'(t)\,dt = \int_a^b \frac{d}{dt}f(\tb{g}(t))dt = f(\tb{g}(b)) - f(\tb{g}(a)) = 0$$
@@ -749,15 +1079,33 @@ Make a curve from $\va$ to $\vx + \tb{h}$ by joining L onto the end of C, so tha
 $$\frac{f(\vx+\tb{h}) - f(\vx)}{h} = \frac{1}{h}\int_L \vg \cdot d\vx = \frac{1}{h} \int_0^h G_1(x_1+t,x_2,\hdots,x_n)\,dt$$
 By letting $h \rightarrow 0$ we obtain $\partial_1 f(\vx) = G_1(\vx)$
 \qed
-\paragraph{Theorem} Suppose R is a convex open set in $\real^n$ and $\vg$ is a $C^1$ vector field on R. $curl(\vg) = \vo \implies \vg = \nabla f \implies \vg$ is conservative.
-\proof \\
+\paragraph{Theorem 1}
+\begin{enumerate}
+	\item If $\vg$ is a conservative vector field of class $C^1$ on an open set $U \subset \real^3$, then $curl \, \vg = \vo$.
+	\item If $U$ is convex, then the converse is true: if $\vg: U \rightarrow \real^3$ is a $C^1$ vector field and $curl \, \vg = \vo$, then $\vg$ is conservative. 
+	\item However, on some non-convex sets, there exist \tb{non-conservative} vector fields $\vg$ that satisfy $curl \, \vg = \vo$. 
+\end{enumerate}
+
+\noindent \proof \\
 Similar as previous proof.\\
 By Stokes's Theorem, $$\int_{\partial S}\vg \cdot d\vx = \iint_S(curl\, \vg)\vn \,dA = 0$$ (since $curl \,\vg = 0$)
 $$f(\vx + \tb{h}) - f(\vx) = \int_{L(\va, \vx)}\vg\cdot d\vx - \int_{L(\va, \vx + \tb{h})} \vg \cdot d\vx = \int_{L(\vx,\vx+\tb{h})}\vg\cdot d\vx$$
 Now the same argument applies.
-\paragraph{Theorem} Suppose R is a convex open set in $\real^3$ and $\vg$ is a $C^1$ vector field on R. If $\vg$ satisfies $div \vg = 0$ on R, then $\vg$ is the curl of a $C^2$ vector field on R.
-\paragraph{Definition} If $div \vg = 0$, a vector field $\vf$ such that $curl \vf = \vg$ is called a \under{vector potential} for $\vg$.
-\paragraph{Theorem} Let R be a bounded convex open set in $\real^3$. For any $C^1$ function $g$ on $\bar{R}$ and any $C^2$ vector field $\vg$ on $\bar{R}$ such that $div \vg = 0$, there is a $C^2$ vector field $\vf$ on $\bar{R}$ such that $curl \vf = \vg$ and $div \vf = g$ on $R$
+
+
+\subsubsection{Vector Field that are Curls}
+\paragraph{Theorem 2}
+\begin{enumerate}
+	\item If $\vg: U \rightarrow \real^3$ is a vector field of class $C^1$ and $\vg = curl\,\vf$ for some vector field $\vf: U \rightarrow \real^3$ of class $C^2$, then $div\,\vg = 0$
+	\item Suppose $\vg$ is a $C^1$ vector field in an open set $U \subset \real^3$ such that $div \, \vg = 0$. \\
+	\tb{a.} If $U$ is convex, then there exists a vector field $\vf$ such that $curl \, \vf = \vg$. \\
+	\tb{b.} However, if $U$ is not convex, it may be the case that no such vector field exists.
+\end{enumerate}
+\paragraph{Definition} If $div \,\vg = 0$, a vector field $\vf$ such that $curl \,\vf = \vg$ is called a \under{vector potential} for $\vg$.
+
+
+
+
 \section{Fourier Series}
 \paragraph{Definition} Infinite series that use the trigonometric functions $\cos n\theta$ and $\sin n\theta$, or, equivalently, $e^{in\theta}$ and $e^{-in\theta}$, as the basic building blocks.
 \paragraph{Piecewise Continuity of Functions} A function $f$ defined on an interval $[a,b]$ is \under{piecewise continuous} on $[a,b]$ if it is continuous except at finitely many points in $[a,b]$, and at each such point the one-sided limits
