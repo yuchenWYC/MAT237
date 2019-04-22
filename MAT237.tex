@@ -51,6 +51,9 @@
 \newcommand{\qed}[0]{$\hfill\blacksquare$}
 \newcommand{\qerat}{\tag*{$\blacksquare$}}
 \newcommand{\lima}{\underset{\vx \rightarrow \va}{\lim}}
+\usepackage{amsmath}% http://ctan.org/pkg/amsmath
+\newcommand{\notimplies}{%
+  \mathrel{{\ooalign{\hidewidth$\not\phantom{=}$\hidewidth\cr$\implies$}}}}
 
 
 % Attr.
@@ -479,6 +482,24 @@ The smallest eigenvalue of A = $\min_{\{\tb{u}\in \real^n: |\tb{u}| = 1\}} \tb{u
 \end{enumerate}
 \subsection{Lagrange Multipliers}
 \subsubsection{One constraint}
+Consider the problem
+\begin{equation*}
+\begin{cases}
+  \mbox{minimize/maximize} \quad &f(\tb{x}) \\
+  \mbox{subject to the constraint:} &g(\tb{x}) = 0\\
+\end{cases}
+\end{equation*}
+\paragraph{Theorem 1}
+Assume that $f$ and $g$ are functions $S \rightarrow \real$ of class $C^1$, where S is an open subset of $\real^n$.\\
+If $\vx$ is a local minimum point or local maximum point of $f$ subject to the constraint $g = 0$, and if \textcolor{red}{$\nabla g(\vx) \neq \vo$} then there exists $\lambda \in \real$ such that the following system of equations is satisfied by $\vx$ and $\lambda$:
+\begin{equation*}
+\begin{cases}
+  \nabla f(\tb{x}) + \lambda \nabla g(\tb{x}) &= \tb{0} \\
+  g(\tb{x}) &= 0\\
+\end{cases}
+\end{equation*}
+
+
 \paragraph{\textcolor{blue}{Proposition}}
 the Lagrange multiplier equations $\implies \nabla f(\vx)$ is orthogonal at $\vx$ to the set of points satisfying the constraint.
 \subsubsection{Two constraints}
@@ -508,12 +529,30 @@ Then we can find it by the Lagrange Multiplier technique. \newline
 Finally we can choose the smallest/largest value of $f$ and the point where that value is attained from among all the candidates found in steps 1 and 2 above.
 \section{The Implicit and Inverse Function Theorems}
 \subsection{The Implicit Function Theorem}
-Assume that S is an open subset of $\real^{n+k}$ and that $F: S \rightarrow \real^k$ is a function of class $C^1$. Assume also that $(\tb{a}, \tb{b})$ is a point in S such that $\tb{F(a, b)=0}$ and det$D_{\tb{y}}\tb{F(a, b)} \neq 0$ \newline
+Assume that S is an open subset of $\real^{n+k}$ and that $F: S \rightarrow \real^k$ is a function of class $C^1$. Assume also that $(\tb{a}, \tb{b})$ is a point in S such that $$\tb{F}(\va, \vb)= \vo \mbox{ and } \det D_{\tb{y}}\tb{F(a, b)} \neq 0$$ \newline
 1. Then there exists $r_0, r_1 > 0$ such that for every $\tb{x} \in \real^n$ such that $|\tb{x} - \tb{a}| < r_0$, there exists a unique $\tb{y} \in \real^k$ such that $|\tb{y} - \tb{b}| < r_1$
-    $$\tb{F(x, y) = 0} (1)$$
-    In other words, equation (1) implicitly defines a function $\tb{y = f(x)}$ for $x \in \real^n$ near \tb{a}, with \tb{y = f(x)} close to \tb{b}. Note in particular that \tb{b = f(a)}. \newline
+\begin{equation}
+	\tb{F(x, y) = 0}
+\end{equation}
+    In other words, equation (2) implicitly defines a function $\tb{y = f(x)}$ for $x \in \real^n$ near \tb{a}, with \tb{y = f(x)} close to \tb{b}. Note in particular that \tb{b = f(a)}. \\\\
 2. Moreover, the function $\tb{f}: B(r_0,\tb{a}) \rightarrow B(r_1, \tb{b}) \subset \real^k$ from part (1) above is of class $C^1$, and its derivatives may be determined by differentiating the identity $$\tb{F(x,f(x)) = 0}$$ and solving to find the partial derivatives of \tb{f}.
-\paragraph{Remark} $$D\tb{f(a)} = -[D_\tb{y}\tb{F(a, b)}]^{-1}D_\tb{x}\tb{F(a, b)}$$
+\paragraph{Analytic Content of the Theorem}
+Suppose we want to solve the equation $\vf(\vx, \vy) = \vo$ for $\vy$ as a function of $\vx$, say $\vy = \ff(\vx)$. If we have a solution $\vb = \ff(va)$, then in principle it is possible to solve for $\vx$ near $\va$, \textcolor{red}{if the crucial hypothesis $\det D_\vy \vf(\va,\vb) \neq 0$ holds.} Thus it is a theorem about the possibility of solving systems of (in general nonlinear) equations,
+\paragraph{Remark} 
+Differentiating $\vf(\vx, \ff(\vx)) = 0$:
+$$D_\vy\vf|_{(\vx, \ff(\vx))}D\ff(\vx) = -D_\vx\vf|_{(\vx,\ff(\vx))}$$
+Substituting $(\vx, \ff(\vx)) = (\va, \vb)$ we get
+$$D_\vy\vf(\va, \vb)D\ff(\va) = -D_\vx\vf(\va,\vb)$$
+We need to solve for $D\ff(\va)$ in terms of derivatives of $\vf$ evaluated at $(\va, \vb)$, which leads to
+$$D\tb{f(a)} = -[D_\tb{y}\tb{F(a, b)}]^{-1}D_\tb{x}\tb{F(a, b)}$$
+\paragraph{Limitations}
+\begin{enumerate}
+	\item We have to start by knowing one solution $\vy = \vb$ for some specific $\vx = \va$.
+	\item It only gives \textcolor{blue}{local} information near point $(\va, \vb)$.
+	\item It does not give a formula for $\vy = \ff(\vx)$ solving $\vf(\vx,\vy) = 0$. It does however, tell us how to compute $D\ff(\va)$, and this allows us to approximate the solution
+	$$\ff(\va + \vh) \approx \ff(\va) + D\ff(\va)\vh = \vb + D\ff(\va)\vh$$
+	for $\vh$ small.
+\end{enumerate}
 
 
 \subsection{Geometric Contents of the Implicit Function Theorem}
@@ -527,12 +566,12 @@ Fix $k < n$. For a k-dimensional manifold $M$ in $\real^n$, we say that $M$ has 
     $$ \func{F}{U\in \real^n}{\real^{n-k}}$$ where U is open.
     $$ S = \{\tb{x} \in U: \tb{F}(\tb{x}) = \tb{c}\}$$ for some $\tb{c} \in \real^{n-k}$.\newline
     This is also called the \ti{"zero locus"} of \tb{F} when $\tb{c} = \tb{0}$
-\paragraph{Remark 1} The regularity conditions that guarantees that S is smooth is that
+\paragraph{Remark 1} The regularity conditions that guarantees that $S$ is smooth is that
 \begin{enumerate}
     \item $\nabla F_1(\tb{x}), ..., \nabla F_{n-k}(\tb{x})$ are linearly independent at each $\tb{x} \in S$. Or equivalently,
     \item the matrix $D\tb{F}(\tb{x})$ has rank $n-k$ at every $\tb{x} \in S$.
 \end{enumerate}
-\paragraph{Remark 2} It can happen that the above conditions are satisfied but S is not smooth. Example: The square of a smooth F, c = 0
+\paragraph{Remark 2} It can happen that S is smooth but the above conditions are not satisfied. Example: The square of a smooth set $\vf(x,y,z) = (x^2 + y^2 - 1)^2,  \vc = \vo$
 \paragraph{3. Parametrically}
 $$\func{f}{U \subset \real^k}{\real^{n}}$$ where U is open.
 $$ S = \{\tb{f}(\tb{u}): \tb{u} \in U\}$$
@@ -568,8 +607,15 @@ conditions: $D\tb{f}(\tb{c})$ has rank 2 at some $c$
 \end{enumerate}
 Hence if $\gamma$ is regular, then there is a neighbourhood if each point whose image looks like a graph of a $\mathcal{C}^1$-function. Simplicity guarantees that no funny overlaps can happen, and this is what is need for the curve to be smooth. \textbf{As a conclusion, we say a parametric curve is smooth if and only if it is \textit{regular} and \textit{simple}}. Equivalently we could also convert such parametrization into a zero locus of a $F$ to use the good old method of gradient directly.
 
-
-
+\subsubsection{\textcolor{red}{Remarks on Smoothness of a Set $S$}}
+\begin{enumerate}
+	\item S is smooth := S can be represented as a $C^1$ graph
+	\item Jacobian of a level set has full rank $\implies$ S is smooth
+	\item A parametrization of S is smooth $\wedge$ parametrization is injective $\implies$ S is smooth
+	\item S is smooth $\notimplies$ Jacobian of any level set has full rank
+	\item S is smooth $\notimplies$ any parametrization of S is smooth
+	\item A parametrization of S is smooth $\notimplies$ S is smooth
+\end{enumerate}
 
 
 \subsection{The Inverse Function Theorem} Let U and V be open sets in $\real^n$, and assume that $\func{f}{U}{V}$ is a mapping of class $C^1$. \newline
@@ -582,6 +628,11 @@ and let $\tb{b} := \tb{f(a)}$. Then there exist open sets $M \subset U$ and $N \
 \end{enumerate}
 Moreover, if $x \in M$ and $y = \tb{f(x)}\in N$, then $$D(\tb{f}^{-1})(\tb{y}) = [D\tb{f(x)}]^{-1}$$
 In particular, $$D(\tb{f}^{-1})(\tb{b}) = [D\tb{f(a)}]^{-1}$$
+\paragraph{Remarks} The theorem tells us when a transformation of class $C^1$ has a \textcolor{red}{local} inverse of class $C^1$\\
+It says: Suppose we are given $n$ nonlinear equations in $n$ unknowns. Given $\ff: U \rightarrow V$ and $\vy \in V$, and we want to find $\vx$ solving
+$$\ff(\vx) = \vy$$
+If we know that $\ff(\va) = \vb$, then for $\vy$ near $\vb$, the solvability of the system can be established by considering whether the matrix $D\ff(\va)$ is invertible.
+
 
 \subsubsection{Some Important Coordinate Systems}
 \paragraph{Polar Coordinates in $\real^2$}
@@ -646,7 +697,7 @@ Notice the extra $int$.
 \subsection{Theorems of 1-D Integral Calculus}
 \paragraph{Lemma: Refined partitions give better approximations} Let $P$ be some partition over an interval and let $P'$ be a refinement of $P$, then
 \begin{equation*}
-    LS_{P'}f \geq LS_{P}f \wedge US_{P'} \leq US_{P}f
+    LS_{P'}f \geq LS_{P}f \wedge US_{P'}f \leq US_{P}f
 \end{equation*}
 Where LS and US stands for lower sum and upper sum respectively.
 
@@ -673,7 +724,7 @@ Where LS and US stands for lower sum and upper sum respectively.
 \paragraph{Theorem.} Suppose $f$ is integrable on $[a,b]$.
 \begin{enumerate}
     \item If $c\in \mathbb{R}$, the $cf$ is integrable on $[a,b]$, and $\int_a^b cf(x) = c\int_a^bf(x)dx$
-    \item Of $[c,d] \subset [a,b]$, then $f$ is integrable on $[c,d]$.
+    \item If $[c,d] \subset [a,b]$, then $f$ is integrable on $[c,d]$.
     \item If $g$ is integrable on $[a,b]$ and $f(x) \leq g(x),\forall x \in [a,b]$, then $\int_a^b f(x)dx\leq \int_a^b g(x)dx$
     \item $|f|$ is integrable on $[a,b]$, and $\left|\int_a^bf(x)dx\right| \leq \int_a^b |f(x)|dx$
 \end{enumerate}
