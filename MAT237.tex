@@ -506,62 +506,19 @@ Then it is a critical point, which we know how to find and classify
 \paragraph{Case 2} The max or min occurs in the set $\{x\in \real^n: g(\tb{x}) = 0\}$ \newline
 Then we can find it by the Lagrange Multiplier technique. \newline
 Finally we can choose the smallest/largest value of $f$ and the point where that value is attained from among all the candidates found in steps 1 and 2 above.
-\section{The Implicit Function Theorem}
+\section{The Implicit and Inverse Function Theorems}
+\subsection{The Implicit Function Theorem}
 Assume that S is an open subset of $\real^{n+k}$ and that $F: S \rightarrow \real^k$ is a function of class $C^1$. Assume also that $(\tb{a}, \tb{b})$ is a point in S such that $\tb{F(a, b)=0}$ and det$D_{\tb{y}}\tb{F(a, b)} \neq 0$ \newline
 1. Then there exists $r_0, r_1 > 0$ such that for every $\tb{x} \in \real^n$ such that $|\tb{x} - \tb{a}| < r_0$, there exists a unique $\tb{y} \in \real^k$ such that $|\tb{y} - \tb{b}| < r_1$
     $$\tb{F(x, y) = 0} (1)$$
     In other words, equation (1) implicitly defines a function $\tb{y = f(x)}$ for $x \in \real^n$ near \tb{a}, with \tb{y = f(x)} close to \tb{b}. Note in particular that \tb{b = f(a)}. \newline
 2. Moreover, the function $\tb{f}: B(r_0,\tb{a}) \rightarrow B(r_1, \tb{b}) \subset \real^k$ from part (1) above is of class $C^1$, and its derivatives may be determined by differentiating the identity $$\tb{F(x,f(x)) = 0}$$ and solving to find the partial derivatives of \tb{f}.
 \paragraph{Remark} $$D\tb{f(a)} = -[D_\tb{y}\tb{F(a, b)}]^{-1}D_\tb{x}\tb{F(a, b)}$$
-\section{The Inverse Function Theorem} Let U and V be open sets in $\real^n$, and assume that $\func{f}{U}{V}$ is a mapping of class $C^1$. \newline
-Assume that \tb{a} $\in U$ is a point such that $D\tb{f(a)}$ is invertible. \newline
-and let $\tb{b} := \tb{f(a)}$. Then there exist open sets $M \subset U$ and $N \subset V$ such that
-\begin{enumerate}
-    \item $\tb{a} \in M$ and $\tb{b} \in N$
-    \item $\tb{f}$ is one-to-one from M onto N (hence invertible), and
-    \item the inverse function $f^{-1}: N \rightarrow M$ is of class $C^1$
-\end{enumerate}
-Moreover, if $x \in M$ and $y = \tb{f(x)}\in N$, then $$D(\tb{f}^{-1})(\tb{y}) = [D\tb{f(x)}]^{-1}$$
-In particular, $$D(\tb{f}^{-1})(\tb{b}) = [D\tb{f(a)}]^{-1}$$
 
-\section{Some Important Coordinate Systems}
-\subsection{Polar Coordinates in $\real^2$}
-$$\begin{pmatrix}
-    x\\y
-\end{pmatrix}
-= \begin{pmatrix}
-    r\cos{\theta}\\
-    r\sin{\theta}
-\end{pmatrix}
-= \tb{f}(r, \theta) $$
-For \tb{f} to be a bijection between open sets, we have to restrict its domain and range. A common choice is to specify that \tb{f} is a function $U \rightarrow V$ where
-$$U := \{(r, \theta): r > 0, |\theta| < \pi\},   V:= \real^2 \symbol{92}\{(x, 0): x \leq 0 \}$$
-(Note that there is a half of the x-axis missing)
-\subsection{Spherical Coordinates in $\real^3$}
-$$\begin{pmatrix}
-    x\\y\\z
-\end{pmatrix}
-= \begin{pmatrix}
-    r\cos{\theta}\sin{\varphi}\\
-    r\sin{\theta}\sin{\varphi}\\
-    r\cos{\varphi}
-\end{pmatrix}
-= \tb{f}(r, \theta, \varphi)$$
-If we want \tb{f} to be a bijection between open sets U and V, it is necessary to restrict the domain and range in some appropriate way.
 
-\subsection{Cylindrical Coordinates in $\real^3$}
-$$\begin{pmatrix}
-    x\\y\\z
-\end{pmatrix}
-= \begin{pmatrix}
-    r\cos{\theta}\\
-    r\sin{\theta}\\
-    z
-\end{pmatrix}
-= \tb{f}(r, \theta, z)$$
-
-\section{k-Dimensional Manifolds in $\real^n$}
-\subsection{The General Case}
+\subsection{Geometric Contents of the Implicit Function Theorem}
+k-Dimensional Manifolds in $\real^n$
+\subsubsection{The General Case}
 Fix $k < n$. For a k-dimensional manifold $M$ in $\real^n$, we say that $M$ has "degrees of freedom" $k$. There are 3 natural ways to represent $M$ (be careful with the dimensions!!! ):
 \paragraph{1. As a \tb{graph}:}
         $$\func{f}{U \subset \real^k}{\real^{n-k}}$$ where U is open.
@@ -586,7 +543,7 @@ $$ S = \{\tb{f}(\tb{u}): \tb{u} \in U\}$$
 \end{enumerate}
 \paragraph{Notes} We can prove that if the above conditions are satisfied, then S is smooth. Construct $\func{F}{\real^{2k}}{\real^k}$, then use IFT (the proof is hard but worthwhile to think about since the general case implies every specific case).
 
-\subsection{The Specific Cases}
+\subsubsection{The Specific Cases}
 \paragraph{Theorem 1 - When is a curve regular?}
 Assume that $\func{F}{\real^2}{\real}$ is $C^1$, and let
 $$S:=\{\tb{x} \in \real^2: F(\tb{x}) = 0 \}$$
@@ -603,13 +560,64 @@ conditions: $\tb{a} \in S$ and $\nabla F(\tb{a}) \neq 0$
 \paragraph{Theorem 4 - When is the parametrization regular?}
 conditions: $D\tb{f}(\tb{c})$ has rank 2 at some $c$
 
-\subsection{Remarks on smoothness of a parametric smooth curve} 
+\subsubsection{Remarks on smoothness of a parametric smooth curve} 
 \paragraph{Definition.}If $I\subseteq \real$ is an interval, a $\mathcal{C}^1$ map $\gamma: I \rightarrow{} \real^2$ is said to be
 \begin{enumerate}
     \item A \textit{regular curve} if $\gamma'(t)\neq 0, \forall t\in I$
     \item A \textit{simple curve} if $\gamma$ is injective on the interior of $I$.
 \end{enumerate}
 Hence if $\gamma$ is regular, then there is a neighbourhood if each point whose image looks like a graph of a $\mathcal{C}^1$-function. Simplicity guarantees that no funny overlaps can happen, and this is what is need for the curve to be smooth. \textbf{As a conclusion, we say a parametric curve is smooth if and only if it is \textit{regular} and \textit{simple}}. Equivalently we could also convert such parametrization into a zero locus of a $F$ to use the good old method of gradient directly.
+
+
+
+
+
+\subsection{The Inverse Function Theorem} Let U and V be open sets in $\real^n$, and assume that $\func{f}{U}{V}$ is a mapping of class $C^1$. \newline
+Assume that \tb{a} $\in U$ is a point such that $D\tb{f(a)}$ is invertible. \newline
+and let $\tb{b} := \tb{f(a)}$. Then there exist open sets $M \subset U$ and $N \subset V$ such that
+\begin{enumerate}
+    \item $\tb{a} \in M$ and $\tb{b} \in N$
+    \item $\tb{f}$ is one-to-one from M onto N (hence invertible), and
+    \item the inverse function $f^{-1}: N \rightarrow M$ is of class $C^1$
+\end{enumerate}
+Moreover, if $x \in M$ and $y = \tb{f(x)}\in N$, then $$D(\tb{f}^{-1})(\tb{y}) = [D\tb{f(x)}]^{-1}$$
+In particular, $$D(\tb{f}^{-1})(\tb{b}) = [D\tb{f(a)}]^{-1}$$
+
+\subsubsection{Some Important Coordinate Systems}
+\paragraph{Polar Coordinates in $\real^2$}
+$$\begin{pmatrix}
+    x\\y
+\end{pmatrix}
+= \begin{pmatrix}
+    r\cos{\theta}\\
+    r\sin{\theta}
+\end{pmatrix}
+= \tb{f}(r, \theta) $$
+For \tb{f} to be a bijection between open sets, we have to restrict its domain and range. A common choice is to specify that \tb{f} is a function $U \rightarrow V$ where
+$$U := \{(r, \theta): r > 0, |\theta| < \pi\},   V:= \real^2 \symbol{92}\{(x, 0): x \leq 0 \}$$
+(Note that there is a half of the x-axis missing)
+\paragraph{Spherical Coordinates in $\real^3$}
+$$\begin{pmatrix}
+    x\\y\\z
+\end{pmatrix}
+= \begin{pmatrix}
+    r\cos{\theta}\sin{\varphi}\\
+    r\sin{\theta}\sin{\varphi}\\
+    r\cos{\varphi}
+\end{pmatrix}
+= \tb{f}(r, \theta, \varphi)$$
+If we want \tb{f} to be a bijection between open sets U and V, it is necessary to restrict the domain and range in some appropriate way.
+
+\paragraph{Cylindrical Coordinates in $\real^3$}
+$$\begin{pmatrix}
+    x\\y\\z
+\end{pmatrix}
+= \begin{pmatrix}
+    r\cos{\theta}\\
+    r\sin{\theta}\\
+    z
+\end{pmatrix}
+= \tb{f}(r, \theta, z)$$
 
 \section{Integration}
 \subsection{Zero content}
@@ -752,7 +760,7 @@ goal: find the analogous formula for multiple integrals. The questions is: How d
     \item spherical coordinates: factor = $r^2\sin\varphi$
 \end{enumerate}
 
-\section{Functions Defined by Integrals}
+\subsection{Functions Defined by Integrals}
 \paragraph{Question}  $$ F(\vx) = \int\hdots\int_S f(\vx,\vy)d^n\vy$$ What condition on $f$ guarantee that F behaves well?
 \paragraph{Theorem 1 - Continuity of F} Suppose S and T are compact subsets of $\real^n$ and $\real^m$, respectively, and S is measurable. If $f(\vx, \vy)$ is continuous on the set $T \times S = \{(\vx, \vy): \vx \in T, \vy \in S\}$, then the function F defined by $$ F(\vx) = \int\hdots\int_S f(\vx,\vy)d^n\vy$$ is continuous on T.
 \paragraph{Theorem 2 - Differentiability of F} Suppose $S \subset \real^n$ is compact and measurable, and $T \subset \real^m$ is open. If f is a continuous function on $T \times S$ that is of class $C^1$ as a function of $\vx \in T$ for each $\vy \in S$, then the function F defined by $$ F(\vx) = \int\hdots\int_S f(\vx,\vy)d^n\vy$$ is of class $C^1$ on T, and 
@@ -762,9 +770,9 @@ We suppose that $f$ is continuous in $x$ and $y$ and of class $C^1$ in $x$ for e
 $$\frac{d}{dx}\int_a^{\varphi(x)}f(y)fy = f(\varphi(x))\varphi'(x)$$
 For the more general case (*), we can differentiate F by combining this result with Theorem 2: Differentiate with respect to each $x$ in (*) while treating the others as constants, and add the results
 $$F'(x) = f(\varphi(x))\varphi'(x) + \int_a^{\varphi(x)}\frac{\partial f}{\partial x}(x,y) dy$$
-\section{Improper Multiple Integrals}
+\subsection{Improper Multiple Integrals}
 There are many situations where one needs to integrate functions over infinite intervals(e.g. half-space or the whole space) or functions that are unbounded near some point in the region of integration. 
-\subsection{Bounded Functions on Unbounded Domains}
+\subsubsection{Bounded Functions on Unbounded Domains}
 Suppose, for example, that $f$ is a continuous function on $\real^2$ and we wish to define $\iint_{\real^2}fdA$. The obvious idea is to set $$\iint_{\real^2} fdA = \underset{r\rightarrow\infty}{\lim} \iint_{S_r}fdA$$ where the $S_r$'s are a family of measurable sets that fill out $\real^2$ as $r \rightarrow \infty$. For example, we could take $S_r$ to be 
 \begin{enumerate}
     \item the disc of radius $r$ about the origin
@@ -803,7 +811,7 @@ Convert to polar coordinates:
 $$\underset{d\rightarrow\infty}{\lim}2\pi C(d^{1-p}-R^{1-p})$$ exists iff $$ p - 1> 1 \iff p>2$$ \qed
 \end{proof}
 
-\subsection{Unbounded Functions on Bounded Domains}
+\subsubsection{Unbounded Functions on Bounded Domains}
 Now let S be a measurable subset of $\real^n$, and for a point $\tb{a} \in S^{int}$, and consider a continuous but unbounded function $f: S\setminus\{\va\} \rightarrow \real$.\\
 \paragraph{Example} $$f(x) = |\vx - \va|^{-p}$$ for some $p>0$.
 \paragraph{Definition 2} For continuous $f: S \setminus \{\tb{a}\} \rightarrow \real$, we say the \tb{improper integral} $\int \hdots \int_{S\setminus\{\va\}} f(\vx)d^n\vx$ is \tb{absolutely convergent} (or sometimes just "\tb{the improper integral exists}") if there exists $L \in \real$ s.t.
@@ -822,7 +830,7 @@ the improper integral $\int \hdots \int_S f(\vx)d^n\vx$ is absolutely convergent
 \paragraph{Proposition} For $p > 0$, define $f_p$ on $\real^n \setminus \{\vo\}$ by $f_p(\vx) = |\vx|^{-p}$. The integral of $f_p$ over a ball $\{\vx:|\vx| < a\}$ is finite if and only if $p<n$; the integral of $f_p$ over the complement of a ball, $\{\vx:|\vx| > a\}$, is finite if and only if $p>n$.
 
 \paragraph{Proposition} $$\int_{-\infty}^\infty e^{-x^2}dx = \sqrt{\pi}$$
-\section{Line Integrals}
+\section{Vector Calculus}
 Let \tb{F} be an $\real^n$-valued function defined on some subset of $\real^n$. In this chapter, we think of such an \tb{F} as a function that assigns to each point $\vx$ in its domain a vector $\tb{F}(\vx)$, represented pictorially as an arrow based at \vx, and we therefore call it a \tb{vector field}.
 \subsection{Arc Length and Line Integrals}
 line integrals: integrals over curves\\
