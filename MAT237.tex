@@ -305,10 +305,10 @@ $$\p_\vu f(\vx) = \vu \cdot \nabla f(\vx)$$
 Suppose that $S$ is an open subset of $\real^n$, and consider a vector-valued function $\tb{f}: S \rightarrow \real^m$. \\
 Idea: $\tb{f}$ is differentiable at a point $\va \in S$ if $\ff$ can be approximated by a linear map $\real^n \rightarrow \real^m$ near $\va$, with errors that are ``smaller than linear".
 \paragraph{Definition} Assume that $S$ is an open subset of $\real^n$. Given a function $\ff: S \rightarrow \real^m$, we say that $\ff$ is differentiable at a point $\va \in S$ if there exists a $m \times n$ matrix $M$ such that 
-$$\vf(\va + \vh) = \vf(\va) + M\vh + \tb{E}(\vh), \quad \mbox{where } \underset{\vh \rightarrow \vo}{\lim} \frac{\tb{E}(\vh)}{|\vh|} = \vo \in \real^m$$
+$$\ff(\va + \vh) = \ff(\va) + M\vh + \tb{E}(\vh), \quad \mbox{where } \underset{\vh \rightarrow \vo}{\lim} \frac{\tb{E}(\vh)}{|\vh|} = \vo \in \real^m$$
 or
-$$ \underset{\vh \rightarrow \vo}{\lim} \frac{f(\vx + \vh) - f(\vx) - \vm\cdot \vh}{|\vh|} = 0$$
-When this holds, we say that $M$ is the derivative of $\vf$ at $\va$, and we write $M = D\ff(\va)$.
+$$ \underset{\vh \rightarrow \vo}{\lim} \frac{\ff(\vx + \vh) - \ff(\vx) - M\vh}{|\vh|} = 0$$
+When this holds, we say that $M$ is the derivative of $\ff$ at $\va$, and we write $M = D\ff(\va)$.
 \paragraph{Definition of Jacobian Matrix}
 When $M$ satisfy the above definition of differentiability, we say that $M$ is a $Jacobian$ matrix.
 \subsubsection{The differential}
@@ -537,7 +537,7 @@ Assume that S is an open subset of $\real^{n+k}$ and that $F: S \rightarrow \rea
     In other words, equation (2) implicitly defines a function $\tb{y = f(x)}$ for $x \in \real^n$ near \tb{a}, with \tb{y = f(x)} close to \tb{b}. Note in particular that \tb{b = f(a)}. \\\\
 2. Moreover, the function $\tb{f}: B(r_0,\tb{a}) \rightarrow B(r_1, \tb{b}) \subset \real^k$ from part (1) above is of class $C^1$, and its derivatives may be determined by differentiating the identity $$\tb{F(x,f(x)) = 0}$$ and solving to find the partial derivatives of \tb{f}.
 \paragraph{Analytic Content of the Theorem}
-Suppose we want to solve the equation $\vf(\vx, \vy) = \vo$ for $\vy$ as a function of $\vx$, say $\vy = \ff(\vx)$. If we have a solution $\vb = \ff(va)$, then in principle it is possible to solve for $\vx$ near $\va$, \textcolor{red}{if the crucial hypothesis $\det D_\vy \vf(\va,\vb) \neq 0$ holds.} Thus it is a theorem about the possibility of solving systems of (in general nonlinear) equations,
+Suppose we want to solve the equation $\vf(\vx, \vy) = \vo$ for $\vy$ as a function of $\vx$, say $\vy = \ff(\vx)$. If we have a solution $\vb = \ff(\va)$, then in principle it is possible to solve for $\vx$ near $\va$, \textcolor{red}{if the crucial hypothesis $\det D_\vy \vf(\va,\vb) \neq 0$ holds.} \textcolor{blue}{Thus it is a theorem about the possibility of solving systems of (in general nonlinear) equations.}
 \paragraph{Remark} 
 Differentiating $\vf(\vx, \ff(\vx)) = 0$:
 $$D_\vy\vf|_{(\vx, \ff(\vx))}D\ff(\vx) = -D_\vx\vf|_{(\vx,\ff(\vx))}$$
@@ -785,7 +785,7 @@ the sums $LS_Pf$ and $US_Pf$ differ from $\int_a^bf(x)dx$ by at most $\epsilon$.
 \paragraph{Corollary}
 \begin{enumerate}
     \item Suppose that $f$ is integrable on the set $S\subset \real^2$. If $g(\bx) = f(\bx)$ except for $\bx$ in a set of zero content, then $g$ is integrable on $S$ and $\int_S gdA = \int_S fdA$
-    \item Suppose that $f$ is integrable on $S$ and on $T$, and $S\cap T$ has zero content. Then $f$ is integrable on $S\cup T$, and $\int_{S\cup T}fdA = \int_Sfd+ \int_TfdA$
+    \item Suppose that $f$ is integrable on $S$ and on $T$, and $S\cap T$ has zero content. Then $f$ is integrable on $S\cup T$, and $\int_{S\cup T}f\,dA = \int_Sf\,dA+ \int_Tf\,dA$
 \end{enumerate}
 \paragraph{Fubini's Theorem} Let $R = \{(x,y): a\leq x\leq b, c \leq y \leq d \}$, and let $f$ be an integrable function on R. Suppose that, for each $y \in [c, d]$, the function $f_y$ defined by $f_y(x) = f(x, y)$ is integrable on $[a,b]$, and the function $g(y) = \int_a^bf(x,y)dx$ is integrable on $[c,d]$. Then
 $$\iint_R fdA = \int_c^d\left[\int_a^b f(x,y)dx\right]dy$$
@@ -797,7 +797,7 @@ $$\iint_R fdA = \int_a^b\left[\int_c^d f(x,y)dy\right]dx$$
 $$\int_{[a,b]} f(g(u))|g'(u)|du = \int_{g([a,b])}f(x)dx$$
 In practice it is often more convenient to have all the $g$'s on one side of the equation. If we set $I = g([a, b])$, we have $[a, b] = g^{-1}(I)$, and
 $$\int_I f(x) \, dx = \int_{g^{-1}(I)}f(g(u))|g'(u)|du$$
-goal: find the analogous formula for multiple integrals. The questions is: How does the volume of a tiny piece of $n$-space change when one applies the transformation G?
+Goal: find the analogous formula for multiple integrals. The questions is: How does the volume of a tiny piece of $n$-space change when one applies the transformation G?
 \paragraph{Theorem - Change of Variable for linear mappings} Let A be an invertible $n \times n$ matrix, and let $\tb{G}(\tb{u}) = A\tb{u}$ be the corresponding linear transformation of $\real^n$. Suppose S is a measurable region in $\real^n$ and $f$ is an integrable function on S. Then $G^{-1}(S) = \{A^{-1}\tb{x}: \tb{x} \in S\}$ is measurable and $f \circ \tb{G}$ is integrable on $\tb{G}^{-1}(S)$, and
     $$ \int \hdots \int_S f(\vx)d^n\vx = |det A| \int \hdots \int_{\tb{G}^{-1}(S)}f(A\tb{u})d^n\tb{u}$$
 
@@ -842,7 +842,7 @@ $$\underset{R \rightarrow \infty}{\lim} \int \hdots \int_{B(R)} |f(\vx)|d^n\vx =
 Then the improper integral $\int \hdots \int_{\real^n}f(\vx)d^n\vx$ is absolutely convergent.
 
 \paragraph{Corollary 1} Suppose $f:\real^n \rightarrow \real$ is bounded and integrable on any bounded set and satisfies $|f(\vx)| \leq C \cdot \frac{1}{||\vx||^p}$ whenever $||\vx|| > R$, for some constants $C,R > 0$.\\
-If $p>n$ then $\int\hdots \int_{\real^n}fd^n\vx$ exists.\\\\
+If $p>n$ then $\int\hdots \int_{\real^n}f\,d^n\vx$ exists.\\\\
 \begin{proof}
 (n=2)Suppose there exist a $p > 2$ such that the hypothesis of the theorem is satisfied. Consider $B(\vo,R)$.\\
 Then $$\int\hdots \int_{\real^n}fd^n\vx = \int\hdots \int_{B(\vo,R)}fd^n\vx + \int\hdots \int_{\real^2 \setminus B(\vo, R)}fd^n\vx$$
